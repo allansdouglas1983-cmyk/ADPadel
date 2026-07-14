@@ -1,0 +1,48 @@
+{
+  "name": "@padel/mobile",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Marque mobile app (iOS + Android) — Expo.",
+  "main": "expo-router/entry",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "prebuild": "expo prebuild",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@padel/design-tokens": "workspace:*",
+    "@padel/formats": "workspace:*",
+    "@padel/ratings": "workspace:*",
+    "@padel/scoring-engine": "workspace:*",
+    "@padel/shared": "workspace:*",
+    "@padel/stats": "workspace:*",
+    "@sentry/react-native": "~6.10.0",
+    "@shopify/react-native-skia": "^1.5.0",
+    "@supabase/supabase-js": "^2.47.0",
+    "drizzle-orm": "^0.38.0",
+    "expo": "~52.0.0",
+    "expo-haptics": "~14.0.0",
+    "expo-localization": "~16.0.0",
+    "expo-media-library": "~17.0.0",
+    "expo-notifications": "~0.29.0",
+    "expo-router": "~4.0.0",
+    "expo-sharing": "~13.0.0",
+    "expo-sqlite": "~15.0.0",
+    "i18next": "^24.0.0",
+    "react": "18.3.1",
+    "react-i18next": "^15.1.0",
+    "react-native": "0.76.0",
+    "react-native-gesture-handler": "~2.20.0",
+    "react-native-purchases": "^8.2.0",
+    "react-native-reanimated": "~3.16.0",
+    "zustand": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "~18.3.12",
+    "drizzle-kit": "^0.30.0",
+    "typescript": "^5.7.2"
+  }
+}

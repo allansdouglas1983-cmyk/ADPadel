@@ -1,0 +1,58 @@
+{
+  "tabs": {
+    "play": "Play",
+    "history": "History",
+    "stats": "Stats",
+    "friends": "Friends",
+    "profile": "Profile"
+  },
+  "play": {
+    "newMatch": "New match",
+    "americano": "Americano",
+    "mexicano": "Mexicano",
+    "tournament": "Tournament",
+    "resumeMatch": "Resume match"
+  },
+  "setup": {
+    "format": "Format",
+    "doubles": "Doubles",
+    "singles": "Singles",
+    "deuceMode": "Deuce",
+    "advantage": "Advantage",
+    "golden": "Golden point",
+    "star": "Star point",
+    "finalSet": "Final set",
+    "superTiebreak": "Super tie-break",
+    "fullSet": "Full set",
+    "start": "Start match"
+  },
+  "score": {
+    "deuce": "Deuce",
+    "advantage": "Advantage",
+    "goldenPoint": "Golden point",
+    "starPoint": "Star point",
+    "tiebreak": "Tie-break",
+    "superTiebreak": "Super tie-break",
+    "matchPoint": "Match point",
+    "undo": "Undo",
+    "replay": "Replay point",
+    "timeout": "Timeout",
+    "pointTo": "Point to {{side}}",
+    "you": "You",
+    "opponents": "Opponents"
+  },
+  "result": {
+    "youWon": "You won!",
+    "youLost": "Match over",
+    "shareCard": "Share card",
+    "duration": "{{minutes}} min"
+  },
+  "paywall": {
+    "title": "Marque Pro",
+    "unlock": "Unlock advanced stats, unlimited history and Season Wrapped export.",
+    "annual": "Annual",
+    "monthly": "Monthly",
+    "trial": "Start free trial",
+    "restore": "Restore purchases"
+  }
+}

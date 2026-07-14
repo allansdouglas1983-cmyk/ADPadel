@@ -1,0 +1,58 @@
+{
+  "tabs": {
+    "play": "Jugar",
+    "history": "Historial",
+    "stats": "Estadísticas",
+    "friends": "Amigos",
+    "profile": "Perfil"
+  },
+  "play": {
+    "newMatch": "Nuevo partido",
+    "americano": "Americano",
+    "mexicano": "Mexicano",
+    "tournament": "Torneo",
+    "resumeMatch": "Reanudar partido"
+  },
+  "setup": {
+    "format": "Formato",
+    "doubles": "Dobles",
+    "singles": "Individual",
+    "deuceMode": "Iguales",
+    "advantage": "Ventaja",
+    "golden": "Punto de oro",
+    "star": "Punto estrella",
+    "finalSet": "Set final",
+    "superTiebreak": "Súper tie-break",
+    "fullSet": "Set completo",
+    "start": "Empezar partido"
+  },
+  "score": {
+    "deuce": "Iguales",
+    "advantage": "Ventaja",
+    "goldenPoint": "Punto de oro",
+    "starPoint": "Punto estrella",
+    "tiebreak": "Tie-break",
+    "superTiebreak": "Súper tie-break",
+    "matchPoint": "Punto de partido",
+    "undo": "Deshacer",
+    "replay": "Repetir punto",
+    "timeout": "Tiempo muerto",
+    "pointTo": "Punto para {{side}}",
+    "you": "Tú",
+    "opponents": "Rivales"
+  },
+  "result": {
+    "youWon": "¡Ganaste!",
+    "youLost": "Partido terminado",
+    "shareCard": "Compartir tarjeta",
+    "duration": "{{minutes}} min"
+  },
+  "paywall": {
+    "title": "Marque Pro",
+    "unlock": "Desbloquea estadísticas avanzadas, historial ilimitado y Wrapped.",
+    "annual": "Anual",
+    "monthly": "Mensual",
+    "trial": "Prueba gratis",
+    "restore": "Restaurar compras"
+  }
+}
