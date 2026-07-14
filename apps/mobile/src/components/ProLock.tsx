@@ -1,8 +1,9 @@
 import React from 'react';
 import { router } from 'expo-router';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { fontSize, radii, spacing } from '@padel/design-tokens';
+import { radii, spacing } from '@padel/design-tokens';
+import { Sparkles, Text } from '@/ui';
 import { useTheme } from '@/theme/ThemeProvider';
 
 /**
@@ -16,21 +17,33 @@ export function ProLock({ unlocked, children }: { unlocked: boolean; children: R
   if (unlocked) return <>{children}</>;
   return (
     <View>
-      <View style={{ opacity: 0.4 }} pointerEvents="none">
+      <View style={{ opacity: 0.4 }} pointerEvents="none" importantForAccessibility="no-hide-descendants">
         {children}
       </View>
       <Pressable
         accessibilityRole="button"
+        accessibilityLabel={`${t('paywall.title')} — unlock with Marque Pro`}
         onPress={() => router.push('/paywall')}
         style={[styles.cta, { backgroundColor: theme.surfaceRaised, borderColor: theme.gold }]}
       >
-        <Text style={[styles.ctaText, { color: theme.gold }]}>{t('paywall.title')}</Text>
+        <Sparkles size={18} color={theme.gold} />
+        <Text variant="bodyStrong" tone="gold">
+          {t('paywall.title')}
+        </Text>
       </Pressable>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  cta: { marginTop: spacing.md, padding: spacing.md, borderRadius: radii.control, borderWidth: 1, alignItems: 'center' },
-  ctaText: { fontSize: fontSize.base, fontWeight: '700' },
+  cta: {
+    marginTop: spacing.md,
+    padding: spacing.md,
+    borderRadius: radii.control,
+    borderWidth: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: spacing.sm,
+  },
 });
