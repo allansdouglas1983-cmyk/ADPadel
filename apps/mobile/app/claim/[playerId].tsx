@@ -1,16 +1,16 @@
 import { router, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
-import { ActivityIndicator, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
-import { fontSize, radii, spacing } from '@padel/design-tokens';
+import { KeyboardAvoidingView, Platform, View } from 'react-native';
+import Animated, { ZoomIn } from 'react-native-reanimated';
+import { BRAND } from '@padel/shared';
+import { spacing } from '@padel/design-tokens';
+import { Button, NameInput, Screen, Sparkles, Text } from '@/ui';
 import { claimGuestProfile } from '@/db/claimRepo';
 import { useAuth } from '@/sync/useAuth';
 import { useTheme } from '@/theme/ThemeProvider';
 
-/**
- * Claim a guest profile in ≤3 taps (the dossier benchmark). If the user isn't
- * signed in, they sign in first (Apple / Google / email) — then the guest's
- * whole history is re-parented to them locally and on the server.
- */
+/** Claim a guest profile in ≤3 taps. If not signed in, sign in first (Apple /
+ * Google / email), then re-parent the guest's whole history to the user. */
 export default function ClaimScreen() {
   const { playerId } = useLocalSearchParams<{ playerId: string }>();
   const theme = useTheme();
@@ -32,56 +32,46 @@ export default function ClaimScreen() {
 
   if (done) {
     return (
-      <View style={[styles.container, { backgroundColor: theme.bg }]}>
-        <Text style={[styles.title, { color: theme.win }]}>Profile claimed 🎾</Text>
-        <Text style={{ color: theme.textMid }}>Your match history is now yours across devices.</Text>
-        <Pressable onPress={() => router.replace('/(tabs)')} style={[styles.cta, { backgroundColor: theme.brand }]}>
-          <Text style={styles.ctaText}>Open {`Marque`}</Text>
-        </Pressable>
-      </View>
+      <Screen>
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', gap: spacing.lg }}>
+          <Animated.View entering={ZoomIn.springify().damping(11)}>
+            <Sparkles size={72} color={theme.gold} />
+          </Animated.View>
+          <Text variant="display" tone="gold">
+            Profile claimed
+          </Text>
+          <Text variant="body" tone="mid" style={{ textAlign: 'center' }}>
+            Your match history is now yours across every device.
+          </Text>
+          <Button label={`Open ${BRAND.name}`} size="lg" full onPress={() => router.replace('/(tabs)')} />
+        </View>
+      </Screen>
     );
   }
 
   return (
-    <View style={[styles.container, { backgroundColor: theme.bg }]}>
-      <Text style={[styles.title, { color: theme.textHi }]}>Claim your profile</Text>
+    <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={{ flex: 1 }}>
+      <Screen>
+        <View style={{ flex: 1, justifyContent: 'center', gap: spacing.lg }}>
+          <Text variant="display" tone="hi">
+            Claim your profile
+          </Text>
 
-      {user ? (
-        <Pressable onPress={claim} disabled={claiming} style={[styles.cta, { backgroundColor: theme.brand }]}>
-          {claiming ? <ActivityIndicator /> : <Text style={styles.ctaText}>Claim now</Text>}
-        </Pressable>
-      ) : (
-        <View style={{ gap: spacing.md }}>
-          <Text style={{ color: theme.textMid }}>Sign in to keep your stats.</Text>
-          <Pressable onPress={signInWithApple} style={[styles.provider, { backgroundColor: theme.textHi }]}>
-            <Text style={{ color: theme.bg, fontWeight: '700' }}>Continue with Apple</Text>
-          </Pressable>
-          <Pressable onPress={signInWithGoogle} style={[styles.provider, { borderColor: theme.border, borderWidth: 1 }]}>
-            <Text style={{ color: theme.textHi, fontWeight: '700' }}>Continue with Google</Text>
-          </Pressable>
-          <TextInput
-            value={email}
-            onChangeText={setEmail}
-            placeholder="you@email.com"
-            autoCapitalize="none"
-            keyboardType="email-address"
-            placeholderTextColor={theme.textLo}
-            style={[styles.input, { color: theme.textHi, borderColor: theme.border, backgroundColor: theme.surface }]}
-          />
-          <Pressable onPress={() => signInWithEmail(email)} disabled={busy || !email} style={[styles.provider, { borderColor: theme.brand, borderWidth: 1 }]}>
-            <Text style={{ color: theme.brand, fontWeight: '700' }}>Email me a link</Text>
-          </Pressable>
+          {user ? (
+            <Button label="Claim now" size="lg" full loading={claiming} onPress={claim} />
+          ) : (
+            <View style={{ gap: spacing.md }}>
+              <Text variant="body" tone="mid">
+                Sign in to keep your stats — free to score offline forever.
+              </Text>
+              <Button label="Continue with Apple" size="lg" full variant="secondary" onPress={signInWithApple} />
+              <Button label="Continue with Google" size="lg" full variant="ghost" onPress={signInWithGoogle} />
+              <NameInput value={email} onChangeText={setEmail} placeholder="you@email.com" autoCapitalize="none" keyboardType="email-address" />
+              <Button label="Email me a link" full variant="ghost" disabled={busy || !email} onPress={() => signInWithEmail(email)} />
+            </View>
+          )}
         </View>
-      )}
-    </View>
+      </Screen>
+    </KeyboardAvoidingView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: { flex: 1, padding: spacing.xl, gap: spacing.lg, justifyContent: 'center' },
-  title: { fontSize: fontSize.display, fontWeight: '700' },
-  cta: { paddingVertical: spacing.lg, borderRadius: radii.card, alignItems: 'center' },
-  ctaText: { color: '#04150E', fontSize: fontSize.lg, fontWeight: '700' },
-  provider: { paddingVertical: spacing.lg, borderRadius: radii.card, alignItems: 'center' },
-  input: { borderWidth: 1, borderRadius: radii.control, paddingVertical: spacing.md, paddingHorizontal: spacing.lg, fontSize: fontSize.base },
-});

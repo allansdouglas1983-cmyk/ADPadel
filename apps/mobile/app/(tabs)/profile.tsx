@@ -1,9 +1,10 @@
 import { router } from 'expo-router';
 import { useState } from 'react';
-import { Pressable, StyleSheet, Switch, Text, View } from 'react-native';
+import { Switch, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { BRAND } from '@padel/shared';
-import { fontSize, radii, spacing } from '@padel/design-tokens';
+import { spacing } from '@padel/design-tokens';
+import { Button, Card, ChevronRight, Screen, Settings, Sparkles, Text } from '@/ui';
 import { useTheme } from '@/theme/ThemeProvider';
 import { useEntitlements } from '@/hooks/useEntitlements';
 import { useAuth } from '@/sync/useAuth';
@@ -11,7 +12,8 @@ import { fullSync } from '@/sync/syncEngine';
 import { useSettings } from '@/store/settingsStore';
 import { requestNotificationPermission } from '@/notifications/notify';
 
-/** Profile & settings: Season Wrapped, Pro, and optional cloud backup (sign-in). */
+/** Profile & settings: Season Wrapped, Pro, accessibility, and optional cloud
+ * backup (sign-in). */
 export default function ProfileScreen() {
   const theme = useTheme();
   const { t } = useTranslation();
@@ -19,13 +21,6 @@ export default function ProfileScreen() {
   const { user, signInWithApple, signInWithGoogle, signOut } = useAuth();
   const { highContrast, notifications, setHighContrast, setNotifications } = useSettings();
   const [syncing, setSyncing] = useState(false);
-
-  const ToggleRow = ({ label, value, onChange }: { label: string; value: boolean; onChange: (v: boolean) => void }) => (
-    <View style={[styles.item, styles.rowBetween, { borderColor: theme.border }]}>
-      <Text style={{ color: theme.textHi }}>{label}</Text>
-      <Switch value={value} onValueChange={onChange} />
-    </View>
-  );
 
   const syncNow = async () => {
     setSyncing(true);
@@ -36,21 +31,50 @@ export default function ProfileScreen() {
     }
   };
 
-  const Item = ({ label, onPress, tint }: { label: string; onPress: () => void; tint?: string }) => (
-    <Pressable onPress={onPress} style={[styles.item, { borderColor: tint ?? theme.border }]}>
-      <Text style={{ color: tint ?? theme.textHi, fontWeight: tint ? '700' : '400' }}>{label}</Text>
-    </Pressable>
+  const LinkRow = ({ label, onPress, tone = 'hi', icon }: { label: string; onPress: () => void; tone?: 'hi' | 'gold'; icon?: React.ReactNode }) => (
+    <Card style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }} glowColor={tone === 'gold' ? 'gold' : 'none'}>
+      <View
+        accessibilityRole="button"
+        onTouchEnd={onPress}
+        style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', flex: 1 }}
+      >
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: spacing.md }}>
+          {icon}
+          <Text variant="bodyStrong" tone={tone}>
+            {label}
+          </Text>
+        </View>
+        <ChevronRight size={20} color={tone === 'gold' ? theme.gold : theme.textLo} />
+      </View>
+    </Card>
+  );
+
+  const ToggleRow = ({ label, value, onChange }: { label: string; value: boolean; onChange: (v: boolean) => void }) => (
+    <Card style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+      <Text variant="body" tone="hi">
+        {label}
+      </Text>
+      <Switch value={value} onValueChange={onChange} trackColor={{ true: theme.brand }} />
+    </Card>
   );
 
   return (
-    <View style={[styles.container, { backgroundColor: theme.bg }]}>
-      <Text style={[styles.name, { color: theme.textHi }]}>{user?.email ?? t('score.you')}</Text>
-      <Text style={{ color: theme.textMid }}>{isPro ? 'Marque Pro' : 'Free'}</Text>
+    <Screen scroll>
+      <View style={{ gap: spacing.xs }}>
+        <Text variant="title" tone="hi">
+          {user?.email ?? t('score.you')}
+        </Text>
+        <Text variant="body" tone={isPro ? 'gold' : 'mid'}>
+          {isPro ? 'Marque Pro' : 'Free'}
+        </Text>
+      </View>
 
-      <Item label="Season Wrapped" onPress={() => router.push('/wrapped')} />
-      {!isPro && <Item label={t('paywall.title')} tint={theme.gold} onPress={() => router.push('/paywall')} />}
+      <LinkRow label="Season Wrapped" icon={<Sparkles size={20} color={theme.brand} />} onPress={() => router.push('/wrapped')} />
+      {!isPro && <LinkRow label={t('paywall.title')} tone="gold" icon={<Sparkles size={20} color={theme.gold} />} onPress={() => router.push('/paywall')} />}
 
-      <Text style={[styles.section, { color: theme.textMid }]}>Accessibility & alerts</Text>
+      <Text variant="label" tone="lo" style={{ marginTop: spacing.md }}>
+        Accessibility & alerts
+      </Text>
       <ToggleRow label="High-contrast on-court mode" value={highContrast} onChange={setHighContrast} />
       <ToggleRow
         label="Notifications"
@@ -61,32 +85,27 @@ export default function ProfileScreen() {
         }}
       />
 
-      <Text style={[styles.section, { color: theme.textMid }]}>Backup & multi-device</Text>
+      <Text variant="label" tone="lo" style={{ marginTop: spacing.md }}>
+        Backup & multi-device
+      </Text>
       {user ? (
         <>
-          <Item label={syncing ? 'Syncing…' : 'Sync now'} onPress={syncNow} />
-          <Item label="Sign out" tint={theme.loss} onPress={signOut} />
+          <Button label={syncing ? 'Syncing…' : 'Sync now'} full variant="secondary" onPress={syncNow} icon={<Settings size={18} color={theme.textHi} />} />
+          <Button label="Sign out" full variant="ghost" onPress={signOut} />
         </>
       ) : (
         <>
-          <Text style={{ color: theme.textLo, fontSize: fontSize.sm }}>
+          <Text variant="caption" tone="lo">
             Free to score offline forever. Sign in only to back up and sync across devices.
           </Text>
-          <Item label="Continue with Apple" onPress={signInWithApple} />
-          <Item label="Continue with Google" onPress={signInWithGoogle} />
+          <Button label="Continue with Apple" full variant="secondary" onPress={signInWithApple} />
+          <Button label="Continue with Google" full variant="ghost" onPress={signInWithGoogle} />
         </>
       )}
 
-      <Text style={[styles.footer, { color: theme.textLo }]}>{BRAND.storeTitle}</Text>
-    </View>
+      <Text variant="caption" tone="lo" style={{ marginTop: spacing.xl, textAlign: 'center' }}>
+        {BRAND.storeTitle}
+      </Text>
+    </Screen>
   );
 }
-
-const styles = StyleSheet.create({
-  container: { flex: 1, padding: spacing.xl, gap: spacing.md },
-  name: { fontSize: fontSize.xxl, fontWeight: '700' },
-  section: { fontSize: fontSize.sm, textTransform: 'uppercase', marginTop: spacing.lg },
-  item: { padding: spacing.lg, borderRadius: radii.card, borderWidth: 1 },
-  rowBetween: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
-  footer: { marginTop: 'auto', fontSize: fontSize.xs },
-});

@@ -1,48 +1,63 @@
 import { router, useLocalSearchParams } from 'expo-router';
 import { useMemo } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { View } from 'react-native';
+import Animated, { FadeInDown } from 'react-native-reanimated';
 import { BRAND } from '@padel/shared';
-import { fontSize, radii, spacing } from '@padel/design-tokens';
+import { spacing } from '@padel/design-tokens';
+import { Card, ChevronRight, PadelBall, Screen, Text } from '@/ui';
 import { matchPlayers } from '@/db/claimRepo';
 import { useTheme } from '@/theme/ThemeProvider';
 
-/**
- * The landing page a shared card's QR/link opens (`/m/<matchId>`). It lists the
- * players and lets each tap to claim their profile — turning a card in a club
- * chat into new users. This is the entry point of the viral loop.
- */
+/** The landing page a shared card's QR/link opens (`/m/<matchId>`). Lists the
+ * players and lets each claim their profile — the entry point of the viral loop. */
 export default function MatchLandingScreen() {
   const { matchId } = useLocalSearchParams<{ matchId: string }>();
   const theme = useTheme();
   const people = useMemo(() => matchPlayers(matchId!), [matchId]);
 
   return (
-    <View style={[styles.container, { backgroundColor: theme.bg }]}>
-      <Text style={[styles.wordmark, { color: theme.textHi }]}>{BRAND.wordmark}</Text>
-      <Text style={[styles.subtitle, { color: theme.textMid }]}>Claim your profile to keep your stats.</Text>
+    <Screen scroll>
+      <Animated.View entering={FadeInDown.duration(500)} style={{ alignItems: 'center', gap: spacing.sm, marginVertical: spacing.xxl }}>
+        <PadelBall size={56} color={theme.brand} />
+        <Text variant="display" tone="hi">
+          {BRAND.wordmark}
+        </Text>
+        <Text variant="body" tone="mid" style={{ textAlign: 'center' }}>
+          Claim your profile to keep your stats and history.
+        </Text>
+      </Animated.View>
 
-      {people.map((p) => (
-        <Pressable
-          key={p.id}
-          disabled={p.claimed}
-          onPress={() => router.push(`/claim/${p.id}`)}
-          style={[styles.row, { borderColor: p.claimed ? theme.border : theme.brand }]}
-        >
-          <Text style={{ color: theme.textHi, fontWeight: '600' }}>{p.displayName}</Text>
-          <Text style={{ color: p.claimed ? theme.textLo : theme.brand }}>{p.claimed ? 'Claimed' : 'Claim →'}</Text>
-        </Pressable>
+      {people.map((p, i) => (
+        <Animated.View key={p.id} entering={FadeInDown.delay(120 + i * 70)}>
+          <Card
+            style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}
+            glowColor={p.claimed ? 'none' : 'brand'}
+          >
+            <View
+              accessibilityRole="button"
+              onTouchEnd={() => !p.claimed && router.push(`/claim/${p.id}`)}
+              style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', flex: 1 }}
+            >
+              <Text variant="bodyStrong" tone="hi">
+                {p.displayName}
+              </Text>
+              {p.claimed ? (
+                <Text variant="label" tone="lo">
+                  Claimed
+                </Text>
+              ) : (
+                <ChevronRight size={20} color={theme.brand} />
+              )}
+            </View>
+          </Card>
+        </Animated.View>
       ))}
 
       {people.length === 0 && (
-        <Text style={{ color: theme.textMid }}>This match isn’t on your device — install {BRAND.name} to claim.</Text>
+        <Text variant="body" tone="mid" style={{ textAlign: 'center' }}>
+          This match isn’t on your device — install {BRAND.name} to claim your profile.
+        </Text>
       )}
-    </View>
+    </Screen>
   );
 }
-
-const styles = StyleSheet.create({
-  container: { flex: 1, padding: spacing.xl, gap: spacing.md, justifyContent: 'center' },
-  wordmark: { fontSize: fontSize.xxl, fontWeight: '800', letterSpacing: 2 },
-  subtitle: { fontSize: fontSize.base, marginBottom: spacing.lg },
-  row: { flexDirection: 'row', justifyContent: 'space-between', padding: spacing.lg, borderRadius: radii.card, borderWidth: 1.5 },
-});
