@@ -1,41 +1,38 @@
-import { makeImageFromView } from '@shopify/react-native-skia';
+import type { SkCanvas } from '@shopify/react-native-skia';
+import { ImageFormat } from '@shopify/react-native-skia';
 import * as MediaLibrary from 'expo-media-library';
 import * as Sharing from 'expo-sharing';
 import * as FileSystem from 'expo-file-system';
-import type { MatchCardData } from './MatchCard';
 
 /**
- * Render the match card off-screen to a PNG, save it to the gallery, and push
+ * Snapshot an off-screen Skia canvas to a PNG, save it to the gallery, and push
  * it to the OS share sheet. Entirely on-device — zero server media cost. Each
- * shared card carries the wordmark + a claim link, so it recruits new users.
+ * shared card carries the wordmark + a claim QR, so it recruits new users.
  *
- * (The caller mounts an off-screen <MatchCard/> in a ref; here we snapshot it.)
+ * The caller renders an off-screen <MatchCard canvasRef={ref} /> and passes the
+ * ref here once it has laid out.
  */
-export async function shareMatchCard(_data: MatchCardData): Promise<void> {
-  // In the screen this is wired to a ref-captured Skia view; kept thin here so
-  // the flow (snapshot → encode → save → share) is the documented contract.
-  const ref = getCardRef();
-  if (!ref) return;
-  const image = await makeImageFromView(ref);
-  if (!image) return;
+export async function shareCanvas(canvas: SkCanvas | null): Promise<boolean> {
+  if (!canvas) return false;
+  const image = canvas.makeImageSnapshot();
+  const base64 = image.encodeToBase64(ImageFormat.PNG, 100);
 
-  const base64 = image.encodeToBase64();
-  const uri = `${FileSystem.cacheDirectory}marque-card.png`;
+  const uri = `${FileSystem.cacheDirectory}marque-card-${Date.now()}.png`;
   await FileSystem.writeAsStringAsync(uri, base64, { encoding: FileSystem.EncodingType.Base64 });
 
+  // Best-effort save to the camera roll (needs permission; never blocks sharing).
   const perm = await MediaLibrary.requestPermissionsAsync();
-  if (perm.granted) await MediaLibrary.saveToLibraryAsync(uri);
+  if (perm.granted) {
+    try {
+      await MediaLibrary.saveToLibraryAsync(uri);
+    } catch {
+      /* saving is optional */
+    }
+  }
 
   if (await Sharing.isAvailableAsync()) {
     await Sharing.shareAsync(uri, { mimeType: 'image/png', dialogTitle: 'Share your match' });
+    return true;
   }
-}
-
-// The off-screen card view ref is registered by the result screen.
-let cardRef: Parameters<typeof makeImageFromView>[0] | null = null;
-export function registerCardRef(ref: typeof cardRef): void {
-  cardRef = ref;
-}
-function getCardRef(): typeof cardRef {
-  return cardRef;
+  return false;
 }

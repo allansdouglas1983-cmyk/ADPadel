@@ -7,6 +7,16 @@ import { ratingHistory, ratings } from './schema';
 
 const nowSec = () => Math.floor(Date.now() / 1000);
 
+/** The rating delta a player earned in a specific match (for the share card). */
+export function getMatchRatingDelta(matchId: string, playerId: string): number | null {
+  const row = db
+    .select({ delta: ratingHistory.delta })
+    .from(ratingHistory)
+    .where(and(eq(ratingHistory.matchId, matchId), eq(ratingHistory.playerId, playerId)))
+    .get();
+  return row ? row.delta : null;
+}
+
 /** Load a player's current rating for a discipline, or a fresh provisional one. */
 export function loadRating(playerId: string, discipline: Discipline): PlayerRating {
   const row = db
