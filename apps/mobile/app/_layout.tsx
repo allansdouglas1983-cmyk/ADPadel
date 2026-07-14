@@ -1,11 +1,16 @@
 import * as Sentry from '@sentry/react-native';
 import Constants from 'expo-constants';
 import { Stack } from 'expo-router';
+import { useEffect } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { View } from 'react-native';
+import * as SplashScreen from 'expo-splash-screen';
 import { ThemeProvider } from '@/theme/ThemeProvider';
 import { useMigrations } from '@/db/client';
+import { useAppFonts } from '@/theme/fonts';
 import '@/i18n';
+
+void SplashScreen.preventAutoHideAsync();
 
 // Crash reporting is how we EVIDENCE the "never lose a match" reliability claim.
 Sentry.init({
@@ -16,8 +21,15 @@ Sentry.init({
 
 function RootLayout() {
   const { success, error } = useMigrations();
-  // Gate the app until the on-device schema is migrated (fast; first launch only).
-  if (!success && !error) return <View style={{ flex: 1, backgroundColor: '#0B0F14' }} />;
+  const fontsLoaded = useAppFonts();
+  const ready = (success || Boolean(error)) && fontsLoaded;
+
+  useEffect(() => {
+    if (ready) void SplashScreen.hideAsync();
+  }, [ready]);
+
+  // Hold the splash until the schema is migrated and premium type is loaded.
+  if (!ready) return <View style={{ flex: 1, backgroundColor: '#0B0F14' }} />;
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>

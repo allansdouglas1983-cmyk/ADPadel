@@ -41,9 +41,14 @@ const config: ExpoConfig = {
   plugins: [
     'expo-router',
     'expo-localization',
+    'expo-font',
     ['expo-sqlite', { enableFTS: false }],
     'expo-notifications',
     '@sentry/react-native/expo',
+    [
+      'expo-splash-screen',
+      { backgroundColor: '#0B0F14', image: './assets/splash.png', imageWidth: 180 },
+    ],
   ],
   experiments: { typedRoutes: true },
   extra: {
