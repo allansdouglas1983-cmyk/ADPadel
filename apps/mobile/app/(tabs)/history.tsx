@@ -1,9 +1,10 @@
 import { desc, eq } from 'drizzle-orm';
 import { router } from 'expo-router';
 import { useMemo } from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, Pressable, View } from 'react-native';
+import Animated, { FadeInDown } from 'react-native-reanimated';
 import { spacing } from '@padel/design-tokens';
-import { Card, EmptyState, History as HistoryIcon, Screen, Text } from '@/ui';
+import { Card, ChevronRight, EmptyState, History as HistoryIcon, Screen, Text, haptics } from '@/ui';
 import { FREE_HISTORY_LIMIT } from '@/paywall/config';
 import { db } from '@/db/client';
 import { matches } from '@/db/schema';
@@ -44,12 +45,26 @@ export default function HistoryScreen() {
         data={rows}
         keyExtractor={(r) => r.id}
         contentContainerStyle={{ padding: spacing.xl, gap: spacing.sm }}
-        renderItem={({ item }) => (
-          <Card>
-            <Text variant="bodyStrong" tone="hi">
-              {item.startedAtIso?.slice(0, 10) ?? 'Match'}
-            </Text>
-          </Card>
+        renderItem={({ item, index }) => (
+          <Animated.View entering={FadeInDown.delay(Math.min(index, 8) * 40)}>
+            <Pressable
+              onPress={() => {
+                haptics.tap();
+                router.push(`/history/${item.id}`);
+              }}
+              accessibilityRole="button"
+              accessibilityLabel={`Match on ${item.startedAtIso?.slice(0, 10) ?? 'unknown date'}, view details`}
+            >
+              <Card>
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <Text variant="bodyStrong" tone="hi">
+                    {item.startedAtIso?.slice(0, 10) ?? 'Match'}
+                  </Text>
+                  <ChevronRight size={20} color={theme.textLo} />
+                </View>
+              </Card>
+            </Pressable>
+          </Animated.View>
         )}
       />
     </Screen>
