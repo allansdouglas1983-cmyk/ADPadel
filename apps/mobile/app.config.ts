@@ -12,7 +12,7 @@ const config: ExpoConfig = {
   name: BRAND.name,
   slug: 'marque-padel',
   scheme: BRAND.scheme,
-  version: '0.1.0',
+  version: process.env.APP_VERSION_NAME || '0.1.0',
   orientation: 'portrait',
   userInterfaceStyle: 'automatic',
   icon: './assets/icon.png',
@@ -29,6 +29,9 @@ const config: ExpoConfig = {
   },
   android: {
     package: 'app.marque.padel',
+    // CI passes the run number so each sideload build gets a higher versionCode
+    // and can be installed over the previous one. Defaults to 1 locally.
+    versionCode: Number(process.env.ANDROID_VERSION_CODE) || 1,
     adaptiveIcon: { foregroundImage: './assets/adaptive-icon.png', backgroundColor: '#0B0F14' },
     permissions: ['android.permission.health.READ_HEART_RATE'],
     intentFilters: [
