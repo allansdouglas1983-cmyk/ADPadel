@@ -5,12 +5,18 @@
 2. ✅ Scoring engine + exhaustive/property tests (before any UI).
 3. ✅ Ratings, formats, stats — pure, tested packages.
 4. ✅ Shared persistence + design tokens.
-5. ◐ Phone scoring UI — live board, undo/replay, synchronous persistence + resume,
-   match setup, result + share. (Source complete; builds via EAS.)
+5. ◐ Phone scoring UI — live board, undo/replay, synchronous persistence,
+   resume-on-launch banner, named match setup, match finalization (records set
+   rows, updates ratings + history, marks complete), result + share. (Source
+   complete; builds via EAS.)
 6. ◐ Apple Watch — SwiftUI scoring + WCSession + standalone persistence.
 7. ◐ Wear OS — Compose scoring + Data Layer + standalone persistence.
-8. ◐ Americano/Mexicano/tournament — rotation + standings wired to `@padel/formats`.
-9. ◐ Sharing + Wrapped — Skia card + reveal + claim loop.
+8. ◐ Americano/Mexicano — full runnable event lifecycle via `EventSession`
+   (create pool → score courts → advance → live leaderboard), event resume.
+   Round-robin/knockout pairings exist in `@padel/formats`; their event UIs are
+   the next event-side step.
+9. ◐ Sharing + Wrapped — Skia card + reveal. Claim-your-profile deep-link loop
+   is the next sharing-side step.
 10. ◐ Monetisation — RevenueCat paywall (annual £9.99 / monthly £1.99).
 11. ☐ Polish — deeper a11y, notifications, empty states.
 12. ☐ Launch — ASO assets, store listings, seed 3–5 clubs.
