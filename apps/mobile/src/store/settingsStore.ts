@@ -9,20 +9,24 @@ interface SettingsStore {
   loaded: boolean;
   highContrast: boolean;
   notifications: boolean;
+  voiceCallout: boolean;
   load: () => void;
   setHighContrast: (v: boolean) => void;
   setNotifications: (v: boolean) => void;
+  setVoiceCallout: (v: boolean) => void;
 }
 
 export const useSettings = create<SettingsStore>((set) => ({
   loaded: false,
   highContrast: false,
   notifications: true,
+  voiceCallout: false,
   load: () => {
     set({
       loaded: true,
       highContrast: getSetting('highContrast', 'false') === 'true',
       notifications: getSetting('notifications', 'true') === 'true',
+      voiceCallout: getSetting('voiceCallout', 'false') === 'true',
     });
   },
   setHighContrast: (v) => {
@@ -32,5 +36,9 @@ export const useSettings = create<SettingsStore>((set) => ({
   setNotifications: (v) => {
     setSetting('notifications', String(v));
     set({ notifications: v });
+  },
+  setVoiceCallout: (v) => {
+    setSetting('voiceCallout', String(v));
+    set({ voiceCallout: v });
   },
 }));

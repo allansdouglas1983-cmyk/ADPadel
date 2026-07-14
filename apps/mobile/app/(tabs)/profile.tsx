@@ -19,7 +19,7 @@ export default function ProfileScreen() {
   const { t } = useTranslation();
   const { isPro } = useEntitlements();
   const { user, signInWithApple, signInWithGoogle, signOut } = useAuth();
-  const { highContrast, notifications, setHighContrast, setNotifications } = useSettings();
+  const { highContrast, notifications, voiceCallout, setHighContrast, setNotifications, setVoiceCallout } = useSettings();
   const [syncing, setSyncing] = useState(false);
 
   const syncNow = async () => {
@@ -76,6 +76,7 @@ export default function ProfileScreen() {
         Accessibility & alerts
       </Text>
       <ToggleRow label="High-contrast on-court mode" value={highContrast} onChange={setHighContrast} />
+      <ToggleRow label="Speak the score (voice call-out)" value={voiceCallout} onChange={setVoiceCallout} />
       <ToggleRow
         label="Notifications"
         value={notifications}

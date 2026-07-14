@@ -16,7 +16,9 @@ import { AnimatedScore } from '@/features/scoring/AnimatedScore';
 import { statusLabel } from '@/features/scoring/statusLabel';
 import { ScoreboardControls } from '@/features/scoring/ScoreboardControls';
 import { ShotPicker } from '@/features/scoring/ShotPicker';
+import { announceScore, scoreSignature } from '@/features/scoring/announcer';
 import { logPoint } from '@/db/pointsRepo';
+import { useSettings } from '@/store/settingsStore';
 import type { ShotType } from '@/lib/shots';
 
 /**
@@ -27,12 +29,14 @@ import type { ShotType } from '@/lib/shots';
  */
 export default function ScoreboardScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const theme = useTheme();
   const { state, cfg, snapshot, matchId, createdAtIso, dispatch } = useMatchStore();
+  const { voiceCallout, setVoiceCallout } = useSettings();
   const lastComplete = useRef(false);
   const prevGames = useRef(0);
   const prevSets = useRef(0);
+  const lastSpoken = useRef<string | null>(null);
 
   const startMs = createdAtIso ? Date.parse(createdAtIso) : Date.now();
   const timer = useMatchTimer(startMs);
@@ -56,6 +60,17 @@ export default function ScoreboardScreen() {
     prevGames.current = games;
     prevSets.current = sets;
   }, [state]);
+
+  // Optional voice call-out: speak the score once per real change (never on mount
+  // or re-render), in the user's language. Off by default.
+  useEffect(() => {
+    if (!state || !cfg) return;
+    const sig = scoreSignature(state);
+    if (voiceCallout && lastSpoken.current !== null && sig !== lastSpoken.current) {
+      announceScore(state, cfg, i18n.language);
+    }
+    lastSpoken.current = sig;
+  }, [state, cfg, voiceCallout, i18n.language]);
 
   useEffect(() => {
     if (state?.complete && cfg && snapshot && matchId && createdAtIso && !lastComplete.current) {
@@ -139,9 +154,11 @@ export default function ScoreboardScreen() {
           timerLabel={timer.label}
           paused={timer.paused}
           loggingOn={loggingOn}
+          voiceOn={voiceCallout}
           warnings={warnings}
           onToggleTimeout={timer.togglePause}
           onToggleLogging={() => setLoggingOn((v) => !v)}
+          onToggleVoice={() => setVoiceCallout(!voiceCallout)}
           onPenalty={applyPenalty}
           onRetire={(side) => dispatch({ type: 'RETIRE', side })}
         />

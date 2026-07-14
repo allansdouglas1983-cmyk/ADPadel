@@ -9,6 +9,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { ThemeProvider } from '@/theme/ThemeProvider';
 import { useMigrations } from '@/db/client';
 import { useAppFonts } from '@/theme/fonts';
+import { useSettings } from '@/store/settingsStore';
 import '@/i18n';
 
 void SplashScreen.preventAutoHideAsync();
@@ -24,6 +25,12 @@ function RootLayout() {
   const { success, error } = useMigrations();
   const fontsLoaded = useAppFonts();
   const ready = (success || Boolean(error)) && fontsLoaded;
+
+  // Restore persisted preferences (high-contrast, notifications, voice call-out)
+  // once the schema exists — before any screen reads them.
+  useEffect(() => {
+    if (success) useSettings.getState().load();
+  }, [success]);
 
   useEffect(() => {
     if (ready) void SplashScreen.hideAsync();
