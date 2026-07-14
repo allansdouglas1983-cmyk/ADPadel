@@ -88,6 +88,8 @@ export const matches = sqliteTable('matches', {
   teamBId: text('team_b_id'),
   winnerTeamId: text('winner_team_id'),
   startedAt: integer('started_at').notNull().default(now),
+  /** Local wall-clock ISO for time-of-day / day-of-week stats. */
+  startedAtIso: text('started_at_iso'),
   endedAt: integer('ended_at'),
   durationSec: integer('duration_sec'),
   status: text('status', { enum: ['live', 'complete', 'retired'] }).notNull().default('live'),

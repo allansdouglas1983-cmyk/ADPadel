@@ -5,10 +5,12 @@ export interface WrappedSummary {
   readonly playerId: string;
   readonly totalMatches: number;
   readonly winRate: number;
+  readonly hoursOnCourt: number;
   readonly favouritePartner: { partnerId: string; winRate: number; matches: number } | null;
   readonly toughestOpponent: { opponentId: string; winRate: number; matches: number } | null;
   readonly longestWinStreak: number;
   readonly comebacks: number;
+  readonly deciderPointsWon: number;
   readonly mostPlayedVenue: string | null;
   readonly archetype: string;
 }
@@ -39,10 +41,14 @@ export function seasonWrapped(records: readonly MatchRecord[], playerId: string)
     : null;
 
   const venueCounts = new Map<string, number>();
+  let durationSec = 0;
+  let deciderPointsWon = 0;
   for (const r of records) {
-    if (r.venue && (r.teamA.includes(playerId) || r.teamB.includes(playerId))) {
-      venueCounts.set(r.venue, (venueCounts.get(r.venue) ?? 0) + 1);
-    }
+    const involved = r.teamA.includes(playerId) || r.teamB.includes(playerId);
+    if (!involved) continue;
+    if (r.venue) venueCounts.set(r.venue, (venueCounts.get(r.venue) ?? 0) + 1);
+    durationSec += r.durationSec ?? 0;
+    deciderPointsWon += r.deciderWon?.[playerId]?.[0] ?? 0;
   }
   const mostPlayedVenue = [...venueCounts.entries()].sort((a, b) => b[1] - a[1])[0]?.[0] ?? null;
 
@@ -50,10 +56,12 @@ export function seasonWrapped(records: readonly MatchRecord[], playerId: string)
     playerId,
     totalMatches: stats.matches,
     winRate: stats.winRate,
+    hoursOnCourt: Math.round((durationSec / 3600) * 10) / 10,
     favouritePartner,
     toughestOpponent,
     longestWinStreak: stats.longestWinStreak,
     comebacks: stats.comebacks,
+    deciderPointsWon,
     mostPlayedVenue,
     archetype: archetypeFor(stats.winRate, stats.deciderWinRate, stats.comebacks),
   };

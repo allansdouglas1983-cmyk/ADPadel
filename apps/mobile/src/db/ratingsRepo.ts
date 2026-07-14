@@ -17,6 +17,17 @@ export function getMatchRatingDelta(matchId: string, playerId: string): number |
   return row ? row.delta : null;
 }
 
+/** Chronological rating values (valueAfter) for the form + journey charts. */
+export function getRatingHistoryValues(playerId: string, discipline: Discipline): number[] {
+  return db
+    .select({ v: ratingHistory.valueAfter, at: ratingHistory.at })
+    .from(ratingHistory)
+    .where(and(eq(ratingHistory.playerId, playerId), eq(ratingHistory.discipline, discipline)))
+    .orderBy(ratingHistory.at)
+    .all()
+    .map((r) => r.v);
+}
+
 /** Load a player's current rating for a discipline, or a fresh provisional one. */
 export function loadRating(playerId: string, discipline: Discipline): PlayerRating {
   const row = db

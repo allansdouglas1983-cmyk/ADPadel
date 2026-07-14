@@ -108,5 +108,16 @@ describe('seasonWrapped', () => {
     expect(w.favouritePartner).toBeNull();
     expect(w.toughestOpponent).toBeNull();
     expect(w.mostPlayedVenue).toBeNull();
+    expect(w.hoursOnCourt).toBe(0);
+  });
+
+  it('sums hours on court and decider points from records', () => {
+    const withMeta: MatchRecord[] = [
+      m({ matchId: 'h1', teamA: ['me', 'al'], teamB: ['x', 'y'], winner: 0, startedAtIso: '2026-01-01', durationSec: 3600, deciderWon: { me: [2, 3] } }),
+      m({ matchId: 'h2', teamA: ['me', 'al'], teamB: ['x', 'y'], winner: 0, startedAtIso: '2026-01-02', durationSec: 1800, deciderWon: { me: [1, 2] } }),
+    ];
+    const w = seasonWrapped(withMeta, 'me');
+    expect(w.hoursOnCourt).toBe(1.5);
+    expect(w.deciderPointsWon).toBe(3);
   });
 });

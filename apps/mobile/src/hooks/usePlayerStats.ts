@@ -1,26 +1,54 @@
 import { useMemo } from 'react';
-import { partnerChemistry, playerStats, type MatchRecord, type PartnerChemistry, type PlayerStats } from '@padel/stats';
+import {
+  dayOfWeekPattern,
+  headToHead,
+  partnerChemistry,
+  playerStats,
+  timeOfDayPattern,
+  venueBreakdown,
+  type Bucket,
+  type HeadToHead,
+  type MatchRecord,
+  type PartnerChemistry,
+  type PlayerStats,
+  type TimeBucket,
+  type VenueBreakdown,
+  type Weekday,
+} from '@padel/stats';
+import { formRating, toDisplayScale } from '@padel/ratings';
 import { loadMatchRecords } from '@/db/statsRepo';
+import { getRatingHistoryValues, loadRating } from '@/db/ratingsRepo';
 import { useCurrentPlayerId } from '@/hooks/useCurrentPlayer';
 
-/** Aggregates the current player's on-device stats from stored match records. */
-export function usePlayerStats(): {
+export interface FullStats {
   stats: PlayerStats;
   chemistry: PartnerChemistry[];
-  rating: number | null;
-} {
+  headToHead: HeadToHead[];
+  venues: VenueBreakdown[];
+  timeOfDay: Bucket<TimeBucket>[];
+  dayOfWeek: Bucket<Weekday>[];
+  ratingDisplay: number | null;
+  formDisplay: number | null;
+  ratingJourney: number[]; // display-scale values
+}
+
+/** Aggregates the current player's complete on-device stat picture. */
+export function usePlayerStats(): FullStats {
   const playerId = useCurrentPlayerId();
   return useMemo(() => {
     const records: MatchRecord[] = loadMatchRecords();
+    const history = getRatingHistoryValues(playerId, 'doubles');
+    const currentElo = loadRating(playerId, 'doubles').elo;
     return {
       stats: playerStats(records, playerId),
       chemistry: partnerChemistry(records, playerId),
-      rating: loadRating(playerId),
+      headToHead: headToHead(records, playerId),
+      venues: venueBreakdown(records, playerId),
+      timeOfDay: timeOfDayPattern(records, playerId),
+      dayOfWeek: dayOfWeekPattern(records, playerId),
+      ratingDisplay: history.length ? toDisplayScale(currentElo) : null,
+      formDisplay: history.length ? toDisplayScale(formRating(history)) : null,
+      ratingJourney: history.map(toDisplayScale),
     };
   }, [playerId]);
-}
-
-// Rating lookup kept local to avoid a wider import surface in the hook.
-function loadRating(_playerId: string): number | null {
-  return null; // wired to the ratings table in db/statsRepo when logged in
 }

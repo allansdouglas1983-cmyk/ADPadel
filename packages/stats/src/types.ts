@@ -19,6 +19,9 @@ export interface MatchRecord {
   /** ISO timestamp the match started. */
   readonly startedAtIso: string;
   readonly wasComeback?: boolean;
+  /** Match duration in seconds, if recorded (for "hours on court"). */
+  readonly durationSec?: number;
+  /** Golden/star (decider) points won by each player, if logged. */
 }
 
 export interface PlayerStats {
