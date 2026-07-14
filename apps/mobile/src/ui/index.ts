@@ -7,5 +7,7 @@ export { StatTile } from './StatTile';
 export { Segmented } from './Segmented';
 export { IconButton } from './IconButton';
 export { EmptyState } from './EmptyState';
+export { NameInput } from './NameInput';
+export { Stepper } from './Stepper';
 export { haptics } from './haptics';
 export * from './icons';

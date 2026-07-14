@@ -1,6 +1,7 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { View } from 'react-native';
 import type { Standing } from '@padel/formats';
-import { fontSize, spacing } from '@padel/design-tokens';
+import { spacing } from '@padel/design-tokens';
+import { Card, Text } from '@/ui';
 import { useTheme } from '@/theme/ThemeProvider';
 
 interface Props {
@@ -8,39 +9,57 @@ interface Props {
   nameOf: (id: string) => string;
 }
 
-/** Live event leaderboard — ranked with point-diff → total → head-to-head. */
+/** Live event leaderboard — ranked with point-diff → total → head-to-head. The
+ * top three are subtly highlighted. */
 export function Leaderboard({ standings, nameOf }: Props) {
   const theme = useTheme();
   return (
-    <View style={styles.container}>
-      <View style={[styles.row, styles.head]}>
-        <Text style={[styles.rank, { color: theme.textLo }]}>#</Text>
-        <Text style={[styles.name, { color: theme.textLo }]}>Player</Text>
-        <Text style={[styles.stat, { color: theme.textLo }]}>Pts</Text>
-        <Text style={[styles.stat, { color: theme.textLo }]}>+/–</Text>
+    <Card padded={false}>
+      <View style={{ flexDirection: 'row', paddingHorizontal: spacing.lg, paddingTop: spacing.md }}>
+        <Text variant="caption" tone="lo" style={{ width: 28 }}>
+          #
+        </Text>
+        <Text variant="caption" tone="lo" style={{ flex: 1 }}>
+          Player
+        </Text>
+        <Text variant="caption" tone="lo" style={{ width: 56, textAlign: 'right' }}>
+          Pts
+        </Text>
+        <Text variant="caption" tone="lo" style={{ width: 56, textAlign: 'right' }}>
+          +/–
+        </Text>
       </View>
-      {standings.map((s, i) => (
-        <View key={s.playerId} style={[styles.row, { borderBottomColor: theme.border }]}>
-          <Text style={[styles.rank, { color: theme.textMid }]}>{i + 1}</Text>
-          <Text style={[styles.name, { color: theme.textHi }]} numberOfLines={1}>
-            {nameOf(s.playerId)}
-          </Text>
-          <Text style={[styles.stat, { color: theme.textHi }]}>{s.pointsFor}</Text>
-          <Text style={[styles.stat, { color: s.pointsFor - s.pointsAgainst >= 0 ? theme.win : theme.loss }]}>
-            {s.pointsFor - s.pointsAgainst >= 0 ? '+' : ''}
-            {s.pointsFor - s.pointsAgainst}
-          </Text>
-        </View>
-      ))}
-    </View>
+      {standings.map((s, i) => {
+        const diff = s.pointsFor - s.pointsAgainst;
+        const medal = i < 3;
+        return (
+          <View
+            key={s.playerId}
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              paddingHorizontal: spacing.lg,
+              paddingVertical: spacing.md,
+              borderTopWidth: 1,
+              borderTopColor: theme.border,
+            }}
+          >
+            <Text variant="bodyStrong" tone={medal ? 'gold' : 'mid'} tabular style={{ width: 28 }}>
+              {i + 1}
+            </Text>
+            <Text variant="bodyStrong" tone="hi" numberOfLines={1} style={{ flex: 1 }}>
+              {nameOf(s.playerId)}
+            </Text>
+            <Text variant="bodyStrong" tone="hi" tabular style={{ width: 56, textAlign: 'right' }}>
+              {s.pointsFor}
+            </Text>
+            <Text variant="bodyStrong" tone={diff >= 0 ? 'win' : 'loss'} tabular style={{ width: 56, textAlign: 'right' }}>
+              {diff >= 0 ? '+' : ''}
+              {diff}
+            </Text>
+          </View>
+        );
+      })}
+    </Card>
   );
 }
-
-const styles = StyleSheet.create({
-  container: { gap: 0 },
-  row: { flexDirection: 'row', alignItems: 'center', paddingVertical: spacing.md, borderBottomWidth: 1 },
-  head: { borderBottomWidth: 0 },
-  rank: { width: 28, fontSize: fontSize.sm, fontVariant: ['tabular-nums'] },
-  name: { flex: 1, fontSize: fontSize.base, fontWeight: '600' },
-  stat: { width: 56, textAlign: 'right', fontSize: fontSize.base, fontVariant: ['tabular-nums'] },
-});
