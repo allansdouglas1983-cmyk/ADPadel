@@ -17,10 +17,16 @@ soft-delete flag for last-write-wins sync.
   action log) — the crash-resume source. `format`, `winnerTeamId`, `durationSec`.
 - **teams / sets / points** — per-match breakdown; `points` is the OPTIONAL
   per-point log (only when logging depth is on), carrying `serveSide`, `shotType`.
+  There is no separate `games` table — per-game detail is derivable from the
+  folded action log and summarised into `sets`; this is a deliberate deviation
+  from the dossier's "games/points" listing.
 - **americano_results** — per-round, per-court, per-player points banked.
 - **ratings / rating_history** — current per-discipline rating + full history for
   the Wrapped "rating journey" and the card delta.
 - **sync_meta** — `dirty` / `deleted` / `updatedAt` bookkeeping.
+- **sync_cursor** — the last-pulled server watermark for incremental sync.
+- **app_settings** — persisted user preferences (high-contrast on-court mode,
+  notifications, voice call-out), key/value.
 
 ## Persistence envelope (`@padel/shared`)
 ```ts
