@@ -4,14 +4,14 @@ import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
 import Animated, { FadeInDown, ZoomIn } from 'react-native-reanimated';
 import { useCanvasRef } from '@shopify/react-native-skia';
-import { summarizeMatch } from '@padel/scoring-engine';
-import { BRAND } from '@padel/shared';
 import { spacing } from '@padel/design-tokens';
 import { Button, Screen, Share2, Text, Trophy } from '@/ui';
 import { MatchCard, type MatchCardData } from '@/features/card/MatchCard';
+import { buildCardData } from '@/features/card/buildCardData';
 import { shareCanvas } from '@/features/card/shareCard';
 import { getPlayerNames } from '@/db/playerRepo';
 import { getMatchRatingDelta } from '@/db/ratingsRepo';
+import { useEntitlements } from '@/hooks/useEntitlements';
 import { useTheme } from '@/theme/ThemeProvider';
 import { useMatchStore } from '@/store/matchStore';
 
@@ -21,36 +21,23 @@ export default function ResultScreen() {
   const { t } = useTranslation();
   const theme = useTheme();
   const { state, cfg, snapshot } = useMatchStore();
+  const { isPro } = useEntitlements();
   const canvasRef = useCanvasRef();
   const [sharing, setSharing] = useState(false);
 
   const cardData = useMemo<MatchCardData | null>(() => {
     if (!state || !cfg || !snapshot) return null;
-    const summary = summarizeMatch(state);
-    const players = snapshot.players;
-    const sideA = players.filter((_, i) => cfg.serve.slotSide[i] === 0);
-    const sideB = players.filter((_, i) => cfg.serve.slotSide[i] === 1);
-    const names = getPlayerNames(players);
-    const nameOf = (arr: string[]) => arr.map((pid) => names.get(pid) ?? pid).join(' & ');
-    const scoreline = summary.sets.map((s) => `${s.games[0]}–${s.games[1]}`).join('  ');
-    const deltaElo = getMatchRatingDelta(id!, sideA[0] ?? '') ?? 0;
-    const deltaDisplay = deltaElo / 100;
-    const signature = summary.wasComeback
-      ? 'Comeback win'
-      : summary.setsWon[0] === 2 || summary.setsWon[1] === 2
-        ? 'Straight-sets win'
-        : 'Match complete';
-    return {
-      teamAName: nameOf(sideA),
-      teamBName: nameOf(sideB),
-      scoreline,
-      venue: '',
-      dateLabel: new Date().toLocaleDateString(),
-      signatureStat: signature,
-      ratingDelta: `${deltaDisplay >= 0 ? '+' : ''}${deltaDisplay.toFixed(2)}`,
-      claimUrl: `https://${BRAND.universalLinkHost}/m/${id}`,
-    };
-  }, [state, cfg, snapshot, id]);
+    const sideA = snapshot.players.filter((_, i) => cfg.serve.slotSide[i] === 0);
+    const names = getPlayerNames(snapshot.players);
+    return buildCardData({
+      matchId: id!,
+      state,
+      cfg,
+      names,
+      ratingDeltaElo: getMatchRatingDelta(id!, sideA[0] ?? '') ?? 0,
+      isPro,
+    });
+  }, [state, cfg, snapshot, id, isPro]);
 
   const won = state?.outcome.type === 'completed' && state.outcome.winner === 0;
 
