@@ -1,3 +1,6 @@
+/** Which team on a court. 0 = team A, 1 = team B. */
+export type Side = 0 | 1;
+
 /** A pairing on a single court for one round: two teams of player indices. */
 export interface CourtPairing {
   readonly court: number;

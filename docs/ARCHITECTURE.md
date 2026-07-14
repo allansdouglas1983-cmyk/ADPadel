@@ -30,6 +30,25 @@
   last-write-wins by `updatedAt`. Matches are append-only and single-author, so
   conflicts are rare. A claimed guest's rows are re-parented server-side.
 
+## Event lifecycle (Americano / Mexicano)
+The same offline-first pattern as matches, one level up. `@padel/formats`
+exposes a pure `EventSession` — one serializable value holding the config,
+every round's court scores, and status. It ties together round generation
+(Americano fixed draw / Mexicano leaderboard-driven) and standings:
+
+1. `createEventSession(config)` generates round 0.
+2. `addPoint` / `undoPoint` / `setCourtResult` score each court (point-per-rally
+   to a fixed total; both players bank the team's points individually).
+3. `canAdvance` / `advanceRound` generate the next round from the live
+   leaderboard (Mexicano) or the fixed draw (Americano), or complete the event.
+4. `leaderboard` ranks players with point-diff → total → head-to-head.
+
+The app's `eventStore` (Zustand) persists the serialized session to SQLite after
+every action via `eventRepo`, exactly like the match store — so a club night
+resumes byte-identically after a crash. The UI (`app/event/*`,
+`features/events/*`) holds ZERO event logic; it renders the session and
+dispatches actions.
+
 ## Why the watches are native
 React Native / JS cannot run on watchOS or Wear OS. Each watch has a small
 native `ScoreEngine` that mirrors the TS engine's padel rules and the same

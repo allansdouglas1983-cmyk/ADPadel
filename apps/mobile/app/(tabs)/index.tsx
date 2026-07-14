@@ -31,9 +31,8 @@ export default function PlayScreen() {
 
       <View style={styles.actions}>
         <Action label={t('play.newMatch')} primary onPress={() => router.push('/setup')} />
-        <Action label={t('play.americano')} onPress={() => router.push('/setup?type=americano')} />
-        <Action label={t('play.mexicano')} onPress={() => router.push('/setup?type=mexicano')} />
-        <Action label={t('play.tournament')} onPress={() => router.push('/setup?type=tournament')} />
+        <Action label={t('play.americano')} onPress={() => router.push('/event/setup?format=americano')} />
+        <Action label={t('play.mexicano')} onPress={() => router.push('/event/setup?format=mexicano')} />
       </View>
     </View>
   );

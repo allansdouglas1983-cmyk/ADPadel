@@ -71,6 +71,8 @@ export const sessions = sqliteTable('sessions', {
   endedAt: integer('ended_at'),
   status: text('status', { enum: ['live', 'complete', 'abandoned'] }).notNull().default('live'),
   ownerUserId: text('owner_user_id'),
+  /** Serialized EventSession for Americano/Mexicano resume (mirrors matches). */
+  liveStateJson: text('live_state_json'),
   updatedAt: integer('updated_at').notNull().default(now),
   deleted: integer('deleted', { mode: 'boolean' }).notNull().default(false),
 });

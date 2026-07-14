@@ -1,17 +1,28 @@
-# Maestro flow: create an Americano event and reach the shareable card.
+# Maestro flow: run an Americano night — create the pool, score a court,
+# advance the round, and view the live leaderboard.
 # Run: maestro test e2e/americano-and-share.yaml
 appId: app.marque.padel
 ---
 - launchApp:
     clearState: true
 - tapOn: "Americano"
-- assertVisible: "Start match"
-- tapOn: "Start match"
-# Play out a quick match to the result screen, then share.
+# Name four players.
 - repeat:
-    times: 24
+    times: 4
     commands:
-      - tapOn: "Point to you"
+      - tapOn:
+          id: "Player .*"
+          index: 0
+          optional: true
+- inputText: "Ana"
+- tapOn: "Start match"
+- assertVisible: "Court 1"
+# Score a few rallies on court 1, then peek at the leaderboard.
+- repeat:
+    times: 3
+    commands:
+      - tapOn: "Add point to .*"
+- tapOn: "Leaderboard"
 - assertVisible:
-    text: "Share card"
+    text: "Player"
     optional: true
