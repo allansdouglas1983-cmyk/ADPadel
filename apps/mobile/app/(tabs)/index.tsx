@@ -1,4 +1,5 @@
 import { router } from 'expo-router';
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, View } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
@@ -7,12 +8,18 @@ import { spacing } from '@padel/design-tokens';
 import { Button, Card, Screen, Text, ChevronRight, Crown, PadelBall, Play as PlayIcon, Sparkles, Users } from '@/ui';
 import { useTheme } from '@/theme/ThemeProvider';
 import { useResumable } from '@/hooks/useResumable';
+import { getSetting } from '@/db/settingsRepo';
 
 /** The Play tab — the app's home. Start a match or an event in one tap. */
 export default function PlayScreen() {
   const { t } = useTranslation();
   const theme = useTheme();
   const resumable = useResumable();
+
+  // First-run: send new users through onboarding once.
+  useEffect(() => {
+    if (getSetting('onboarded', 'false') !== 'true') router.replace('/onboarding');
+  }, []);
 
   const events: Array<{ label: string; icon: React.ReactNode; to: string }> = [
     { label: t('play.americano'), icon: <PadelBall size={20} color={theme.textMid} />, to: '/event/setup?format=americano' },

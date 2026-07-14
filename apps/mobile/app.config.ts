@@ -15,6 +15,7 @@ const config: ExpoConfig = {
   version: '0.1.0',
   orientation: 'portrait',
   userInterfaceStyle: 'automatic',
+  icon: './assets/icon.png',
   newArchEnabled: true,
   ios: {
     supportsTablet: true,
@@ -28,6 +29,7 @@ const config: ExpoConfig = {
   },
   android: {
     package: 'app.marque.padel',
+    adaptiveIcon: { foregroundImage: './assets/adaptive-icon.png', backgroundColor: '#0B0F14' },
     permissions: ['android.permission.health.READ_HEART_RATE'],
     intentFilters: [
       {

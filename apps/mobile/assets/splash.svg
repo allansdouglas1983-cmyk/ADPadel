@@ -1,0 +1,21 @@
+<svg width="1284" height="2778" viewBox="0 0 1284 2778" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1284" y2="2778" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0B0F14"/>
+      <stop offset="1" stop-color="#0C1620"/>
+    </linearGradient>
+    <linearGradient id="ball" x1="500" y1="1180" x2="784" y2="1520" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2BD08C"/>
+      <stop offset="1" stop-color="#087E53"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="642" cy="1300" r="420" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2BD08C" stop-opacity="0.30"/>
+      <stop offset="1" stop-color="#2BD08C" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1284" height="2778" fill="url(#bg)"/>
+  <circle cx="642" cy="1300" r="380" fill="url(#glow)"/>
+  <circle cx="642" cy="1300" r="150" fill="url(#ball)"/>
+  <path d="M512 1260c78 40 182 40 260 0M512 1340c78-40 182-40 260 0" stroke="#04150E" stroke-width="12" stroke-linecap="round" fill="none" opacity="0.55"/>
+  <text x="642" y="1620" font-family="Arial, sans-serif" font-size="86" font-weight="700" fill="#F5F8FA" text-anchor="middle" letter-spacing="6">MARQUE</text>
+</svg>

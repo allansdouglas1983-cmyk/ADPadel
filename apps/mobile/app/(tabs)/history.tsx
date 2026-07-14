@@ -1,7 +1,9 @@
 import { desc, eq } from 'drizzle-orm';
+import { router } from 'expo-router';
 import { useMemo } from 'react';
-import { FlatList, StyleSheet, Text, View } from 'react-native';
-import { fontSize, spacing } from '@padel/design-tokens';
+import { FlatList } from 'react-native';
+import { spacing } from '@padel/design-tokens';
+import { Card, EmptyState, History as HistoryIcon, Screen, Text } from '@/ui';
 import { FREE_HISTORY_LIMIT } from '@/paywall/config';
 import { db } from '@/db/client';
 import { matches } from '@/db/schema';
@@ -13,32 +15,43 @@ export default function HistoryScreen() {
   const theme = useTheme();
   const { isPro } = useEntitlements();
   const rows = useMemo(() => {
-    const q = db
-      .select({ id: matches.id, status: matches.status, endedAt: matches.endedAt })
+    const all = db
+      .select({ id: matches.id, endedAt: matches.endedAt, startedAtIso: matches.startedAtIso })
       .from(matches)
       .where(eq(matches.status, 'complete'))
-      .orderBy(desc(matches.endedAt));
-    const all = q.all();
+      .orderBy(desc(matches.endedAt))
+      .all();
     return isPro ? all : all.slice(0, FREE_HISTORY_LIMIT);
   }, [isPro]);
 
+  if (rows.length === 0) {
+    return (
+      <Screen>
+        <EmptyState
+          icon={<HistoryIcon size={64} color={theme.textLo} />}
+          title="No matches yet"
+          body="Play your first match and it'll appear here — with the scoreline, stats and a shareable card."
+          actionLabel="Start a match"
+          onAction={() => router.push('/setup')}
+        />
+      </Screen>
+    );
+  }
+
   return (
-    <View style={[styles.container, { backgroundColor: theme.bg }]}>
+    <Screen padded={false}>
       <FlatList
         data={rows}
         keyExtractor={(r) => r.id}
-        ListEmptyComponent={<Text style={{ color: theme.textMid }}>No matches yet — play your first!</Text>}
+        contentContainerStyle={{ padding: spacing.xl, gap: spacing.sm }}
         renderItem={({ item }) => (
-          <View style={[styles.row, { borderBottomColor: theme.border }]}>
-            <Text style={{ color: theme.textHi }}>{item.id}</Text>
-          </View>
+          <Card>
+            <Text variant="bodyStrong" tone="hi">
+              {item.startedAtIso?.slice(0, 10) ?? 'Match'}
+            </Text>
+          </Card>
         )}
       />
-    </View>
+    </Screen>
   );
 }
-
-const styles = StyleSheet.create({
-  container: { flex: 1, padding: spacing.xl },
-  row: { paddingVertical: spacing.md, borderBottomWidth: 1 },
-});
