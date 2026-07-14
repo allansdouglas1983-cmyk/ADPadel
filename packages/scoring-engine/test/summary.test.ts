@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { padelPresets, summarizeMatch } from '../src/index.js';
+import { padelPresets, resultDescriptor, summarizeMatch } from '../src/index.js';
 import { gameWins, play, pts } from './helpers.js';
 
 const { padelGoldenPointSuperTB, padelAdvantageFull } = padelPresets;
@@ -50,5 +50,31 @@ describe('summarizeMatch', () => {
     expect(s.complete).toBe(false);
     expect(s.winner).toBeNull();
     expect(s.wasComeback).toBe(false);
+  });
+});
+
+describe('resultDescriptor', () => {
+  it('describes a straight-sets golden-point win with a gold flourish', () => {
+    const { state } = play(padelGoldenPointSuperTB, [...set(0), ...set(0)]);
+    const d = resultDescriptor(summarizeMatch(state), padelGoldenPointSuperTB.point.deuce);
+    expect(d.kind).toBe('straightSets');
+    expect(d.goldFlourish).toBe(true);
+    expect(d.scoreline).toBe('6–0  6–0');
+  });
+
+  it('flags a comeback', () => {
+    const actions = [...set(1), ...set(0), ...pts(0, 10), ...pts(1, 2)];
+    const { state } = play(padelGoldenPointSuperTB, actions);
+    expect(resultDescriptor(summarizeMatch(state), 'golden').kind).toBe('comeback');
+  });
+
+  it('no gold flourish for advantage scoring', () => {
+    const { state } = play(padelAdvantageFull, [...set(0), ...set(0)]);
+    expect(resultDescriptor(summarizeMatch(state), 'advantage').goldFlourish).toBe(false);
+  });
+
+  it('reports inProgress before completion', () => {
+    const { state } = play(padelGoldenPointSuperTB, gameWins('00'));
+    expect(resultDescriptor(summarizeMatch(state), 'golden').kind).toBe('inProgress');
   });
 });

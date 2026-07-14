@@ -1,4 +1,4 @@
-import type { Side } from './config.js';
+import type { DeuceMode, Side } from './config.js';
 import type { MatchState } from './state.js';
 
 /** A completed set's line: games each side, plus tiebreak points if one was played. */
@@ -52,4 +52,27 @@ export function summarizeMatch(state: MatchState): MatchSummary {
     totalGames,
     wasComeback,
   };
+}
+
+export type ResultKind = 'comeback' | 'straightSets' | 'decided' | 'retired' | 'inProgress';
+
+/** Copy-free, presentation-ready facts about a result — shared by the result
+ * screen and the share card so they never diverge. Pure. */
+export interface ResultDescriptor {
+  /** e.g. "6–4  3–6  10–8" (en-dashes). */
+  readonly scoreline: string;
+  readonly kind: ResultKind;
+  /** True for golden/star-point matches — the card adds a gold flourish. */
+  readonly goldFlourish: boolean;
+}
+
+export function resultDescriptor(summary: MatchSummary, deuce: DeuceMode): ResultDescriptor {
+  const scoreline = summary.sets.map((s) => `${s.games[0]}–${s.games[1]}`).join('  ');
+  let kind: ResultKind;
+  if (!summary.complete && !summary.retired) kind = 'inProgress';
+  else if (summary.retired) kind = 'retired';
+  else if (summary.wasComeback) kind = 'comeback';
+  else if (summary.setsWon[0] === 2 || summary.setsWon[1] === 2) kind = 'straightSets';
+  else kind = 'decided';
+  return { scoreline, kind, goldFlourish: deuce === 'golden' || deuce === 'star' };
 }
