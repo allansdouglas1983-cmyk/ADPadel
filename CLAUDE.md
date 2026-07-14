@@ -1,5 +1,26 @@
 # CLAUDE.md — Marque (Padel Scoring)
 
+## THE STANDARD (read first — this governs every decision)
+We are building a WORLD-CLASS application that is best-in-class in every single
+area. This mandate overrides convenience in all cases:
+
+- **Always pick the option that yields the best final product** — regardless of
+  effort, time, token cost, or how many dependencies it requires. Never pick an
+  option because it is easier, faster, or shorter.
+- **Never ship a lesser version than specified.** Meet the full specification in
+  every area, and where we can exceed it, we do.
+- **Never drop, minimize, stub, defer, or "scaffold" a spec'd feature.** If it is
+  in scope, it is built completely, to the highest standard, and verified.
+- **No shortcuts, ever.** No placeholder that a real implementation would replace,
+  no "good enough", no silent scope reduction. If something can't be finished in
+  one pass, it is tracked and finished — not quietly downgraded.
+- **When two designs are viable, choose the one a world-class team would ship** —
+  more correct, more robust, more maintainable, more delightful — even if it is
+  more work.
+- Adding a dependency is fine when it makes the product better; ask, then add.
+
+If a decision ever comes down to "cheaper vs. best", choose best.
+
 ## Project overview
 Marque is an offline-first padel scorekeeping app for iOS, Android, Apple Watch
 and Wear OS, built with React Native/Expo plus native watch targets. It keeps
