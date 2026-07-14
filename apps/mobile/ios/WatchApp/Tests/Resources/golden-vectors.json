@@ -1,0 +1,9051 @@
+{
+  "version": 1,
+  "vectors": [
+    {
+      "name": "golden: straight sets 6-0 6-0",
+      "configId": "padel.golden.bo3.superTB",
+      "config": {
+        "id": "padel.golden.bo3.superTB",
+        "version": 1,
+        "point": {
+          "ladder": [
+            "0",
+            "15",
+            "30",
+            "40"
+          ],
+          "winAtIndex": 4,
+          "pointMargin": 2,
+          "deuce": "golden"
+        },
+        "match": {
+          "bestOf": 3,
+          "regularSet": {
+            "gamesToWin": 6,
+            "gameMargin": 2,
+            "tiebreakAtGames": 6,
+            "tiebreak": {
+              "targetPoints": 7,
+              "pointMargin": 2,
+              "firstServerPoints": 1,
+              "serveEvery": 2,
+              "changeEndsEvery": 6
+            }
+          },
+          "finalSet": {
+            "kind": "superTiebreak",
+            "superTiebreak": {
+              "targetPoints": 10,
+              "pointMargin": 2,
+              "firstServerPoints": 1,
+              "serveEvery": 2,
+              "changeEndsEvery": 6
+            }
+          },
+          "playOutAfterMatchPoint": false
+        },
+        "serve": {
+          "format": "doubles",
+          "gameServeCycle": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "slotSide": [
+            0,
+            1,
+            0,
+            1
+          ]
+        }
+      },
+      "players": [
+        "A1",
+        "B1",
+        "A2",
+        "B2"
+      ],
+      "actions": [
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        }
+      ],
+      "steps": [
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              1,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              1,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              1,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              1,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              2,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              2,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              2,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              2,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              3,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              3,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              3,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              3,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              4,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              4,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              4,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              4,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              5,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              5,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              5,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              5,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              2,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              2,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              2,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              2,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              3,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              3,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              3,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              3,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              4,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              4,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              4,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              4,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              5,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              5,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              5,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              5,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              6,
+              0
+            ]
+          ],
+          "setsWon": [
+            2,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": true,
+          "winner": 0
+        }
+      ]
+    },
+    {
+      "name": "golden: sudden death at deuce",
+      "configId": "padel.golden.bo3.superTB",
+      "config": {
+        "id": "padel.golden.bo3.superTB",
+        "version": 1,
+        "point": {
+          "ladder": [
+            "0",
+            "15",
+            "30",
+            "40"
+          ],
+          "winAtIndex": 4,
+          "pointMargin": 2,
+          "deuce": "golden"
+        },
+        "match": {
+          "bestOf": 3,
+          "regularSet": {
+            "gamesToWin": 6,
+            "gameMargin": 2,
+            "tiebreakAtGames": 6,
+            "tiebreak": {
+              "targetPoints": 7,
+              "pointMargin": 2,
+              "firstServerPoints": 1,
+              "serveEvery": 2,
+              "changeEndsEvery": 6
+            }
+          },
+          "finalSet": {
+            "kind": "superTiebreak",
+            "superTiebreak": {
+              "targetPoints": 10,
+              "pointMargin": 2,
+              "firstServerPoints": 1,
+              "serveEvery": 2,
+              "changeEndsEvery": 6
+            }
+          },
+          "playOutAfterMatchPoint": false
+        },
+        "serve": {
+          "format": "doubles",
+          "gameServeCycle": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "slotSide": [
+            0,
+            1,
+            0,
+            1
+          ]
+        }
+      },
+      "players": [
+        "A1",
+        "B1",
+        "A2",
+        "B2"
+      ],
+      "actions": [
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        }
+      ],
+      "steps": [
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            1
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            1
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            2
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            2
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            3
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              1,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        }
+      ]
+    },
+    {
+      "name": "advantage: long deuce battle",
+      "configId": "padel.advantage.bo3.full",
+      "config": {
+        "id": "padel.advantage.bo3.full",
+        "version": 1,
+        "point": {
+          "ladder": [
+            "0",
+            "15",
+            "30",
+            "40"
+          ],
+          "winAtIndex": 4,
+          "pointMargin": 2,
+          "deuce": "advantage"
+        },
+        "match": {
+          "bestOf": 3,
+          "regularSet": {
+            "gamesToWin": 6,
+            "gameMargin": 2,
+            "tiebreakAtGames": 6,
+            "tiebreak": {
+              "targetPoints": 7,
+              "pointMargin": 2,
+              "firstServerPoints": 1,
+              "serveEvery": 2,
+              "changeEndsEvery": 6
+            }
+          },
+          "finalSet": {
+            "kind": "full",
+            "set": {
+              "gamesToWin": 6,
+              "gameMargin": 2,
+              "tiebreakAtGames": 6,
+              "tiebreak": {
+                "targetPoints": 7,
+                "pointMargin": 2,
+                "firstServerPoints": 1,
+                "serveEvery": 2,
+                "changeEndsEvery": 6
+              }
+            }
+          },
+          "playOutAfterMatchPoint": false
+        },
+        "serve": {
+          "format": "doubles",
+          "gameServeCycle": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "slotSide": [
+            0,
+            1,
+            0,
+            1
+          ]
+        }
+      },
+      "players": [
+        "A1",
+        "B1",
+        "A2",
+        "B2"
+      ],
+      "actions": [
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        }
+      ],
+      "steps": [
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            1
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            1
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            2
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            2
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            3
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            4,
+            3
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            4,
+            4
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            4,
+            5
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              1
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            1
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              1
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        }
+      ]
+    },
+    {
+      "name": "star: two advantages then decider",
+      "configId": "padel.star.bo3.superTB",
+      "config": {
+        "id": "padel.star.bo3.superTB",
+        "version": 1,
+        "point": {
+          "ladder": [
+            "0",
+            "15",
+            "30",
+            "40"
+          ],
+          "winAtIndex": 4,
+          "pointMargin": 2,
+          "deuce": "star",
+          "starMaxAdvantages": 2
+        },
+        "match": {
+          "bestOf": 3,
+          "regularSet": {
+            "gamesToWin": 6,
+            "gameMargin": 2,
+            "tiebreakAtGames": 6,
+            "tiebreak": {
+              "targetPoints": 7,
+              "pointMargin": 2,
+              "firstServerPoints": 1,
+              "serveEvery": 2,
+              "changeEndsEvery": 6
+            }
+          },
+          "finalSet": {
+            "kind": "superTiebreak",
+            "superTiebreak": {
+              "targetPoints": 10,
+              "pointMargin": 2,
+              "firstServerPoints": 1,
+              "serveEvery": 2,
+              "changeEndsEvery": 6
+            }
+          },
+          "playOutAfterMatchPoint": false
+        },
+        "serve": {
+          "format": "doubles",
+          "gameServeCycle": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "slotSide": [
+            0,
+            1,
+            0,
+            1
+          ]
+        },
+        "meta": {
+          "mixedDoublesDecisivePointSameGender": true
+        }
+      },
+      "players": [
+        "A1",
+        "B1",
+        "A2",
+        "B2"
+      ],
+      "actions": [
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        }
+      ],
+      "steps": [
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            1
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            1
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            2
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            2
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            3
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            4,
+            3
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            4,
+            4
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            4,
+            5
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            5,
+            5
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        }
+      ]
+    },
+    {
+      "name": "silver: one advantage then decider",
+      "configId": "padel.silver.bo3.superTB",
+      "config": {
+        "id": "padel.silver.bo3.superTB",
+        "version": 1,
+        "point": {
+          "ladder": [
+            "0",
+            "15",
+            "30",
+            "40"
+          ],
+          "winAtIndex": 4,
+          "pointMargin": 2,
+          "deuce": "star",
+          "starMaxAdvantages": 1
+        },
+        "match": {
+          "bestOf": 3,
+          "regularSet": {
+            "gamesToWin": 6,
+            "gameMargin": 2,
+            "tiebreakAtGames": 6,
+            "tiebreak": {
+              "targetPoints": 7,
+              "pointMargin": 2,
+              "firstServerPoints": 1,
+              "serveEvery": 2,
+              "changeEndsEvery": 6
+            }
+          },
+          "finalSet": {
+            "kind": "superTiebreak",
+            "superTiebreak": {
+              "targetPoints": 10,
+              "pointMargin": 2,
+              "firstServerPoints": 1,
+              "serveEvery": 2,
+              "changeEndsEvery": 6
+            }
+          },
+          "playOutAfterMatchPoint": false
+        },
+        "serve": {
+          "format": "doubles",
+          "gameServeCycle": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "slotSide": [
+            0,
+            1,
+            0,
+            1
+          ]
+        },
+        "meta": {
+          "mixedDoublesDecisivePointSameGender": true
+        }
+      },
+      "players": [
+        "A1",
+        "B1",
+        "A2",
+        "B2"
+      ],
+      "actions": [
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        }
+      ],
+      "steps": [
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            1
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            1
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            2
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            2
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            3
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            4,
+            3
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            4,
+            4
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              1,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        }
+      ]
+    },
+    {
+      "name": "tiebreak: set decided 7-6 (7-5 breaker)",
+      "configId": "padel.golden.bo3.superTB",
+      "config": {
+        "id": "padel.golden.bo3.superTB",
+        "version": 1,
+        "point": {
+          "ladder": [
+            "0",
+            "15",
+            "30",
+            "40"
+          ],
+          "winAtIndex": 4,
+          "pointMargin": 2,
+          "deuce": "golden"
+        },
+        "match": {
+          "bestOf": 3,
+          "regularSet": {
+            "gamesToWin": 6,
+            "gameMargin": 2,
+            "tiebreakAtGames": 6,
+            "tiebreak": {
+              "targetPoints": 7,
+              "pointMargin": 2,
+              "firstServerPoints": 1,
+              "serveEvery": 2,
+              "changeEndsEvery": 6
+            }
+          },
+          "finalSet": {
+            "kind": "superTiebreak",
+            "superTiebreak": {
+              "targetPoints": 10,
+              "pointMargin": 2,
+              "firstServerPoints": 1,
+              "serveEvery": 2,
+              "changeEndsEvery": 6
+            }
+          },
+          "playOutAfterMatchPoint": false
+        },
+        "serve": {
+          "format": "doubles",
+          "gameServeCycle": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "slotSide": [
+            0,
+            1,
+            0,
+            1
+          ]
+        }
+      },
+      "players": [
+        "A1",
+        "B1",
+        "A2",
+        "B2"
+      ],
+      "actions": [
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        }
+      ],
+      "steps": [
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              1,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            1
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              1,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            2
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              1,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            3
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              1,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              1,
+              1
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              1,
+              1
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              1,
+              1
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              1,
+              1
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              2,
+              1
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            1
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              2,
+              1
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            2
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              2,
+              1
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            3
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              2,
+              1
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              2,
+              2
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              2,
+              2
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              2,
+              2
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              2,
+              2
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              3,
+              2
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            1
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              3,
+              2
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            2
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              3,
+              2
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            3
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              3,
+              2
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              3,
+              3
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              3,
+              3
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              3,
+              3
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              3,
+              3
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              4,
+              3
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            1
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              4,
+              3
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            2
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              4,
+              3
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            3
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              4,
+              3
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              4,
+              4
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              4,
+              4
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              4,
+              4
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              4,
+              4
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              5,
+              4
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            1
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              5,
+              4
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            2
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              5,
+              4
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            3
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              5,
+              4
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              5,
+              5
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              5,
+              5
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              5,
+              5
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              5,
+              5
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              5
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            1
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              5
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            2
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              5
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            3
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              5
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": [
+            0,
+            0
+          ],
+          "sets": [
+            [
+              6,
+              6
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": [
+            1,
+            0
+          ],
+          "sets": [
+            [
+              6,
+              6
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": [
+            2,
+            0
+          ],
+          "sets": [
+            [
+              6,
+              6
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": [
+            3,
+            0
+          ],
+          "sets": [
+            [
+              6,
+              6
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": [
+            4,
+            0
+          ],
+          "sets": [
+            [
+              6,
+              6
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": [
+            5,
+            0
+          ],
+          "sets": [
+            [
+              6,
+              6
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": [
+            5,
+            1
+          ],
+          "sets": [
+            [
+              6,
+              6
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": [
+            5,
+            2
+          ],
+          "sets": [
+            [
+              6,
+              6
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": [
+            5,
+            3
+          ],
+          "sets": [
+            [
+              6,
+              6
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": [
+            5,
+            4
+          ],
+          "sets": [
+            [
+              6,
+              6
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": [
+            5,
+            5
+          ],
+          "sets": [
+            [
+              6,
+              6
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": [
+            6,
+            5
+          ],
+          "sets": [
+            [
+              6,
+              6
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              7,
+              6
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        }
+      ]
+    },
+    {
+      "name": "super-tiebreak decider 10-8",
+      "configId": "padel.golden.bo3.superTB",
+      "config": {
+        "id": "padel.golden.bo3.superTB",
+        "version": 1,
+        "point": {
+          "ladder": [
+            "0",
+            "15",
+            "30",
+            "40"
+          ],
+          "winAtIndex": 4,
+          "pointMargin": 2,
+          "deuce": "golden"
+        },
+        "match": {
+          "bestOf": 3,
+          "regularSet": {
+            "gamesToWin": 6,
+            "gameMargin": 2,
+            "tiebreakAtGames": 6,
+            "tiebreak": {
+              "targetPoints": 7,
+              "pointMargin": 2,
+              "firstServerPoints": 1,
+              "serveEvery": 2,
+              "changeEndsEvery": 6
+            }
+          },
+          "finalSet": {
+            "kind": "superTiebreak",
+            "superTiebreak": {
+              "targetPoints": 10,
+              "pointMargin": 2,
+              "firstServerPoints": 1,
+              "serveEvery": 2,
+              "changeEndsEvery": 6
+            }
+          },
+          "playOutAfterMatchPoint": false
+        },
+        "serve": {
+          "format": "doubles",
+          "gameServeCycle": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "slotSide": [
+            0,
+            1,
+            0,
+            1
+          ]
+        }
+      },
+      "players": [
+        "A1",
+        "B1",
+        "A2",
+        "B2"
+      ],
+      "actions": [
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        }
+      ],
+      "steps": [
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              1,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              1,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              1,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              1,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              2,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              2,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              2,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              2,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              3,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              3,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              3,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              3,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              4,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              4,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              4,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              4,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              5,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              5,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              5,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              5,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            1
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            2
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            3
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            1
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            2
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            3
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              2
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            1
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              2
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            2
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              2
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            3
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              2
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              3
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            1
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              3
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            2
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              3
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            3
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              3
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              4
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            1
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              4
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            2
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              4
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            3
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              4
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              5
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            1
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              5
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            2
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              5
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            3
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              5
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": [
+            0,
+            0
+          ],
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              6
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            1
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": [
+            1,
+            0
+          ],
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              6
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            1
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": [
+            2,
+            0
+          ],
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              6
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            1
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": [
+            3,
+            0
+          ],
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              6
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            1
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": [
+            4,
+            0
+          ],
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              6
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            1
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": [
+            5,
+            0
+          ],
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              6
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            1
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": [
+            6,
+            0
+          ],
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              6
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            1
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": [
+            7,
+            0
+          ],
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              6
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            1
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": [
+            8,
+            0
+          ],
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              6
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            1
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": [
+            8,
+            1
+          ],
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              6
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            1
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": [
+            8,
+            2
+          ],
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              6
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            1
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": [
+            8,
+            3
+          ],
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              6
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            1
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": [
+            8,
+            4
+          ],
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              6
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            1
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": [
+            8,
+            5
+          ],
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              6
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            1
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": [
+            8,
+            6
+          ],
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              6
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            1
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": [
+            8,
+            7
+          ],
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              6
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            1
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": [
+            8,
+            8
+          ],
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              6
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            1
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": [
+            9,
+            8
+          ],
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              6
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            1
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": [
+            10,
+            8
+          ],
+          "sets": [
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              6
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "setsWon": [
+            2,
+            1
+          ],
+          "serverSlot": 1,
+          "complete": true,
+          "winner": 0
+        }
+      ]
+    },
+    {
+      "name": "mini-set 4-0 4-0",
+      "configId": "padel.golden.bo3.mini",
+      "config": {
+        "id": "padel.golden.bo3.mini",
+        "version": 1,
+        "point": {
+          "ladder": [
+            "0",
+            "15",
+            "30",
+            "40"
+          ],
+          "winAtIndex": 4,
+          "pointMargin": 2,
+          "deuce": "golden"
+        },
+        "match": {
+          "bestOf": 3,
+          "regularSet": {
+            "gamesToWin": 4,
+            "gameMargin": 2,
+            "tiebreakAtGames": 4,
+            "tiebreak": {
+              "targetPoints": 7,
+              "pointMargin": 2,
+              "firstServerPoints": 1,
+              "serveEvery": 2,
+              "changeEndsEvery": 6
+            }
+          },
+          "finalSet": {
+            "kind": "miniSet",
+            "set": {
+              "gamesToWin": 4,
+              "gameMargin": 2,
+              "tiebreakAtGames": 4,
+              "tiebreak": {
+                "targetPoints": 7,
+                "pointMargin": 2,
+                "firstServerPoints": 1,
+                "serveEvery": 2,
+                "changeEndsEvery": 6
+              }
+            }
+          },
+          "playOutAfterMatchPoint": false
+        },
+        "serve": {
+          "format": "doubles",
+          "gameServeCycle": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "slotSide": [
+            0,
+            1,
+            0,
+            1
+          ]
+        }
+      },
+      "players": [
+        "A1",
+        "B1",
+        "A2",
+        "B2"
+      ],
+      "actions": [
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        }
+      ],
+      "steps": [
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              1,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              1,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              1,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              1,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              2,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              2,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              2,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              2,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              3,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              3,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              3,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              3,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              4,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              4,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              4,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              4,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              4,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              4,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              4,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              4,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              4,
+              0
+            ],
+            [
+              2,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              4,
+              0
+            ],
+            [
+              2,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              4,
+              0
+            ],
+            [
+              2,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              4,
+              0
+            ],
+            [
+              2,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              4,
+              0
+            ],
+            [
+              3,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              4,
+              0
+            ],
+            [
+              3,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              4,
+              0
+            ],
+            [
+              3,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              4,
+              0
+            ],
+            [
+              3,
+              0
+            ]
+          ],
+          "setsWon": [
+            1,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              4,
+              0
+            ],
+            [
+              4,
+              0
+            ]
+          ],
+          "setsWon": [
+            2,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": true,
+          "winner": 0
+        }
+      ]
+    },
+    {
+      "name": "singles serve rotation",
+      "configId": "padel.golden.bo3.superTB.singles",
+      "config": {
+        "id": "padel.golden.bo3.superTB.singles",
+        "version": 1,
+        "point": {
+          "ladder": [
+            "0",
+            "15",
+            "30",
+            "40"
+          ],
+          "winAtIndex": 4,
+          "pointMargin": 2,
+          "deuce": "golden"
+        },
+        "match": {
+          "bestOf": 3,
+          "regularSet": {
+            "gamesToWin": 6,
+            "gameMargin": 2,
+            "tiebreakAtGames": 6,
+            "tiebreak": {
+              "targetPoints": 7,
+              "pointMargin": 2,
+              "firstServerPoints": 1,
+              "serveEvery": 2,
+              "changeEndsEvery": 6
+            }
+          },
+          "finalSet": {
+            "kind": "superTiebreak",
+            "superTiebreak": {
+              "targetPoints": 10,
+              "pointMargin": 2,
+              "firstServerPoints": 1,
+              "serveEvery": 2,
+              "changeEndsEvery": 6
+            }
+          },
+          "playOutAfterMatchPoint": false
+        },
+        "serve": {
+          "format": "singles",
+          "gameServeCycle": [
+            0,
+            1
+          ],
+          "slotSide": [
+            0,
+            1
+          ]
+        }
+      },
+      "players": [
+        "P0",
+        "P1"
+      ],
+      "actions": [
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 1
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        }
+      ],
+      "steps": [
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              1,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            1
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              1,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            2
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              1,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            3
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              1,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              1,
+              1
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              1,
+              1
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              1,
+              1
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              1,
+              1
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              2,
+              1
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            1
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              2,
+              1
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            2
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              2,
+              1
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            3
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              2,
+              1
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              2,
+              2
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              2,
+              2
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              2,
+              2
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              2,
+              2
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              3,
+              2
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            1
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              3,
+              2
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            2
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              3,
+              2
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            3
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              3,
+              2
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              3,
+              3
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              3,
+              3
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              3,
+              3
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              3,
+              3
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              4,
+              3
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        }
+      ]
+    },
+    {
+      "name": "doubles serve rotation A1,B1,A2,B2",
+      "configId": "padel.golden.bo3.superTB",
+      "config": {
+        "id": "padel.golden.bo3.superTB",
+        "version": 1,
+        "point": {
+          "ladder": [
+            "0",
+            "15",
+            "30",
+            "40"
+          ],
+          "winAtIndex": 4,
+          "pointMargin": 2,
+          "deuce": "golden"
+        },
+        "match": {
+          "bestOf": 3,
+          "regularSet": {
+            "gamesToWin": 6,
+            "gameMargin": 2,
+            "tiebreakAtGames": 6,
+            "tiebreak": {
+              "targetPoints": 7,
+              "pointMargin": 2,
+              "firstServerPoints": 1,
+              "serveEvery": 2,
+              "changeEndsEvery": 6
+            }
+          },
+          "finalSet": {
+            "kind": "superTiebreak",
+            "superTiebreak": {
+              "targetPoints": 10,
+              "pointMargin": 2,
+              "firstServerPoints": 1,
+              "serveEvery": 2,
+              "changeEndsEvery": 6
+            }
+          },
+          "playOutAfterMatchPoint": false
+        },
+        "serve": {
+          "format": "doubles",
+          "gameServeCycle": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "slotSide": [
+            0,
+            1,
+            0,
+            1
+          ]
+        }
+      },
+      "players": [
+        "A1",
+        "B1",
+        "A2",
+        "B2"
+      ],
+      "actions": [
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        }
+      ],
+      "steps": [
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              1,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              1,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              1,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              1,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              2,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              2,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              2,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              2,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              3,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              3,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              3,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              3,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              4,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              4,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              4,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              4,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              5,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        }
+      ]
+    },
+    {
+      "name": "penalty point converts a game",
+      "configId": "padel.golden.bo3.superTB",
+      "config": {
+        "id": "padel.golden.bo3.superTB",
+        "version": 1,
+        "point": {
+          "ladder": [
+            "0",
+            "15",
+            "30",
+            "40"
+          ],
+          "winAtIndex": 4,
+          "pointMargin": 2,
+          "deuce": "golden"
+        },
+        "match": {
+          "bestOf": 3,
+          "regularSet": {
+            "gamesToWin": 6,
+            "gameMargin": 2,
+            "tiebreakAtGames": 6,
+            "tiebreak": {
+              "targetPoints": 7,
+              "pointMargin": 2,
+              "firstServerPoints": 1,
+              "serveEvery": 2,
+              "changeEndsEvery": 6
+            }
+          },
+          "finalSet": {
+            "kind": "superTiebreak",
+            "superTiebreak": {
+              "targetPoints": 10,
+              "pointMargin": 2,
+              "firstServerPoints": 1,
+              "serveEvery": 2,
+              "changeEndsEvery": 6
+            }
+          },
+          "playOutAfterMatchPoint": false
+        },
+        "serve": {
+          "format": "doubles",
+          "gameServeCycle": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "slotSide": [
+            0,
+            1,
+            0,
+            1
+          ]
+        }
+      },
+      "players": [
+        "A1",
+        "B1",
+        "A2",
+        "B2"
+      ],
+      "actions": [
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "PENALTY",
+          "side": 1,
+          "unit": "point"
+        }
+      ],
+      "steps": [
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              1,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        }
+      ]
+    },
+    {
+      "name": "retire preserves partial score",
+      "configId": "padel.golden.bo3.superTB",
+      "config": {
+        "id": "padel.golden.bo3.superTB",
+        "version": 1,
+        "point": {
+          "ladder": [
+            "0",
+            "15",
+            "30",
+            "40"
+          ],
+          "winAtIndex": 4,
+          "pointMargin": 2,
+          "deuce": "golden"
+        },
+        "match": {
+          "bestOf": 3,
+          "regularSet": {
+            "gamesToWin": 6,
+            "gameMargin": 2,
+            "tiebreakAtGames": 6,
+            "tiebreak": {
+              "targetPoints": 7,
+              "pointMargin": 2,
+              "firstServerPoints": 1,
+              "serveEvery": 2,
+              "changeEndsEvery": 6
+            }
+          },
+          "finalSet": {
+            "kind": "superTiebreak",
+            "superTiebreak": {
+              "targetPoints": 10,
+              "pointMargin": 2,
+              "firstServerPoints": 1,
+              "serveEvery": 2,
+              "changeEndsEvery": 6
+            }
+          },
+          "playOutAfterMatchPoint": false
+        },
+        "serve": {
+          "format": "doubles",
+          "gameServeCycle": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "slotSide": [
+            0,
+            1,
+            0,
+            1
+          ]
+        }
+      },
+      "players": [
+        "A1",
+        "B1",
+        "A2",
+        "B2"
+      ],
+      "actions": [
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "POINT_TO",
+          "side": 0
+        },
+        {
+          "type": "RETIRE",
+          "side": 1
+        }
+      ],
+      "steps": [
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              0,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 0,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              1,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              1,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              1,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              1,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 1,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              2,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              2,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              2,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            3,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              2,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 2,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            0,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              3,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            1,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              3,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              3,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": false,
+          "winner": null
+        },
+        {
+          "points": [
+            2,
+            0
+          ],
+          "tiebreak": null,
+          "sets": [
+            [
+              3,
+              0
+            ]
+          ],
+          "setsWon": [
+            0,
+            0
+          ],
+          "serverSlot": 3,
+          "complete": true,
+          "winner": 0
+        }
+      ]
+    }
+  ]
+}

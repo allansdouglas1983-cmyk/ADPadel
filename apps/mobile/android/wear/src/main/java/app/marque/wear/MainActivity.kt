@@ -14,67 +14,81 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kotlin.math.max
 
 /**
- * Wear OS wrist scoring in Jetpack Compose. Standalone (works without the
- * phone): the match persists via MatchRepository (DataStore) and survives
- * navigation through a foreground service, then syncs to the phone over the
- * Wearable Data Layer. Tap a half to score; long-press to undo.
+ * Wear OS wrist scoring in Compose, driven by the FULL config engine. State is a
+ * fold of an append-only action log (identical to the phone), so undo is perfect
+ * and crash-resume is byte-identical. Standalone; persists via MatchRepository
+ * and syncs the snapshot to the phone over the Wearable Data Layer.
  */
 class MainActivity : ComponentActivity() {
-    private val engine = ScoreEngine()
+    private val cfg = DefaultConfig.golden
+    private val engine = ScoreEngine(DefaultConfig.golden)
     private lateinit var repo: MatchRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         repo = MatchRepository(applicationContext)
-        setContent {
-            var state by remember { mutableStateOf(repo.restore()) }
+        val initial = repo.restore()
 
-            fun apply(next: MatchState) {
-                state = next
-                repo.persist(next)
-                DataLayerSync.push(applicationContext, next)
+        setContent {
+            var players by remember { mutableStateOf(initial.players) }
+            var log by remember { mutableStateOf(initial.log) }
+            val state by remember {
+                derivedStateOf {
+                    var s = engine.initialState(players)
+                    for (e in log) s = engine.reduce(s, e.toAction())
+                    s
+                }
+            }
+
+            fun commit(newLog: List<LoggedAction>) {
+                log = newLog
+                val snap = WearSnapshot(cfg.id, players, newLog)
+                repo.persist(snap)
+                DataLayerSync.push(applicationContext, snap)
             }
 
             MaterialTheme {
                 Column(Modifier.fillMaxSize()) {
-                    Half(0, state.pointsA, state.gamesA, state.setsA, Color(0xFF1B232E),
-                        onTap = { apply(engine.pointTo(0, state)) },
-                        onLongPress = { apply(engine.undo(state)) })
-                    Half(1, state.pointsB, state.gamesB, state.setsB, Color(0xFF26313D),
-                        onTap = { apply(engine.pointTo(1, state)) },
-                        onLongPress = { apply(engine.undo(state)) })
+                    Half(0, state, Color(0xFF1B232E),
+                        onTap = { commit(log + LoggedAction("point", 0)) },
+                        onLongPress = { if (log.isNotEmpty()) commit(log.dropLast(1)) })
+                    Half(1, state, Color(0xFF26313D),
+                        onTap = { commit(log + LoggedAction("point", 1)) },
+                        onLongPress = { if (log.isNotEmpty()) commit(log.dropLast(1)) })
                 }
             }
         }
     }
 }
 
-@androidx.compose.runtime.Composable
-private fun ColumnScope.Half(
-    side: Int, points: Int, games: Int, sets: Int, bg: Color,
-    onTap: () -> Unit, onLongPress: () -> Unit,
-) {
+@Composable
+private fun ColumnScope.Half(side: Int, state: MatchState, bg: Color, onTap: () -> Unit, onLongPress: () -> Unit) {
     Box(
         Modifier
             .weight(1f)
             .fillMaxWidth()
             .background(bg)
-            .pointerInput(Unit) {
-                detectTapGestures(onTap = { onTap() }, onLongPress = { onLongPress() })
-            },
+            .pointerInput(Unit) { detectTapGestures(onTap = { onTap() }, onLongPress = { onLongPress() }) },
         contentAlignment = Alignment.Center,
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Text(pointLabel(points), fontSize = 40.sp, fontWeight = FontWeight.Bold, color = Color.White)
-            Text("$sets · $games", fontSize = 12.sp, color = Color(0xFFA9B6C2))
+            Text(pointLabel(state, side), fontSize = 40.sp, fontWeight = FontWeight.Bold, color = Color.White)
+            Text(state.sets.joinToString("  ") { it[side].toString() }, fontSize = 12.sp, color = Color(0xFFA9B6C2))
         }
     }
 }
 
-private fun pointLabel(raw: Int): String = when (raw) {
-    0 -> "0"; 1 -> "15"; 2 -> "30"; else -> "40"
+private fun pointLabel(state: MatchState, side: Int): String {
+    val set = state.sets[state.currentSetIndex]
+    set.tiebreak?.let { return it.points[side].toString() }
+    val a = state.currentGame[0]; val b = state.currentGame[1]
+    val ladder = listOf("0", "15", "30", "40")
+    if (max(a, b) < ladder.size) return ladder[if (side == 0) a else b]
+    if (a == b) return "40"
+    val mine = if (side == 0) a else b; val theirs = if (side == 0) b else a
+    return if (mine > theirs) "AD" else "40"
 }

@@ -4,13 +4,36 @@ React Native / JS cannot run on watchOS or Wear OS, so both watch apps are
 **native** and each carries a compact `ScoreEngine` that mirrors the canonical
 TypeScript engine.
 
-## The lockstep contract
+## The lockstep contract — enforced, not hoped
 The exhaustively-tested source of truth is `packages/scoring-engine`. The Swift
-`ScoreEngine.swift` and Kotlin `ScoreEngine.kt` are faithful ports of the SAME
-rules (golden-point games, tiebreak padel sets) with the SAME append-only-log
-undo. When the TS engine's rules change, update both ports in the same PR. A
-future improvement is a golden-vector fixture (shared JSON of action→state
-cases) that all three engines run against in CI.
+`ScoreEngine.swift` and Kotlin `ScoreEngine.kt` are FULL, config-driven ports —
+they decode the same `RuleSetConfig` JSON and reproduce every deuce mode
+(golden/advantage/silver/star), tiebreaks with correct 1-then-2 serve rotation,
+super-tiebreak deciders, mini-sets and best-of, with the same append-only-log
+undo. Nothing is simplified.
+
+Parity is **enforced by a shared golden-vector fixture**:
+`packages/scoring-engine/fixtures/golden-vectors.json` is generated from the
+canonical engine (`pnpm --filter @padel/scoring-engine fixtures`) and captures
+the full per-step state (points, tiebreak, games, sets-won, server slot,
+complete, winner) for 12 representative matches across every configuration.
+- The TS suite (`test/fixtures.test.ts`) asserts the committed fixture still
+  matches the engine — so any rules change that isn't regenerated fails CI.
+- The Swift suite (`Tests/ScoreEngineTests.swift`) and Kotlin suite
+  (`test/ScoreEngineTest.kt`) load the SAME JSON and assert their port agrees
+  step-for-step. A Gradle `syncGoldenVectors` task copies the latest fixture.
+
+So "the watches never disagree with the phone" is a test that fails loudly, not
+an aspiration. When the engine changes: regenerate the fixture, run all three
+suites.
+
+## Embedded-engine option (zero drift)
+For teams that prefer running the ACTUAL engine on-device, `pnpm --filter
+@padel/scoring-engine bundle` emits `dist/marque-engine.global.js` (a self-
+contained IIFE exposing `globalThis.Marque` with `reduceJson`/`foldJson`).
+watchOS can run it via JavaScriptCore; it is smoke-tested in Node. The native
+ports remain the default (best battery/perf); the bundle is the drop-in
+true-parity alternative, and the golden-vector fixture validates either path.
 
 ## Apple Watch (SwiftUI)
 - `ScoreEngine.swift` — the scoring port.

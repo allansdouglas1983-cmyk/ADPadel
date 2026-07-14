@@ -21,12 +21,15 @@
   ],
   "scripts": {
     "build": "tsc -b",
+    "bundle": "esbuild src/global.ts --bundle --format=iife --global-name=MarqueBundle --target=es2018 --outfile=dist/marque-engine.global.js",
+    "fixtures": "node scripts/generate-fixtures.mjs",
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc -b --noEmit"
   },
   "devDependencies": {
     "@vitest/coverage-v8": "2.1.9",
+    "esbuild": "0.24.0",
     "fast-check": "^3.23.1",
     "typescript": "^5.7.2",
     "vitest": "^2.1.8"
