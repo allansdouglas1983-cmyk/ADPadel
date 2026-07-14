@@ -5,6 +5,27 @@ tokens — never raw hex or magic numbers — so applying the final brand palett
 a one-package change (the current palette is a placeholder seeded from the
 build dossier).
 
+## Component library (`apps/mobile/src/ui`)
+One premium, animated, haptic, token-driven kit every screen is built from:
+- **Text** — the single typographic primitive (display/title/heading/body/label/
+  caption/score variants, tone roles). All type flows through it.
+- **Screen** — gradient background + safe-area + optional scroll.
+- **Button** — gradient fill, coloured glow, spring press, haptics, variants.
+- **Card** — solid surface or frosted glass (expo-blur), optional glow.
+- **StatTile**, **Segmented** (springing selection pill), **IconButton**,
+  **EmptyState**, **haptics**, and iconography (custom padel SVG glyphs + lucide).
+
+## Fonts
+Space Grotesk (display) + Inter (body / tabular numerals) are bundled via
+`@expo-google-fonts` under the exact family names the tokens reference; the root
+layout holds the splash until fonts + migrations are ready.
+
+## Effects
+`gradients` (app/brand/court/gold/glass/holographic), `glow` (coloured shadow
+presets), `glass` (frosted tint + border), and Reanimated `spring` presets power
+the depth and motion. The live scoreboard, share card and Wrapped all draw on
+these so the app reads as one system.
+
 ## Tokens
 - **Colour** (`colors.ts`): brand (court green), accent (court blue), gold
   (golden/star point), dark-first neutrals, semantic win/loss/warn/info, and a
