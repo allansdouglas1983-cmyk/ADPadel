@@ -32,7 +32,7 @@ jobs:
         run: pnpm -r typecheck
 
       - name: Build core packages
-        run: pnpm --filter "@padel/shared" --filter "@padel/scoring-engine" --filter "@padel/ratings" --filter "@padel/design-tokens" build
+        run: pnpm --filter "./packages/*" build
 
       - name: Test scoring engine
         run: pnpm --filter "@padel/scoring-engine" test
@@ -42,3 +42,12 @@ jobs:
 
       - name: Test shared
         run: pnpm --filter "@padel/shared" test
+
+      - name: Test formats
+        run: pnpm --filter "@padel/formats" test
+
+      - name: Test stats
+        run: pnpm --filter "@padel/stats" test
+
+      - name: Test design tokens
+        run: pnpm --filter "@padel/design-tokens" test

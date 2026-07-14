@@ -36,6 +36,18 @@ importers:
         specifier: ^2.1.8
         version: 2.1.9(@types/node@22.20.1)
 
+  packages/formats:
+    devDependencies:
+      '@vitest/coverage-v8':
+        specifier: 2.1.9
+        version: 2.1.9(vitest@2.1.9(@types/node@22.20.1))
+      typescript:
+        specifier: ^5.7.2
+        version: 5.9.3
+      vitest:
+        specifier: ^2.1.8
+        version: 2.1.9(@types/node@22.20.1)
+
   packages/ratings:
     devDependencies:
       '@vitest/coverage-v8':
@@ -71,6 +83,18 @@ importers:
       '@padel/scoring-engine':
         specifier: workspace:*
         version: link:../scoring-engine
+    devDependencies:
+      '@vitest/coverage-v8':
+        specifier: 2.1.9
+        version: 2.1.9(vitest@2.1.9(@types/node@22.20.1))
+      typescript:
+        specifier: ^5.7.2
+        version: 5.9.3
+      vitest:
+        specifier: ^2.1.8
+        version: 2.1.9(@types/node@22.20.1)
+
+  packages/stats:
     devDependencies:
       '@vitest/coverage-v8':
         specifier: 2.1.9

@@ -4,6 +4,8 @@
     { "path": "packages/shared" },
     { "path": "packages/scoring-engine" },
     { "path": "packages/ratings" },
-    { "path": "packages/design-tokens" }
+    { "path": "packages/design-tokens" },
+    { "path": "packages/formats" },
+    { "path": "packages/stats" }
   ]
 }
