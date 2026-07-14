@@ -1,0 +1,29 @@
+{
+  "tabs": { "play": "Spela", "history": "Historik", "stats": "Statistik", "friends": "Vänner", "profile": "Profil" },
+  "play": {
+    "newMatch": "Ny match",
+    "americano": "Americano",
+    "mexicano": "Mexicano",
+    "teamAmericano": "Lag-Americano",
+    "mixedAmericano": "Mixed Americano",
+    "kingOfCourt": "Banans kung",
+    "tournament": "Turnering",
+    "resumeMatch": "Återuppta matchen"
+  },
+  "setup": {
+    "format": "Format", "doubles": "Dubbel", "singles": "Singel", "deuceMode": "Lika",
+    "advantage": "Fördel", "golden": "Gyllene poäng", "star": "Stjärnpoäng",
+    "finalSet": "Avgörande set", "superTiebreak": "Supertiebreak", "fullSet": "Helt set", "start": "Starta"
+  },
+  "score": {
+    "deuce": "Lika", "advantage": "Fördel", "goldenPoint": "Gyllene poäng", "starPoint": "Stjärnpoäng",
+    "tiebreak": "Tiebreak", "superTiebreak": "Supertiebreak", "matchPoint": "Matchboll",
+    "undo": "Ångra", "replay": "Spela om poängen", "timeout": "Timeout",
+    "pointTo": "Poäng till {{side}}", "you": "Du", "opponents": "Motståndare"
+  },
+  "result": { "youWon": "Du vann!", "youLost": "Matchen är slut", "shareCard": "Dela kortet", "duration": "{{minutes}} min" },
+  "paywall": {
+    "title": "Marque Pro", "unlock": "Lås upp avancerad statistik, obegränsad historik och Wrapped.",
+    "annual": "Årligen", "monthly": "Månadsvis", "trial": "Gratis provperiod", "restore": "Återställ köp"
+  }
+}

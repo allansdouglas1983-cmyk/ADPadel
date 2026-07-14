@@ -182,6 +182,12 @@ export const syncCursor = sqliteTable('sync_cursor', {
   lastPulledAt: integer('last_pulled_at').notNull().default(0),
 });
 
+/** Simple key/value app settings (high-contrast mode, logging default, etc). */
+export const appSettings = sqliteTable('app_settings', {
+  key: text('key').primaryKey(),
+  value: text('value').notNull(),
+});
+
 export type PlayerRow = typeof players.$inferSelect;
 export type MatchRow = typeof matches.$inferSelect;
 export type SessionRow = typeof sessions.$inferSelect;

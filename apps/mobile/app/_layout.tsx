@@ -2,7 +2,9 @@ import * as Sentry from '@sentry/react-native';
 import Constants from 'expo-constants';
 import { Stack } from 'expo-router';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { View } from 'react-native';
 import { ThemeProvider } from '@/theme/ThemeProvider';
+import { useMigrations } from '@/db/client';
 import '@/i18n';
 
 // Crash reporting is how we EVIDENCE the "never lose a match" reliability claim.
@@ -13,6 +15,10 @@ Sentry.init({
 });
 
 function RootLayout() {
+  const { success, error } = useMigrations();
+  // Gate the app until the on-device schema is migrated (fast; first launch only).
+  if (!success && !error) return <View style={{ flex: 1, backgroundColor: '#0B0F14' }} />;
+
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <ThemeProvider>

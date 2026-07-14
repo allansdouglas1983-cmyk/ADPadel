@@ -9,6 +9,7 @@ import { useTheme } from '@/theme/ThemeProvider';
 import { useMatchStore } from '@/store/matchStore';
 import { useMatchTimer } from '@/hooks/useMatchTimer';
 import { finalizeMatch } from '@/features/scoring/finalizeMatch';
+import { notifyShareCard } from '@/notifications/notify';
 import { ScoreboardControls } from '@/features/scoring/ScoreboardControls';
 import { ShotPicker } from '@/features/scoring/ShotPicker';
 import { logPoint } from '@/db/pointsRepo';
@@ -39,6 +40,7 @@ export default function ScoreboardScreen() {
       lastComplete.current = true;
       finalizeMatch(matchId, state, cfg, snapshot.players, createdAtIso);
       void Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+      void notifyShareCard();
       router.replace(`/result/${id}`);
     }
   }, [state?.complete, cfg, snapshot, matchId, createdAtIso, id]);

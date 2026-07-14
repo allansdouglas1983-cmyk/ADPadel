@@ -1,6 +1,6 @@
 import { router } from 'expo-router';
 import { useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Switch, Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { BRAND } from '@padel/shared';
 import { fontSize, radii, spacing } from '@padel/design-tokens';
@@ -8,14 +8,24 @@ import { useTheme } from '@/theme/ThemeProvider';
 import { useEntitlements } from '@/hooks/useEntitlements';
 import { useAuth } from '@/sync/useAuth';
 import { fullSync } from '@/sync/syncEngine';
+import { useSettings } from '@/store/settingsStore';
+import { requestNotificationPermission } from '@/notifications/notify';
 
 /** Profile & settings: Season Wrapped, Pro, and optional cloud backup (sign-in). */
 export default function ProfileScreen() {
   const theme = useTheme();
   const { t } = useTranslation();
   const { isPro } = useEntitlements();
-  const { user, busy, signInWithApple, signInWithGoogle, signOut } = useAuth();
+  const { user, signInWithApple, signInWithGoogle, signOut } = useAuth();
+  const { highContrast, notifications, setHighContrast, setNotifications } = useSettings();
   const [syncing, setSyncing] = useState(false);
+
+  const ToggleRow = ({ label, value, onChange }: { label: string; value: boolean; onChange: (v: boolean) => void }) => (
+    <View style={[styles.item, styles.rowBetween, { borderColor: theme.border }]}>
+      <Text style={{ color: theme.textHi }}>{label}</Text>
+      <Switch value={value} onValueChange={onChange} />
+    </View>
+  );
 
   const syncNow = async () => {
     setSyncing(true);
@@ -39,6 +49,17 @@ export default function ProfileScreen() {
 
       <Item label="Season Wrapped" onPress={() => router.push('/wrapped')} />
       {!isPro && <Item label={t('paywall.title')} tint={theme.gold} onPress={() => router.push('/paywall')} />}
+
+      <Text style={[styles.section, { color: theme.textMid }]}>Accessibility & alerts</Text>
+      <ToggleRow label="High-contrast on-court mode" value={highContrast} onChange={setHighContrast} />
+      <ToggleRow
+        label="Notifications"
+        value={notifications}
+        onChange={(v) => {
+          setNotifications(v);
+          if (v) void requestNotificationPermission();
+        }}
+      />
 
       <Text style={[styles.section, { color: theme.textMid }]}>Backup & multi-device</Text>
       {user ? (
@@ -66,5 +87,6 @@ const styles = StyleSheet.create({
   name: { fontSize: fontSize.xxl, fontWeight: '700' },
   section: { fontSize: fontSize.sm, textTransform: 'uppercase', marginTop: spacing.lg },
   item: { padding: spacing.lg, borderRadius: radii.card, borderWidth: 1 },
+  rowBetween: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
   footer: { marginTop: 'auto', fontSize: fontSize.xs },
 });

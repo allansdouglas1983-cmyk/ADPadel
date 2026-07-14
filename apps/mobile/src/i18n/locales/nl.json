@@ -1,0 +1,29 @@
+{
+  "tabs": { "play": "Spelen", "history": "Historie", "stats": "Statistieken", "friends": "Vrienden", "profile": "Profiel" },
+  "play": {
+    "newMatch": "Nieuwe wedstrijd",
+    "americano": "Americano",
+    "mexicano": "Mexicano",
+    "teamAmericano": "Team-Americano",
+    "mixedAmericano": "Mixed Americano",
+    "kingOfCourt": "Koning van de baan",
+    "tournament": "Toernooi",
+    "resumeMatch": "Wedstrijd hervatten"
+  },
+  "setup": {
+    "format": "Formaat", "doubles": "Dubbel", "singles": "Enkel", "deuceMode": "Gelijk",
+    "advantage": "Voordeel", "golden": "Gouden punt", "star": "Sterpunt",
+    "finalSet": "Beslissende set", "superTiebreak": "Super-tiebreak", "fullSet": "Volledige set", "start": "Starten"
+  },
+  "score": {
+    "deuce": "Gelijk", "advantage": "Voordeel", "goldenPoint": "Gouden punt", "starPoint": "Sterpunt",
+    "tiebreak": "Tiebreak", "superTiebreak": "Super-tiebreak", "matchPoint": "Matchpoint",
+    "undo": "Ongedaan maken", "replay": "Punt overspelen", "timeout": "Time-out",
+    "pointTo": "Punt voor {{side}}", "you": "Jij", "opponents": "Tegenstanders"
+  },
+  "result": { "youWon": "Je hebt gewonnen!", "youLost": "Wedstrijd voorbij", "shareCard": "Kaart delen", "duration": "{{minutes}} min" },
+  "paywall": {
+    "title": "Marque Pro", "unlock": "Ontgrendel geavanceerde stats, onbeperkte historie en Wrapped.",
+    "annual": "Jaarlijks", "monthly": "Maandelijks", "trial": "Gratis proberen", "restore": "Aankopen herstellen"
+  }
+}

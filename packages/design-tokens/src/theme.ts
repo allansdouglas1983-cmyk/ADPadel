@@ -49,4 +49,24 @@ export const lightTheme: Theme = {
   loss: palette.loss,
 };
 
-export const themes = { dark: darkTheme, light: lightTheme } as const;
+/**
+ * High-contrast on-court mode (accessibility §3.10): pure-black background, max-
+ * contrast text and a brighter brand, for sunlight glare and low vision.
+ */
+export const highContrastTheme: Theme = {
+  name: 'dark',
+  bg: '#000000',
+  surface: '#0A0A0A',
+  surfaceRaised: '#161616',
+  border: '#5A6B78',
+  textHi: '#FFFFFF',
+  textMid: '#D6E0E8',
+  textLo: '#9FB0BD',
+  brand: palette.brand400,
+  accent: palette.accent400,
+  gold: palette.gold500,
+  win: '#3BE38C',
+  loss: '#FF6369',
+};
+
+export const themes = { dark: darkTheme, light: lightTheme, highContrast: highContrastTheme } as const;
