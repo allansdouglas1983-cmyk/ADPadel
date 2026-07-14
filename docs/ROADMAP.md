@@ -6,23 +6,30 @@
 3. ✅ Ratings, formats, stats — pure, tested packages.
 4. ✅ Shared persistence + design tokens.
 5. ◐ Phone scoring UI — live board, undo/replay, synchronous persistence,
-   resume-on-launch banner, named match setup, match finalization (records set
-   rows, updates ratings + history, marks complete), result + share. (Source
-   complete; builds via EAS.)
-6. ◐ Apple Watch — SwiftUI scoring + WCSession + standalone persistence.
-7. ◐ Wear OS — Compose scoring + Data Layer + standalone persistence.
-8. ◐ Americano/Mexicano — full runnable event lifecycle via `EventSession`
-   (create pool → score courts → advance → live leaderboard), event resume.
-   Round-robin/knockout pairings exist in `@padel/formats`; their event UIs are
-   the next event-side step.
-9. ◐ Sharing + Wrapped — Skia card + reveal. Claim-your-profile deep-link loop
-   is the next sharing-side step.
+   resume-on-launch, named setup (all deuce presets incl. Silver Point), match
+   finalization (set rows + ratings + history), full controls (pausable timer /
+   medical timeout, warning→point→game penalties, retire, changeover cue),
+   optional per-point shot logging, result + share.
+6. ◐ Apple Watch — SwiftUI scoring on a FULL config-driven engine (all deuce
+   modes, tiebreak serve rotation, super-TB, mini-set) + WCSession snapshot sync
+   + standalone persistence + HealthKit workout + WidgetKit complication.
+7. ◐ Wear OS — full Kotlin port + Data Layer snapshot sync + standalone
+   persistence + Health Connect + launch Tile. Both watches pass the shared
+   golden-vector fixture (enforced parity).
+8. ◐ Events — Americano, Mexicano, Team & Mixed Americano and King of the Court,
+   all runnable end-to-end (pool → score → advance → live leaderboard) with
+   resume. Round-robin/knockout pairings exist in `@padel/formats`.
+9. ◐ Sharing + Wrapped — Skia share card (real data + rating delta + claim QR)
+   that actually renders/saves/shares; animated multi-scene Wrapped with a
+   holographic Skia finale; the claim-your-profile deep-link loop (/m, /claim).
 10. ◐ Monetisation — RevenueCat paywall (annual £9.99 / monthly £1.99).
-11. ☐ Polish — deeper a11y, notifications, empty states.
+11. ◐ Cross-cutting — full stats surface, notifications, high-contrast on-court
+    mode, offline-first sync (dirty tracking + push/pull LWW) with Apple/Google/
+    email auth, real Drizzle migrations, EN/ES + FR/IT/PT/SV/NL locales.
 12. ☐ Launch — ASO assets, store listings, seed 3–5 clubs.
 
-Legend: ✅ done & verified here · ◐ source complete, verified off-environment
-(EAS/Xcode/Gradle) · ☐ pending.
+Legend: ✅ done & verified here · ◐ source complete to full spec, verified
+off-environment (EAS/Xcode/Gradle) · ☐ pending.
 
 ## Milestone benchmarks
 - Kill the app mid-match 100× with zero state loss (structurally guaranteed by
