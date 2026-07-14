@@ -34,6 +34,10 @@ export function playerStats(records: readonly MatchRecord[], playerId: string): 
   let wins = 0;
   let gamesWon = 0;
   let gamesLost = 0;
+  let setsWon = 0;
+  let setsLost = 0;
+  let ptsWon = 0;
+  let ptsTotal = 0;
   let svcWon = 0;
   let svcPlayed = 0;
   let decWon = 0;
@@ -43,11 +47,20 @@ export function playerStats(records: readonly MatchRecord[], playerId: string): 
 
   for (const r of matches) {
     const side = sideOf(r, playerId)!;
+    const other = side === 0 ? 1 : 0;
     const won = r.winner === side;
     if (won) wins += 1;
     outcomes.push(won ? 'W' : 'L');
     gamesWon += r.gamesWon[side];
-    gamesLost += r.gamesWon[side === 0 ? 1 : 0];
+    gamesLost += r.gamesWon[other];
+    if (r.setsWon) {
+      setsWon += r.setsWon[side];
+      setsLost += r.setsWon[other];
+    }
+    if (r.pointsWon) {
+      ptsWon += r.pointsWon[side];
+      ptsTotal += r.pointsWon[0] + r.pointsWon[1];
+    }
     if (r.serviceWon?.[playerId]) {
       svcWon += r.serviceWon[playerId]![0];
       svcPlayed += r.serviceWon[playerId]![1];
@@ -91,6 +104,10 @@ export function playerStats(records: readonly MatchRecord[], playerId: string): 
     gamesWon,
     gamesLost,
     gameWinRate: rate(gamesWon, gamesWon + gamesLost),
+    setsWon,
+    setsLost,
+    setWinRate: rate(setsWon, setsWon + setsLost),
+    pointsWinRate: ptsTotal > 0 ? rate(ptsWon, ptsTotal) : null,
     serviceHoldRate: svcPlayed > 0 ? rate(svcWon, svcPlayed) : null,
     deciderWinRate: decPlayed > 0 ? rate(decWon, decPlayed) : null,
     comebacks,

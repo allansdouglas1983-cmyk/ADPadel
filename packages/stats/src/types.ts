@@ -9,6 +9,7 @@ export interface MatchRecord {
   readonly teamB: readonly string[];
   readonly winner: 0 | 1;
   readonly gamesWon: readonly [number, number];
+  readonly setsWon?: readonly [number, number];
   readonly pointsWon?: readonly [number, number];
   /** Service points won/played by each player, if per-point logging was on. */
   readonly serviceWon?: Readonly<Record<string, [won: number, played: number]>>;
@@ -31,6 +32,11 @@ export interface PlayerStats {
   readonly gamesWon: number;
   readonly gamesLost: number;
   readonly gameWinRate: number;
+  readonly setsWon: number;
+  readonly setsLost: number;
+  readonly setWinRate: number;
+  /** Share of total points won across matches that logged points (else null). */
+  readonly pointsWinRate: number | null;
   readonly serviceHoldRate: number | null;
   readonly deciderWinRate: number | null;
   readonly comebacks: number;
