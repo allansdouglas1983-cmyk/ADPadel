@@ -12,9 +12,10 @@ export const spacing = {
 
 /** Corner radii (px). */
 export const radii = {
-  control: 8,
-  card: 12,
-  sheet: 20,
+  control: 10,
+  card: 16,
+  cardLg: 24,
+  sheet: 28,
   pill: 999,
 } as const;
 
@@ -25,13 +26,17 @@ export const elevation = {
   elev3: { shadowOpacity: 0.22, shadowRadius: 20, elevation: 6 },
 } as const;
 
-/** Motion durations (ms) and easing curves. */
+/** Motion durations (ms), easing curves, and Reanimated spring presets. */
 export const motion = {
   durationFast: 120,
   durationBase: 200,
   durationSlow: 320,
   easingStandard: [0.2, 0, 0, 1] as const, // cubic-bezier
   easingEmphasised: [0.3, 0, 0, 1] as const,
+  /** Reanimated `withSpring` configs. */
+  springGentle: { damping: 18, stiffness: 180, mass: 1 } as const,
+  springBouncy: { damping: 12, stiffness: 200, mass: 0.9 } as const,
+  springStiff: { damping: 26, stiffness: 320, mass: 1 } as const,
 } as const;
 
 export type Spacing = typeof spacing;
