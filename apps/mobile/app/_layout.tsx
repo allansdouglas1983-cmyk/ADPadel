@@ -20,8 +20,10 @@ function RootLayout() {
           <Stack.Screen name="(tabs)" />
           <Stack.Screen name="match/[id]" options={{ presentation: 'fullScreenModal' }} />
           <Stack.Screen name="event/[id]" options={{ presentation: 'fullScreenModal' }} />
+          <Stack.Screen name="king/[id]" options={{ presentation: 'fullScreenModal' }} />
           <Stack.Screen name="setup" options={{ presentation: 'modal' }} />
           <Stack.Screen name="event/setup" options={{ presentation: 'modal' }} />
+          <Stack.Screen name="king/setup" options={{ presentation: 'modal' }} />
           <Stack.Screen name="paywall" options={{ presentation: 'modal' }} />
         </Stack>
       </ThemeProvider>

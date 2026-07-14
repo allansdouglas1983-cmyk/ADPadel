@@ -49,7 +49,11 @@ export function findResumableEvent(): { id: string; session: EventSession } | nu
     .select({ id: sessions.id, live: sessions.liveStateJson })
     .from(sessions)
     .where(
-      and(eq(sessions.status, 'live'), eq(sessions.deleted, false), inArray(sessions.type, ['americano', 'mexicano'])),
+      and(
+        eq(sessions.status, 'live'),
+        eq(sessions.deleted, false),
+        inArray(sessions.type, ['americano', 'mexicano', 'teamAmericano', 'mixedAmericano']),
+      ),
     )
     .get();
   return row?.live ? { id: row.id, session: JSON.parse(row.live) as EventSession } : null;

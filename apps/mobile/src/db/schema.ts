@@ -62,7 +62,7 @@ export const ruleSets = sqliteTable('rule_sets', {
 export const sessions = sqliteTable('sessions', {
   id: text('id').primaryKey(),
   type: text('type', {
-    enum: ['match', 'americano', 'mexicano', 'roundrobin', 'tournament'],
+    enum: ['match', 'americano', 'mexicano', 'teamAmericano', 'mixedAmericano', 'king', 'roundrobin', 'tournament'],
   }).notNull(),
   sportKey: text('sport_key').notNull().default('padel'),
   ruleSetId: text('rule_set_id'),

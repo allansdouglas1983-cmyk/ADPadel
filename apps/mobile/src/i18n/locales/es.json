@@ -10,6 +10,9 @@
     "newMatch": "Nuevo partido",
     "americano": "Americano",
     "mexicano": "Mexicano",
+    "teamAmericano": "Americano por parejas",
+    "mixedAmericano": "Americano mixto",
+    "kingOfCourt": "Rey de la pista",
     "tournament": "Torneo",
     "resumeMatch": "Reanudar partido"
   },

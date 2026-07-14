@@ -3,10 +3,12 @@ import { router } from 'expo-router';
 import { deserialize } from '@padel/shared';
 import { findResumableMatch, loadMatchConfig } from '@/db/matchRepo';
 import { findResumableEvent } from '@/db/eventRepo';
+import { findResumableKing } from '@/db/kingRepo';
 import { useMatchStore } from '@/store/matchStore';
 import { useEventStore } from '@/features/events/eventStore';
+import { useKingStore } from '@/features/king/kingStore';
 
-type Resumable = { kind: 'match' | 'event'; label: string; resume: () => void };
+type Resumable = { kind: 'match' | 'event' | 'king'; label: string; resume: () => void };
 
 /**
  * Surfaces any in-progress match or event so the Play tab can offer "Resume".
@@ -17,6 +19,7 @@ export function useResumable(): Resumable | null {
   const [resumable, setResumable] = useState<Resumable | null>(null);
   const resumeMatch = useMatchStore((s) => s.resume);
   const resumeEvent = useEventStore((s) => s.resume);
+  const resumeKing = useKingStore((s) => s.resume);
 
   const build = useCallback((): Resumable | null => {
     const match = findResumableMatch();
@@ -45,8 +48,19 @@ export function useResumable(): Resumable | null {
         },
       };
     }
+    const king = findResumableKing();
+    if (king) {
+      return {
+        kind: 'king',
+        label: 'Resume King of the Court',
+        resume: () => {
+          resumeKing(king.id, king.state);
+          router.push(`/king/${king.id}`);
+        },
+      };
+    }
     return null;
-  }, [resumeMatch, resumeEvent]);
+  }, [resumeMatch, resumeEvent, resumeKing]);
 
   useEffect(() => {
     setResumable(build());

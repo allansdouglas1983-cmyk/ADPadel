@@ -45,6 +45,9 @@ export default function PlayScreen() {
         <Action label={t('play.newMatch')} primary onPress={() => router.push('/setup')} />
         <Action label={t('play.americano')} onPress={() => router.push('/event/setup?format=americano')} />
         <Action label={t('play.mexicano')} onPress={() => router.push('/event/setup?format=mexicano')} />
+        <Action label={t('play.teamAmericano')} onPress={() => router.push('/event/setup?format=teamAmericano')} />
+        <Action label={t('play.mixedAmericano')} onPress={() => router.push('/event/setup?format=mixedAmericano')} />
+        <Action label={t('play.kingOfCourt')} onPress={() => router.push('/king/setup')} />
       </View>
     </View>
   );

@@ -10,6 +10,9 @@
     "newMatch": "New match",
     "americano": "Americano",
     "mexicano": "Mexicano",
+    "teamAmericano": "Team Americano",
+    "mixedAmericano": "Mixed Americano",
+    "kingOfCourt": "King of the Court",
     "tournament": "Tournament",
     "resumeMatch": "Resume match"
   },
