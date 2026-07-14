@@ -1,22 +1,33 @@
 import { router } from 'expo-router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import type { DeuceMode, RuleSetConfig } from '@padel/scoring-engine';
 import { padelPresets } from '@padel/scoring-engine';
 import { fontSize, radii, spacing } from '@padel/design-tokens';
 import { useTheme } from '@/theme/ThemeProvider';
 import { useMatchStore } from '@/store/matchStore';
-import { createMatch, genId } from '@/db/createMatch';
+import { createMatch } from '@/db/createMatch';
+import { createGuestPlayer } from '@/db/playerRepo';
 
-/** Choose the rule config and start a match. Defaults to the recreational
- * golden-point / super-tiebreak preset — one tap to Start. */
+/**
+ * Choose the rule config, name the players and start a match. Defaults to the
+ * recreational golden-point / super-tiebreak preset — one tap to Start.
+ *
+ * The engine's doubles serve rotation expects players interleaved [A1,B1,A2,B2]
+ * (slotSide [0,1,0,1]); we build that array here and store the teams to match,
+ * so finalization derives the sides consistently.
+ */
 export default function SetupScreen() {
   const { t } = useTranslation();
   const theme = useTheme();
   const start = useMatchStore((s) => s.start);
   const [deuce, setDeuce] = useState<DeuceMode>('golden');
   const [format, setFormat] = useState<'doubles' | 'singles'>('doubles');
+  const [teamA, setTeamA] = useState(['You', 'Partner']);
+  const [teamB, setTeamB] = useState(['Opponent 1', 'Opponent 2']);
+
+  const perSide = format === 'singles' ? 1 : 2;
 
   const configFor = (): RuleSetConfig => {
     if (format === 'singles') return padelPresets.padelSinglesGolden;
@@ -27,17 +38,26 @@ export default function SetupScreen() {
 
   const onStart = () => {
     const cfg = configFor();
-    const players =
-      format === 'singles' ? [genId('p'), genId('p')] : [genId('p'), genId('p'), genId('p'), genId('p')];
-    const half = players.length / 2;
+    const aNames = teamA.slice(0, perSide);
+    const bNames = teamB.slice(0, perSide);
+    const aIds = aNames.map((n, i) => createGuestPlayer(n.trim() || `Team A ${i + 1}`));
+    const bIds = bNames.map((n, i) => createGuestPlayer(n.trim() || `Team B ${i + 1}`));
+
+    // Interleave into the engine's expected slot order [A1,B1,A2,B2] / [A1,B1].
+    const enginePlayers: string[] = [];
+    for (let i = 0; i < perSide; i++) {
+      enginePlayers.push(aIds[i]!);
+      enginePlayers.push(bIds[i]!);
+    }
+
     const { matchId } = createMatch({
       cfg,
       ruleSetName: cfg.id,
       format,
-      teamAPlayerIds: players.slice(0, half),
-      teamBPlayerIds: players.slice(half),
+      teamAPlayerIds: aIds,
+      teamBPlayerIds: bIds,
     });
-    start(matchId, cfg, players, new Date().toISOString());
+    start(matchId, cfg, enginePlayers, new Date().toISOString());
     router.replace(`/match/${matchId}`);
   };
 
@@ -52,8 +72,17 @@ export default function SetupScreen() {
     </Pressable>
   );
 
+  const NameInput = ({ value, onChange }: { value: string; onChange: (v: string) => void }) => (
+    <TextInput
+      value={value}
+      onChangeText={onChange}
+      placeholderTextColor={theme.textLo}
+      style={[styles.input, { color: theme.textHi, borderColor: theme.border, backgroundColor: theme.surface }]}
+    />
+  );
+
   return (
-    <View style={[styles.container, { backgroundColor: theme.bg }]}>
+    <ScrollView style={{ backgroundColor: theme.bg }} contentContainerStyle={styles.container}>
       <Text style={[styles.label, { color: theme.textMid }]}>{t('setup.format')}</Text>
       <View style={styles.row}>
         <Choice value="doubles" current={format} set={setFormat} label={t('setup.doubles')} />
@@ -67,6 +96,15 @@ export default function SetupScreen() {
         <Choice value="star" current={deuce} set={setDeuce} label={t('setup.star')} />
       </View>
 
+      <Text style={[styles.label, { color: theme.textMid }]}>{t('score.you')}</Text>
+      {teamA.slice(0, perSide).map((n, i) => (
+        <NameInput key={`a${i}`} value={n} onChange={(v) => setTeamA((p) => p.map((x, idx) => (idx === i ? v : x)))} />
+      ))}
+      <Text style={[styles.label, { color: theme.textMid }]}>{t('score.opponents')}</Text>
+      {teamB.slice(0, perSide).map((n, i) => (
+        <NameInput key={`b${i}`} value={n} onChange={(v) => setTeamB((p) => p.map((x, idx) => (idx === i ? v : x)))} />
+      ))}
+
       <Pressable
         accessibilityRole="button"
         accessibilityLabel={t('setup.start')}
@@ -75,15 +113,16 @@ export default function SetupScreen() {
       >
         <Text style={styles.startText}>{t('setup.start')}</Text>
       </Pressable>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: spacing.xl, gap: spacing.md },
+  container: { padding: spacing.xl, gap: spacing.md },
   label: { fontSize: fontSize.sm, textTransform: 'uppercase', marginTop: spacing.lg },
   row: { flexDirection: 'row', gap: spacing.sm, flexWrap: 'wrap' },
   choice: { paddingVertical: spacing.md, paddingHorizontal: spacing.lg, borderRadius: radii.pill, borderWidth: 1.5 },
-  start: { marginTop: 'auto', paddingVertical: spacing.xl, borderRadius: radii.card, alignItems: 'center' },
+  input: { borderWidth: 1, borderRadius: radii.control, paddingVertical: spacing.md, paddingHorizontal: spacing.lg, fontSize: fontSize.base },
+  start: { marginTop: spacing.xl, paddingVertical: spacing.xl, borderRadius: radii.card, alignItems: 'center' },
   startText: { color: '#04150E', fontSize: fontSize.lg, fontWeight: '700' },
 });

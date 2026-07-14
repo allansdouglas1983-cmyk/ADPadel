@@ -35,5 +35,7 @@ export {
 export { resolveGamePoint, deciderThreshold } from './rules/points.js';
 export { tiebreakWinner, tiebreakServeCursor } from './rules/tiebreak.js';
 export { currentPointLabels, setScorelines } from './display.js';
+export type { MatchSummary, SetSummary } from './summary.js';
+export { summarizeMatch } from './summary.js';
 
 export { padelPresets } from './presets/padel.js';

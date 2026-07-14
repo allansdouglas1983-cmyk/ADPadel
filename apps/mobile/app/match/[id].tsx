@@ -7,6 +7,7 @@ import { currentPointLabels, setScorelines } from '@padel/scoring-engine';
 import { fontSize, radii, spacing } from '@padel/design-tokens';
 import { useTheme } from '@/theme/ThemeProvider';
 import { useMatchStore } from '@/store/matchStore';
+import { finalizeMatch } from '@/features/scoring/finalizeMatch';
 
 /**
  * The live scoreboard — the most-used screen. Giant left/right tap zones award
@@ -18,16 +19,18 @@ export default function ScoreboardScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const { t } = useTranslation();
   const theme = useTheme();
-  const { state, cfg, dispatch } = useMatchStore();
+  const { state, cfg, snapshot, matchId, createdAtIso, dispatch } = useMatchStore();
   const lastComplete = useRef(false);
 
   useEffect(() => {
-    if (state?.complete && !lastComplete.current) {
+    if (state?.complete && cfg && snapshot && matchId && createdAtIso && !lastComplete.current) {
       lastComplete.current = true;
+      // Record sets, update ratings + history, and mark the match complete — once.
+      finalizeMatch(matchId, state, cfg, snapshot.players, createdAtIso);
       void Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
       router.replace(`/result/${id}`);
     }
-  }, [state?.complete, id]);
+  }, [state?.complete, cfg, snapshot, matchId, createdAtIso, id]);
 
   if (!state || !cfg) return <View style={[styles.container, { backgroundColor: theme.bg }]} />;
 
