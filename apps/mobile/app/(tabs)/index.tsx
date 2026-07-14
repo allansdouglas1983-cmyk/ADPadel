@@ -4,11 +4,13 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { spacing, radii, fontSize } from '@padel/design-tokens';
 import { BRAND } from '@padel/shared';
 import { useTheme } from '@/theme/ThemeProvider';
+import { useResumable } from '@/hooks/useResumable';
 
 /** The Play tab — the app's home. Start a match or an event in one tap. */
 export default function PlayScreen() {
   const { t } = useTranslation();
   const theme = useTheme();
+  const resumable = useResumable();
 
   const Action = ({ label, onPress, primary }: { label: string; onPress: () => void; primary?: boolean }) => (
     <Pressable
@@ -30,6 +32,16 @@ export default function PlayScreen() {
       <Text style={[styles.tagline, { color: theme.textMid }]}>{BRAND.tagline}</Text>
 
       <View style={styles.actions}>
+        {resumable && (
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel={resumable.label}
+            onPress={resumable.resume}
+            style={[styles.action, styles.resume, { backgroundColor: theme.surfaceRaised, borderColor: theme.gold }]}
+          >
+            <Text style={[styles.actionText, { color: theme.gold }]}>{resumable.label} ▸</Text>
+          </Pressable>
+        )}
         <Action label={t('play.newMatch')} primary onPress={() => router.push('/setup')} />
         <Action label={t('play.americano')} onPress={() => router.push('/event/setup?format=americano')} />
         <Action label={t('play.mexicano')} onPress={() => router.push('/event/setup?format=mexicano')} />
@@ -50,4 +62,5 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   actionText: { fontSize: fontSize.lg, fontWeight: '600' },
+  resume: { borderWidth: 1.5 },
 });

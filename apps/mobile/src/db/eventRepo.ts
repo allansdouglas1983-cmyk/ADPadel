@@ -1,4 +1,4 @@
-import { and, eq } from 'drizzle-orm';
+import { and, eq, inArray } from 'drizzle-orm';
 import type { EventSession } from '@padel/formats';
 import { db } from './client';
 import { sessions } from './schema';
@@ -42,12 +42,15 @@ export function loadEvent(sessionId: string): EventSession | null {
   return row?.live ? (JSON.parse(row.live) as EventSession) : null;
 }
 
-/** Any live event — offered as "resume" on the Play tab. */
+/** Any live event — offered as "resume" on the Play tab. Filtered to event
+ * session types so a live *match* session is never mistaken for an event. */
 export function findResumableEvent(): { id: string; session: EventSession } | null {
   const row = db
     .select({ id: sessions.id, live: sessions.liveStateJson })
     .from(sessions)
-    .where(and(eq(sessions.status, 'live'), eq(sessions.deleted, false)))
+    .where(
+      and(eq(sessions.status, 'live'), eq(sessions.deleted, false), inArray(sessions.type, ['americano', 'mexicano'])),
+    )
     .get();
   return row?.live ? { id: row.id, session: JSON.parse(row.live) as EventSession } : null;
 }

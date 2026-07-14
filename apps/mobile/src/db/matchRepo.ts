@@ -2,7 +2,7 @@ import { and, eq } from 'drizzle-orm';
 import type { EngineSnapshot, RuleSetConfig } from '@padel/scoring-engine';
 import { serialize, type PersistedMatch } from '@padel/shared';
 import { db } from './client';
-import { matches } from './schema';
+import { matches, ruleSets } from './schema';
 
 /**
  * Persist the live engine snapshot to SQLite SYNCHRONOUSLY. Called after every
@@ -38,6 +38,17 @@ export function findResumableMatch(): { id: string; envelope: PersistedMatch } |
     .get();
   if (!row?.live) return null;
   return { id: row.id, envelope: JSON.parse(row.live) as PersistedMatch };
+}
+
+/** Load the RuleSetConfig a match was played under (needed to fold its log). */
+export function loadMatchConfig(matchId: string): RuleSetConfig | null {
+  const row = db
+    .select({ config: ruleSets.configJson })
+    .from(matches)
+    .innerJoin(ruleSets, eq(matches.ruleSetId, ruleSets.id))
+    .where(eq(matches.id, matchId))
+    .get();
+  return row?.config ? (JSON.parse(row.config) as RuleSetConfig) : null;
 }
 
 export function markMatchComplete(matchId: string, winnerTeamId: string | null, durationSec: number): void {
