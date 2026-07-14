@@ -38,4 +38,4 @@ export { currentPointLabels, setScorelines } from './display.js';
 export type { MatchSummary, SetSummary } from './summary.js';
 export { summarizeMatch } from './summary.js';
 
-export { padelPresets } from './presets/padel.js';
+export { padelPresets, padelPresetCatalog } from './presets/padel.js';
