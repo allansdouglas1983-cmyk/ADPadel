@@ -3,6 +3,25 @@ export type Side = 0 | 1;
 
 export type Discipline = 'singles' | 'doubles';
 
+/**
+ * Tunable rating parameters. Every constant is configurable so a deployment can
+ * trade recency-sensitivity against stability without touching the algorithm.
+ */
+export interface RatingParams {
+  /** Starting Elo for a new player. */
+  readonly baseElo: number;
+  /** Provisional K at 0 matches. */
+  readonly kInitial: number;
+  /** Stable K once settled. */
+  readonly kFloor: number;
+  /** Matches over which K decays from initial to floor. */
+  readonly kDecayMatches: number;
+  /** Logistic spread (classic Elo = 400). */
+  readonly dParameter: number;
+  /** Half-life, in matches, for the recency-weighted form rating. */
+  readonly formHalfLifeMatches: number;
+}
+
 export interface PlayerRating {
   readonly playerId: string;
   readonly discipline: Discipline;

@@ -1,9 +1,20 @@
-import type { Discipline, MatchResultInput, PlayerRating, RatingHistoryEntry, RatingUpdate } from './types.js';
-import { BASE_ELO, expectedScore, kFactor, marginMultiplier, teamElo } from './elo.js';
+import type {
+  Discipline,
+  MatchResultInput,
+  PlayerRating,
+  RatingHistoryEntry,
+  RatingParams,
+  RatingUpdate,
+} from './types.js';
+import { DEFAULT_RATING_PARAMS, expectedScore, kFactor, marginMultiplier, teamElo } from './elo.js';
 
 /** A fresh, provisional rating for a player in a discipline. */
-export function initialRating(playerId: string, discipline: Discipline): PlayerRating {
-  return { playerId, discipline, elo: BASE_ELO, matchesPlayed: 0, lastMatchId: null };
+export function initialRating(
+  playerId: string,
+  discipline: Discipline,
+  params: RatingParams = DEFAULT_RATING_PARAMS,
+): PlayerRating {
+  return { playerId, discipline, elo: params.baseElo, matchesPlayed: 0, lastMatchId: null };
 }
 
 /**
@@ -14,10 +25,13 @@ export function initialRating(playerId: string, discipline: Discipline): PlayerR
  * player whose `lastMatchId` already equals this match is left untouched, so
  * replaying the same completed match never double-counts.
  */
-export function updateRatings(input: MatchResultInput): RatingUpdate {
+export function updateRatings(
+  input: MatchResultInput,
+  params: RatingParams = DEFAULT_RATING_PARAMS,
+): RatingUpdate {
   const rA = teamElo(input.sideA);
   const rB = teamElo(input.sideB);
-  const expectedA = expectedScore(rA, rB);
+  const expectedA = expectedScore(rA, rB, params);
   const actualA = input.winner === 0 ? 1 : 0;
   const mult = marginMultiplier(input.gamesWon, input.pointsWon);
 
@@ -30,7 +44,7 @@ export function updateRatings(input: MatchResultInput): RatingUpdate {
         updated.push(p); // already applied — idempotent no-op
         continue;
       }
-      const k = kFactor(p.matchesPlayed);
+      const k = kFactor(p.matchesPlayed, params);
       const delta = k * mult * (actualForSide - expectedForSide);
       const after = p.elo + delta;
       updated.push({

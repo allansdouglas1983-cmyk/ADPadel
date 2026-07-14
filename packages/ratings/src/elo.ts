@@ -1,7 +1,17 @@
-import type { PlayerRating } from './types.js';
+import type { PlayerRating, RatingParams } from './types.js';
 
 /** Base rating for a brand-new player (~3.5 on the 1–7 display scale). */
 export const BASE_ELO = 1200;
+
+/** Default, well-tuned parameters. Every value is overridable per deployment. */
+export const DEFAULT_RATING_PARAMS: RatingParams = {
+  baseElo: BASE_ELO,
+  kInitial: 64,
+  kFloor: 16,
+  kDecayMatches: 20,
+  dParameter: 400,
+  formHalfLifeMatches: 5,
+};
 
 /** Team rating = mean of the pair's Elo. */
 export function teamElo(players: readonly PlayerRating[]): number {
@@ -10,20 +20,46 @@ export function teamElo(players: readonly PlayerRating[]): number {
 }
 
 /** Logistic expected score (0..1) for `ratingFor` against `ratingAgainst`. */
-export function expectedScore(ratingFor: number, ratingAgainst: number): number {
-  return 1 / (1 + Math.pow(10, (ratingAgainst - ratingFor) / 400));
+export function expectedScore(
+  ratingFor: number,
+  ratingAgainst: number,
+  params: RatingParams = DEFAULT_RATING_PARAMS,
+): number {
+  return 1 / (1 + Math.pow(10, (ratingAgainst - ratingFor) / params.dParameter));
 }
 
 /**
- * Provisional K-factor: high while a rating is new, decaying to a stable floor.
- * 64 → 16 across the first 20 matches, then constant.
+ * Provisional K-factor: high while a rating is new, decaying linearly to a
+ * stable floor over `kDecayMatches`, then constant. This damps early volatility.
  */
-export function kFactor(matchesPlayed: number): number {
-  const K0 = 64;
-  const KMIN = 16;
-  const N = 20;
-  const clamped = Math.min(Math.max(matchesPlayed, 0), N);
-  return K0 - (K0 - KMIN) * (clamped / N);
+export function kFactor(matchesPlayed: number, params: RatingParams = DEFAULT_RATING_PARAMS): number {
+  const clamped = Math.min(Math.max(matchesPlayed, 0), params.kDecayMatches);
+  return params.kInitial - (params.kInitial - params.kFloor) * (clamped / params.kDecayMatches);
+}
+
+/**
+ * Recency-weighted "form" rating: a weighted average of the player's post-match
+ * rating values that weights recent matches more (exponential decay by a
+ * half-life in matches). `values` are chronological (oldest → newest). This is
+ * the explicit "weight recent matches more" signal used for the Wrapped rating
+ * journey and a current-form indicator, distinct from the canonical Elo.
+ */
+export function formRating(
+  values: readonly number[],
+  params: RatingParams = DEFAULT_RATING_PARAMS,
+): number {
+  if (values.length === 0) return params.baseElo;
+  const decay = Math.pow(0.5, 1 / Math.max(1, params.formHalfLifeMatches));
+  let weightedSum = 0;
+  let weightTotal = 0;
+  const n = values.length;
+  for (let i = 0; i < n; i++) {
+    // Newest (i = n-1) gets weight 1; older values decay.
+    const weight = Math.pow(decay, n - 1 - i);
+    weightedSum += weight * values[i]!;
+    weightTotal += weight;
+  }
+  return weightedSum / weightTotal;
 }
 
 /**
