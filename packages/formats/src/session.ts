@@ -2,6 +2,7 @@ import type { PlayedCourt } from './standings.js';
 import type { Side, Standing } from './types.js';
 import { americanoRound } from './americano.js';
 import { mexicanoRound } from './mexicano.js';
+import { mixedAmericanoRound, teamAmericanoRound } from './teamFormats.js';
 import { rankStandings, tallyStandings } from './standings.js';
 
 /**
@@ -15,7 +16,7 @@ import { rankStandings, tallyStandings } from './standings.js';
  * and the court is done when the two teams' points sum to the target.
  */
 
-export type EventFormat = 'americano' | 'mexicano';
+export type EventFormat = 'americano' | 'mexicano' | 'teamAmericano' | 'mixedAmericano';
 
 export interface EventSessionConfig {
   readonly format: EventFormat;
@@ -24,6 +25,11 @@ export interface EventSessionConfig {
   /** Points contested per court match (sum of both teams). */
   readonly pointsPerMatch: number;
   readonly totalRounds: number;
+  /** Fixed partnerships for `teamAmericano` (each an [a, b] pair). */
+  readonly pairs?: readonly (readonly [string, string])[];
+  /** Player pools for `mixedAmericano` (every team is one of each). */
+  readonly men?: readonly string[];
+  readonly women?: readonly string[];
 }
 
 /** A court within a round, with its live/accumulated score. */
@@ -79,15 +85,34 @@ function toProgress(
   return courts.map((c) => ({ court: c.court, teamA: c.teamA, teamB: c.teamB, pointsA: 0, pointsB: 0 }));
 }
 
-/** Round 0 is always a plain Americano draw (Mexicano only diverges from R1). */
+/** Generate a round for the configured format. Mexicano only diverges from R1. */
 function generateRound(session: EventSession, index: number): EventRound {
-  if (session.config.format === 'mexicano' && index > 0) {
-    const { standings, headToHead } = standingsOf(session);
-    const r = mexicanoRound(session.config.players, index, session.config.courts, standings, headToHead);
-    return { index, courts: toProgress(r.courts), sittingOut: r.sittingOut };
+  const { config } = session;
+  const { courts } = config;
+
+  switch (config.format) {
+    case 'teamAmericano': {
+      const r = teamAmericanoRound(config.pairs ?? [], index, courts);
+      return { index, courts: toProgress(r.courts), sittingOut: r.sittingOut };
+    }
+    case 'mixedAmericano': {
+      const r = mixedAmericanoRound(config.men ?? [], config.women ?? [], index, courts);
+      return { index, courts: toProgress(r.courts), sittingOut: r.sittingOut };
+    }
+    case 'mexicano': {
+      if (index > 0) {
+        const { standings, headToHead } = standingsOf(session);
+        const r = mexicanoRound(config.players, index, courts, standings, headToHead);
+        return { index, courts: toProgress(r.courts), sittingOut: r.sittingOut };
+      }
+      const r = americanoRound(config.players, index, courts);
+      return { index, courts: toProgress(r.courts), sittingOut: r.sittingOut };
+    }
+    default: {
+      const r = americanoRound(config.players, index, courts);
+      return { index, courts: toProgress(r.courts), sittingOut: r.sittingOut };
+    }
   }
-  const r = americanoRound(session.config.players, index, session.config.courts);
-  return { index, courts: toProgress(r.courts), sittingOut: r.sittingOut };
 }
 
 export function createEventSession(config: EventSessionConfig): EventSession {
