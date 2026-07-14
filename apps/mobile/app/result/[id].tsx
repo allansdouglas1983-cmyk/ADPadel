@@ -1,11 +1,13 @@
 import { router, useLocalSearchParams } from 'expo-router';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { View } from 'react-native';
+import Animated, { FadeInDown, ZoomIn } from 'react-native-reanimated';
 import { useCanvasRef } from '@shopify/react-native-skia';
 import { summarizeMatch } from '@padel/scoring-engine';
 import { BRAND } from '@padel/shared';
-import { fontSize, radii, spacing } from '@padel/design-tokens';
+import { spacing } from '@padel/design-tokens';
+import { Button, Screen, Share2, Text, Trophy } from '@/ui';
 import { MatchCard, type MatchCardData } from '@/features/card/MatchCard';
 import { shareCanvas } from '@/features/card/shareCard';
 import { getPlayerNames } from '@/db/playerRepo';
@@ -30,7 +32,6 @@ export default function ResultScreen() {
     const sideB = players.filter((_, i) => cfg.serve.slotSide[i] === 1);
     const names = getPlayerNames(players);
     const nameOf = (arr: string[]) => arr.map((pid) => names.get(pid) ?? pid).join(' & ');
-
     const scoreline = summary.sets.map((s) => `${s.games[0]}–${s.games[1]}`).join('  ');
     const deltaElo = getMatchRatingDelta(id!, sideA[0] ?? '') ?? 0;
     const deltaDisplay = deltaElo / 100;
@@ -39,7 +40,6 @@ export default function ResultScreen() {
       : summary.setsWon[0] === 2 || summary.setsWon[1] === 2
         ? 'Straight-sets win'
         : 'Match complete';
-
     return {
       teamAName: nameOf(sideA),
       teamBName: nameOf(sideB),
@@ -64,41 +64,44 @@ export default function ResultScreen() {
   };
 
   return (
-    <View style={[styles.container, { backgroundColor: theme.bg }]}>
-      <Text style={[styles.headline, { color: won ? theme.win : theme.textHi }]}>
-        {won ? t('result.youWon') : t('result.youLost')}
-      </Text>
-      <Text style={[styles.score, { color: theme.textHi }]}>{cardData?.scoreline ?? ''}</Text>
+    <Screen>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', gap: spacing.lg }}>
+        <Animated.View entering={ZoomIn.springify().damping(12)}>
+          <Trophy size={72} color={won ? theme.gold : theme.textLo} />
+        </Animated.View>
+        <Animated.View entering={FadeInDown.delay(120)} style={{ alignItems: 'center', gap: spacing.sm }}>
+          <Text variant="display" tone={won ? 'gold' : 'hi'}>
+            {won ? t('result.youWon') : t('result.youLost')}
+          </Text>
+          <Text variant="score" tone="hi" style={{ fontSize: 40 }}>
+            {cardData?.scoreline ?? ''}
+          </Text>
+          {cardData && (
+            <Text variant="body" tone="mid">
+              {cardData.signatureStat} · rating {cardData.ratingDelta}
+            </Text>
+          )}
+        </Animated.View>
+      </View>
 
-      <Pressable
-        accessibilityRole="button"
-        accessibilityLabel={t('result.shareCard')}
-        disabled={sharing || !cardData}
+      <Button
+        label={t('result.shareCard')}
+        size="lg"
+        full
+        variant="gold"
+        loading={sharing}
+        icon={<Share2 size={20} color="#04150E" />}
         onPress={onShare}
-        style={[styles.share, { backgroundColor: theme.brand, opacity: sharing ? 0.6 : 1 }]}
-      >
-        <Text style={styles.shareText}>{t('result.shareCard')}</Text>
-      </Pressable>
-      <Pressable onPress={() => router.replace('/(tabs)')}>
-        <Text style={[styles.done, { color: theme.textMid }]}>Done</Text>
-      </Pressable>
+      />
+      <Text variant="label" tone="lo" onPress={() => router.replace('/(tabs)')} style={{ textAlign: 'center', marginTop: spacing.md }}>
+        Done
+      </Text>
 
-      {/* Off-screen card, mounted for snapshotting only. */}
       {cardData && (
-        <View style={styles.offscreen} pointerEvents="none">
+        <View style={{ position: 'absolute', left: -10000, top: 0, width: 1080, height: 1920 }} pointerEvents="none">
           <MatchCard data={cardData} canvasRef={canvasRef} />
         </View>
       )}
-    </View>
+    </Screen>
   );
 }
-
-const styles = StyleSheet.create({
-  container: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: spacing.lg, padding: spacing.xl },
-  headline: { fontSize: fontSize.display, fontWeight: '700' },
-  score: { fontSize: fontSize.xxl, fontVariant: ['tabular-nums'], letterSpacing: 2 },
-  share: { paddingVertical: spacing.lg, paddingHorizontal: spacing.huge, borderRadius: radii.card },
-  shareText: { color: '#04150E', fontSize: fontSize.lg, fontWeight: '700' },
-  done: { fontSize: fontSize.base, marginTop: spacing.md },
-  offscreen: { position: 'absolute', left: -10000, top: 0, width: 1080, height: 1920 },
-});

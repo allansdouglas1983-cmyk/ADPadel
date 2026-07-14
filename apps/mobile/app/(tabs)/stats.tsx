@@ -1,5 +1,7 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import { fontSize, spacing } from '@padel/design-tokens';
+import { router } from 'expo-router';
+import { View } from 'react-native';
+import { spacing } from '@padel/design-tokens';
+import { BarChart3, Card, EmptyState, Screen, StatTile, Text } from '@/ui';
 import { useTheme } from '@/theme/ThemeProvider';
 import { usePlayerStats } from '@/hooks/usePlayerStats';
 import { useEntitlements } from '@/hooks/useEntitlements';
@@ -15,106 +17,121 @@ export default function StatsScreen() {
   const { isPro } = useEntitlements();
   const s = usePlayerStats();
 
-  const Tile = ({ label, value }: { label: string; value: string }) => (
-    <View style={[styles.tile, { backgroundColor: theme.surface }]}>
-      <Text style={[styles.tileValue, { color: theme.textHi }]}>{value}</Text>
-      <Text style={[styles.tileLabel, { color: theme.textMid }]}>{label}</Text>
-    </View>
-  );
+  if (s.stats.matches === 0) {
+    return (
+      <Screen>
+        <EmptyState
+          icon={<BarChart3 size={64} color={theme.textLo} />}
+          title="Your stats live here"
+          body="Win-rate, streaks, partner chemistry, ratings and more — they build automatically as you play."
+          actionLabel="Start a match"
+          onAction={() => router.push('/setup')}
+        />
+      </Screen>
+    );
+  }
 
   const Section = ({ title, children }: { title: string; children: React.ReactNode }) => (
     <View style={{ gap: spacing.sm }}>
-      <Text style={[styles.section, { color: theme.textMid }]}>{title}</Text>
+      <Text variant="label" tone="lo">
+        {title}
+      </Text>
       {children}
     </View>
   );
 
   const Row = ({ left, right }: { left: string; right: string }) => (
-    <View style={[styles.row, { borderBottomColor: theme.border }]}>
-      <Text style={{ color: theme.textHi }} numberOfLines={1}>
+    <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingVertical: spacing.sm }}>
+      <Text variant="body" tone="hi" numberOfLines={1}>
         {left}
       </Text>
-      <Text style={{ color: theme.textMid, fontVariant: ['tabular-nums'] }}>{right}</Text>
+      <Text variant="bodyStrong" tone="mid" tabular>
+        {right}
+      </Text>
     </View>
   );
 
   return (
-    <ScrollView style={{ backgroundColor: theme.bg }} contentContainerStyle={styles.container}>
-      <View style={styles.grid}>
-        <Tile label="Win rate" value={pct(s.stats.winRate)} />
-        <Tile label="Matches" value={String(s.stats.matches)} />
-        <Tile label="Current streak" value={String(s.stats.currentStreak)} />
-        <Tile label="Rating" value={s.ratingDisplay?.toFixed(2) ?? '—'} />
-        <Tile label="Games won" value={pct(s.stats.gameWinRate)} />
-        <Tile label="Sets won" value={pctOrDash(s.stats.setsWon + s.stats.setsLost ? s.stats.setWinRate : null)} />
+    <Screen scroll>
+      <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: spacing.md }}>
+        <StatTile value={pct(s.stats.winRate)} label="Win rate" tone="brand" />
+        <StatTile value={String(s.stats.matches)} label="Matches" />
+        <StatTile value={String(s.stats.currentStreak)} label="Streak" />
+        <StatTile value={s.ratingDisplay?.toFixed(2) ?? '—'} label="Rating" tone="gold" />
+        <StatTile value={pct(s.stats.gameWinRate)} label="Games won" />
+        <StatTile value={pctOrDash(s.stats.setsWon + s.stats.setsLost ? s.stats.setWinRate : null)} label="Sets won" />
       </View>
 
       <Section title="Form">
-        <FormDots form={s.stats.form} />
+        <Card>
+          <FormDots form={s.stats.form} />
+        </Card>
       </Section>
 
       {s.ratingJourney.length >= 2 && (
         <Section title="Rating journey">
-          <Sparkline values={s.ratingJourney} />
-          <Text style={{ color: theme.textLo, fontSize: fontSize.xs }}>
-            Form {s.formDisplay?.toFixed(2) ?? '—'} · longest win streak {s.stats.longestWinStreak}
-          </Text>
+          <Card>
+            <Sparkline values={s.ratingJourney} />
+            <Text variant="caption" tone="lo" style={{ marginTop: spacing.sm }}>
+              Form {s.formDisplay?.toFixed(2) ?? '—'} · longest win streak {s.stats.longestWinStreak}
+            </Text>
+          </Card>
         </Section>
       )}
 
       <Section title="Partner chemistry">
-        <ProLock unlocked={isPro}>
-          {(isPro ? s.chemistry : s.chemistry.slice(0, 1)).map((c) => (
-            <Row key={c.partnerId} left={c.partnerId} right={`${pct(c.winRate)} · ${c.matches}`} />
-          ))}
-        </ProLock>
+        <Card>
+          <ProLock unlocked={isPro}>
+            {(isPro ? s.chemistry : s.chemistry.slice(0, 1)).map((c) => (
+              <Row key={c.partnerId} left={c.partnerId} right={`${pct(c.winRate)} · ${c.matches}`} />
+            ))}
+          </ProLock>
+        </Card>
       </Section>
 
       <Section title="Head to head">
-        <ProLock unlocked={isPro}>
-          {(isPro ? s.headToHead : s.headToHead.slice(0, 1)).map((h) => (
-            <Row key={h.opponentId} left={h.opponentId} right={`${h.wins}-${h.losses}`} />
-          ))}
-        </ProLock>
+        <Card>
+          <ProLock unlocked={isPro}>
+            {(isPro ? s.headToHead : s.headToHead.slice(0, 1)).map((h) => (
+              <Row key={h.opponentId} left={h.opponentId} right={`${h.wins}-${h.losses}`} />
+            ))}
+          </ProLock>
+        </Card>
       </Section>
 
       <Section title="Service & deciders">
-        <ProLock unlocked={isPro}>
-          <Row left="Service hold" right={pctOrDash(s.stats.serviceHoldRate)} />
-          <Row left="Golden/star points" right={pctOrDash(s.stats.deciderWinRate)} />
-          <Row left="Points won" right={pctOrDash(s.stats.pointsWinRate)} />
-          <Row left="Comebacks" right={String(s.stats.comebacks)} />
-        </ProLock>
+        <Card>
+          <ProLock unlocked={isPro}>
+            <Row left="Service hold" right={pctOrDash(s.stats.serviceHoldRate)} />
+            <Row left="Golden/star points" right={pctOrDash(s.stats.deciderWinRate)} />
+            <Row left="Points won" right={pctOrDash(s.stats.pointsWinRate)} />
+            <Row left="Comebacks" right={String(s.stats.comebacks)} />
+          </ProLock>
+        </Card>
       </Section>
 
       <Section title="When you play best">
-        <ProLock unlocked={isPro}>
-          {s.timeOfDay.map((b) => (
-            <Row key={b.key} left={b.key} right={`${pct(b.winRate)} · ${b.matches}`} />
-          ))}
-          {s.dayOfWeek.map((b) => (
-            <Row key={b.key} left={b.key} right={`${pct(b.winRate)} · ${b.matches}`} />
-          ))}
-        </ProLock>
+        <Card>
+          <ProLock unlocked={isPro}>
+            {s.timeOfDay.map((b) => (
+              <Row key={b.key} left={b.key} right={`${pct(b.winRate)} · ${b.matches}`} />
+            ))}
+            {s.dayOfWeek.map((b) => (
+              <Row key={b.key} left={b.key} right={`${pct(b.winRate)} · ${b.matches}`} />
+            ))}
+          </ProLock>
+        </Card>
       </Section>
 
-      <Section title="Venues">
-        <ProLock unlocked={isPro}>
-          {s.venues.map((v) => (
-            <Row key={v.venue} left={v.venue} right={`${pct(v.winRate)} · ${v.matches}`} />
-          ))}
-        </ProLock>
-      </Section>
-    </ScrollView>
+      {s.venues.length > 0 && (
+        <Section title="Venues">
+          <Card>
+            {s.venues.map((v) => (
+              <Row key={v.venue} left={v.venue} right={`${pct(v.winRate)} · ${v.matches}`} />
+            ))}
+          </Card>
+        </Section>
+      )}
+    </Screen>
   );
 }
-
-const styles = StyleSheet.create({
-  container: { padding: spacing.xl, gap: spacing.xl },
-  grid: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.md },
-  tile: { flexBasis: '30%', flexGrow: 1, padding: spacing.lg, borderRadius: 12 },
-  tileValue: { fontSize: fontSize.xl, fontWeight: '700', fontVariant: ['tabular-nums'] },
-  tileLabel: { fontSize: fontSize.xs },
-  section: { fontSize: fontSize.sm, textTransform: 'uppercase', marginTop: spacing.sm },
-  row: { flexDirection: 'row', justifyContent: 'space-between', paddingVertical: spacing.md, borderBottomWidth: 1 },
-});
