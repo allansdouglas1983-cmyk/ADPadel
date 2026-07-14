@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build output
+dist/
+*.tsbuildinfo
+coverage/
+
+# Expo / React Native
+apps/mobile/.expo/
+apps/mobile/android/app/build/
+apps/mobile/android/build/
+apps/mobile/android/.gradle/
+apps/mobile/ios/build/
+apps/mobile/ios/Pods/
+*.orig.*
+web-build/
+
+# Native
+*.keystore
+!debug.keystore
+*.p8
+*.p12
+*.mobileprovision
+
+# Env / secrets
+.env
+.env.*.local
+!.env.example
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.log
+
+# Test / tooling
+.vitest/

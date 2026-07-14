@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  core:
+    name: Core packages — build, test, typecheck
+    runs-on: ubuntu-latest
+    env:
+      # Fixed seed so fast-check property-test failures reproduce deterministically.
+      FASTCHECK_SEED: '424242'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Typecheck (solution build)
+        run: pnpm -r typecheck
+
+      - name: Build core packages
+        run: pnpm --filter "@padel/shared" --filter "@padel/scoring-engine" --filter "@padel/ratings" --filter "@padel/design-tokens" build
+
+      - name: Test scoring engine
+        run: pnpm --filter "@padel/scoring-engine" test
+
+      - name: Test ratings
+        run: pnpm --filter "@padel/ratings" test
+
+      - name: Test shared
+        run: pnpm --filter "@padel/shared" test
