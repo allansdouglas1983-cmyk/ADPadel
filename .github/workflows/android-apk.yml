@@ -46,6 +46,10 @@ jobs:
       EXPO_PUBLIC_SENTRY_DSN: ${{ secrets.EXPO_PUBLIC_SENTRY_DSN }}
       # Optional — enables Sentry source-map upload; the plugin skips it if unset.
       SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+      # Skip the release source-map upload task (it otherwise fails the build
+      # when no Sentry org/project/auth is configured). Runtime crash reporting
+      # still works; only symbolication upload is skipped for sideload builds.
+      SENTRY_DISABLE_AUTO_UPLOAD: 'true'
       # Each build gets a higher versionCode so it installs over the last one.
       ANDROID_VERSION_CODE: ${{ github.run_number }}
       # Mapped here so it can be checked in `if:` conditions (secrets can't be
