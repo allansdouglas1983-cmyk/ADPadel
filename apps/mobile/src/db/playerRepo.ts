@@ -1,12 +1,14 @@
 import { inArray } from 'drizzle-orm';
 import { db } from './client';
 import { genId } from './createMatch';
+import { markDirty } from '@/sync/syncEngine';
 import { players } from './schema';
 
 /** Create a guest player (host-added, claimable later) and return its id. */
 export function createGuestPlayer(displayName: string, gender?: 'm' | 'f' | 'x'): string {
   const id = genId('p');
   db.insert(players).values({ id, displayName, isGuest: true, gender }).run();
+  markDirty('players', id);
   return id;
 }
 

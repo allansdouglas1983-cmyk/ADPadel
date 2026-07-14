@@ -2,6 +2,7 @@ import { and, eq } from 'drizzle-orm';
 import type { EngineSnapshot, RuleSetConfig } from '@padel/scoring-engine';
 import { serialize, type PersistedMatch } from '@padel/shared';
 import { db } from './client';
+import { markDirty } from '@/sync/syncEngine';
 import { matches, ruleSets } from './schema';
 
 /**
@@ -62,4 +63,5 @@ export function markMatchComplete(matchId: string, winnerTeamId: string | null, 
     })
     .where(eq(matches.id, matchId))
     .run();
+  markDirty('matches', matchId);
 }

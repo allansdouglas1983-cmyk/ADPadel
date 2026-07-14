@@ -24,19 +24,23 @@ export interface SyncRow {
   deleted: boolean;
 }
 
-/** Push dirty rows; the server upserts by (entity, entityId) keeping the newer
- * `updatedAt`. Re-parents a claimed guest's rows to the new user server-side. */
+/** Push dirty rows; the server upserts by (owner, entity, entityId) keeping the
+ * newer `updatedAt`. RLS scopes every row to its owner. No-op when signed out. */
 export async function pushDirty(rows: SyncRow[]): Promise<void> {
   const supabase = getSupabase();
   if (!supabase || rows.length === 0) return;
+  const { data } = await supabase.auth.getUser();
+  const owner = data.user?.id;
+  if (!owner) return; // free / signed-out users never sync
   await supabase.from('sync_rows').upsert(
     rows.map((r) => ({
+      owner,
       entity: r.entity,
       entity_id: r.entityId,
       updated_at: r.updatedAt,
       payload: r.payload,
       deleted: r.deleted,
     })),
-    { onConflict: 'entity,entity_id' },
+    { onConflict: 'owner,entity,entity_id' },
   );
 }

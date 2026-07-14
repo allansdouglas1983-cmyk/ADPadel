@@ -3,6 +3,7 @@ import type { Discipline, PlayerRating, RatingUpdate } from '@padel/ratings';
 import { initialRating } from '@padel/ratings';
 import { db } from './client';
 import { genId } from './createMatch';
+import { markDirty } from '@/sync/syncEngine';
 import { ratingHistory, ratings } from './schema';
 
 const nowSec = () => Math.floor(Date.now() / 1000);
@@ -50,6 +51,7 @@ export function saveRatingUpdate(update: RatingUpdate): void {
         set: { value: r.elo, matchesCount: r.matchesPlayed, updatedAt: nowSec() },
       })
       .run();
+    markDirty('ratings', id);
   }
   for (const h of update.history) {
     db.insert(ratingHistory)

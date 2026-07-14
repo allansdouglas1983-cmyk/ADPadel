@@ -1,5 +1,5 @@
 import { sql } from 'drizzle-orm';
-import { integer, real, sqliteTable, text } from 'drizzle-orm/sqlite-core';
+import { integer, primaryKey, real, sqliteTable, text } from 'drizzle-orm/sqlite-core';
 
 /**
  * The offline-first, sport-agnostic data model (dossier §5.2). SQLite is the
@@ -164,12 +164,22 @@ export const ratingHistory = sqliteTable('rating_history', {
 });
 
 /** Sync bookkeeping for last-write-wins reconciliation. */
-export const syncMeta = sqliteTable('sync_meta', {
-  entity: text('entity').notNull(),
-  entityId: text('entity_id').notNull(),
-  updatedAt: integer('updated_at').notNull().default(now),
-  dirty: integer('dirty', { mode: 'boolean' }).notNull().default(true),
-  deleted: integer('deleted', { mode: 'boolean' }).notNull().default(false),
+export const syncMeta = sqliteTable(
+  'sync_meta',
+  {
+    entity: text('entity').notNull(),
+    entityId: text('entity_id').notNull(),
+    updatedAt: integer('updated_at').notNull().default(now),
+    dirty: integer('dirty', { mode: 'boolean' }).notNull().default(true),
+    deleted: integer('deleted', { mode: 'boolean' }).notNull().default(false),
+  },
+  (t) => ({ pk: primaryKey({ columns: [t.entity, t.entityId] }) }),
+);
+
+/** Last successful pull timestamp per entity, so pulls are incremental. */
+export const syncCursor = sqliteTable('sync_cursor', {
+  entity: text('entity').primaryKey(),
+  lastPulledAt: integer('last_pulled_at').notNull().default(0),
 });
 
 export type PlayerRow = typeof players.$inferSelect;

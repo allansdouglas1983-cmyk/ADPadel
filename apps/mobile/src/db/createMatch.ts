@@ -1,6 +1,7 @@
 import type { RuleSetConfig } from '@padel/scoring-engine';
 import { db } from './client';
 import { localWallClockIso } from '../lib/datetime';
+import { markDirty } from '@/sync/syncEngine';
 import { matches, ruleSets, sessions, teams } from './schema';
 
 /** Small unique id — app layer may use the clock/RNG (the engine never does). */
@@ -36,5 +37,7 @@ export function createMatch(args: CreateMatchArgs): { matchId: string; sessionId
   db.insert(teams).values({ id: teamAId, matchId, sideKey: 0, playerIdsJson: JSON.stringify(args.teamAPlayerIds) }).run();
   db.insert(teams).values({ id: teamBId, matchId, sideKey: 1, playerIdsJson: JSON.stringify(args.teamBPlayerIds) }).run();
 
+  markDirty('sessions', sessionId);
+  markDirty('matches', matchId);
   return { matchId, sessionId };
 }
