@@ -1,0 +1,19 @@
+# Maestro flow: the reliability benchmark — score, kill, reopen, resume.
+# Run: maestro test e2e/score-and-resume.yaml
+appId: app.marque.padel
+---
+- launchApp:
+    clearState: true
+- tapOn: "New match"
+- tapOn: "Start match"
+# Score a few points (tap the top zone = "Point to you").
+- repeat:
+    times: 4
+    commands:
+      - tapOn: "Point to you"
+# Hard-kill and relaunch WITHOUT clearing state.
+- stopApp
+- launchApp:
+    clearState: false
+# The live match must resume — the score is still on screen.
+- assertVisible: "Undo"

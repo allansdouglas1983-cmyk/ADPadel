@@ -1,0 +1,16 @@
+# Repo rules (mirror of CLAUDE.md — the authoritative guardrails).
+
+- Scoring engine (`packages/scoring-engine`) is PURE and FRAMEWORK-FREE.
+  reduce(state, action, cfg). No React, no SQLite, no I/O, no Date/Math.random.
+- Rules are DATA (RuleSetConfig). NEVER put "padel" or 15/30/40/6/7/10 in the
+  engine — only in presets/. The grep-guard test enforces this.
+- State is a fold of an append-only action log → free undo + crash-resume.
+  Persist the SNAPSHOT, never derived state, SYNCHRONOUSLY before the UI updates.
+- Use ONLY design-tokens (no raw hex / magic numbers). Scores = tabular numerals.
+- Watch apps are native (SwiftUI / Compose) and mirror the TS engine in lockstep.
+- Ask before adding any dependency. No WatermelonDB.
+- Conventional Commits, one concern per commit. Never commit secrets.
+
+NEVER: hard-code padel in the core · add a per-free-user server cost · lose match
+state · gate scoring or the share card · ship tennis/pickleball UI in v1 · block
+scoring on the network.
