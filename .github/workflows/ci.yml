@@ -25,11 +25,11 @@ jobs:
           node-version: 20
           cache: pnpm
 
-      - name: Install
-        run: pnpm install --frozen-lockfile
+      - name: Install (core packages only — the RN app builds via EAS off-CI)
+        run: pnpm install --frozen-lockfile --filter "./packages/*..."
 
-      - name: Typecheck (solution build)
-        run: pnpm -r typecheck
+      - name: Typecheck core packages
+        run: pnpm --filter "./packages/*" typecheck
 
       - name: Build core packages
         run: pnpm --filter "./packages/*" build
