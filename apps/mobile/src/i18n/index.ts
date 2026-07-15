@@ -13,7 +13,12 @@ import nl from './locales/nl.json';
  * i18n bootstrap. EN + ES lead (padel heartland); FR/IT/PT/SV/NL ship as the
  * fast-follow markets, resolved from the device locale with an EN fallback.
  */
-const languageTag = getLocales()[0]?.languageCode ?? 'en';
+let languageTag = 'en';
+try {
+  languageTag = getLocales()[0]?.languageCode ?? 'en';
+} catch {
+  // expo-localization can fail on some devices; fall back to English.
+}
 
 void i18n.use(initReactI18next).init({
   resources: {

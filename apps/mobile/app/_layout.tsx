@@ -11,10 +11,28 @@ import { useMigrations } from '@/db/client';
 import { useAppFonts } from '@/theme/fonts';
 import { useSettings } from '@/store/settingsStore';
 import { configurePurchases } from '@/paywall/purchases';
+import { StartupErrorBoundary, reportStartupError } from '@/lib/StartupErrorBoundary';
 import '@/i18n';
 
+// Surface any uncaught JS error on screen instead of a silent close.
+const globalWithErrorUtils = global as unknown as {
+  ErrorUtils?: {
+    getGlobalHandler?: () => (e: unknown, isFatal?: boolean) => void;
+    setGlobalHandler?: (h: (e: unknown, isFatal?: boolean) => void) => void;
+  };
+};
+const prevHandler = globalWithErrorUtils.ErrorUtils?.getGlobalHandler?.();
+globalWithErrorUtils.ErrorUtils?.setGlobalHandler?.((error, isFatal) => {
+  reportStartupError(error);
+  prevHandler?.(error, isFatal);
+});
+
 // Initialise RevenueCat once at module load, before any entitlement check.
-configurePurchases();
+try {
+  configurePurchases();
+} catch (err) {
+  reportStartupError(err);
+}
 
 void SplashScreen.preventAutoHideAsync();
 
@@ -48,22 +66,24 @@ function RootLayout() {
   if (!ready) return <View style={{ flex: 1, backgroundColor: '#0B0F14' }} />;
 
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <SafeAreaProvider>
-        <ThemeProvider>
-        <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="(tabs)" />
-          <Stack.Screen name="match/[id]" options={{ presentation: 'fullScreenModal' }} />
-          <Stack.Screen name="event/[id]" options={{ presentation: 'fullScreenModal' }} />
-          <Stack.Screen name="king/[id]" options={{ presentation: 'fullScreenModal' }} />
-          <Stack.Screen name="setup" options={{ presentation: 'modal' }} />
-          <Stack.Screen name="event/setup" options={{ presentation: 'modal' }} />
-          <Stack.Screen name="king/setup" options={{ presentation: 'modal' }} />
-          <Stack.Screen name="paywall" options={{ presentation: 'modal' }} />
-        </Stack>
-        </ThemeProvider>
-      </SafeAreaProvider>
-    </GestureHandlerRootView>
+    <StartupErrorBoundary>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <SafeAreaProvider>
+          <ThemeProvider>
+            <Stack screenOptions={{ headerShown: false }}>
+              <Stack.Screen name="(tabs)" />
+              <Stack.Screen name="match/[id]" options={{ presentation: 'fullScreenModal' }} />
+              <Stack.Screen name="event/[id]" options={{ presentation: 'fullScreenModal' }} />
+              <Stack.Screen name="king/[id]" options={{ presentation: 'fullScreenModal' }} />
+              <Stack.Screen name="setup" options={{ presentation: 'modal' }} />
+              <Stack.Screen name="event/setup" options={{ presentation: 'modal' }} />
+              <Stack.Screen name="king/setup" options={{ presentation: 'modal' }} />
+              <Stack.Screen name="paywall" options={{ presentation: 'modal' }} />
+            </Stack>
+          </ThemeProvider>
+        </SafeAreaProvider>
+      </GestureHandlerRootView>
+    </StartupErrorBoundary>
   );
 }
 
