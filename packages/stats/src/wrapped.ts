@@ -1,5 +1,5 @@
-import type { MatchRecord } from './types.js';
-import { headToHead, partnerChemistry, playerStats } from './compute.js';
+import type { BiggestComeback, MatchRecord } from './types.js';
+import { biggestComeback, headToHead, partnerChemistry, playerStats } from './compute.js';
 
 export interface WrappedSummary {
   readonly playerId: string;
@@ -10,9 +10,28 @@ export interface WrappedSummary {
   readonly toughestOpponent: { opponentId: string; winRate: number; matches: number } | null;
   readonly longestWinStreak: number;
   readonly comebacks: number;
+  /** The single biggest comeback win of the season, or null if none. */
+  readonly biggestComeback: BiggestComeback | null;
   readonly deciderPointsWon: number;
   readonly mostPlayedVenue: string | null;
+  /**
+   * The player's rating over the season, oldest→newest, for the "journey"
+   * sparkline. Empty unless a series is supplied via {@link SeasonWrappedOptions}.
+   * Values are passed through verbatim (already in whatever scale the caller
+   * chose) so this package stays free of @padel/ratings and fully deterministic.
+   */
+  readonly ratingJourney: readonly number[];
   readonly archetype: string;
+}
+
+/** Optional, DB-free inputs the caller can feed into {@link seasonWrapped}. */
+export interface SeasonWrappedOptions {
+  /**
+   * The player's rating history, oldest→newest, already resolved by the caller
+   * (e.g. from @padel/ratings). Kept as an argument rather than an import so the
+   * stats package stays pure and testable.
+   */
+  readonly ratingHistory?: readonly number[];
 }
 
 /** A light, on-device "player archetype" from the shape of the season. */
@@ -25,7 +44,11 @@ export function archetypeFor(winRate: number, deciderWinRate: number | null, com
 }
 
 /** Generate a Season Wrapped summary — computable any time, fully on-device. */
-export function seasonWrapped(records: readonly MatchRecord[], playerId: string): WrappedSummary {
+export function seasonWrapped(
+  records: readonly MatchRecord[],
+  playerId: string,
+  options: SeasonWrappedOptions = {},
+): WrappedSummary {
   const stats = playerStats(records, playerId);
   const partners = partnerChemistry(records, playerId).filter((p) => p.matches >= 2);
   const opponents = headToHead(records, playerId).filter((o) => o.matches >= 2);
@@ -61,8 +84,10 @@ export function seasonWrapped(records: readonly MatchRecord[], playerId: string)
     toughestOpponent,
     longestWinStreak: stats.longestWinStreak,
     comebacks: stats.comebacks,
+    biggestComeback: biggestComeback(records, playerId),
     deciderPointsWon,
     mostPlayedVenue,
+    ratingJourney: options.ratingHistory ? [...options.ratingHistory] : [],
     archetype: archetypeFor(stats.winRate, stats.deciderWinRate, stats.comebacks),
   };
 }

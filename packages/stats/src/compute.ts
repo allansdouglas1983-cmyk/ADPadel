@@ -1,4 +1,5 @@
 import type {
+  BiggestComeback,
   HeadToHead,
   MatchRecord,
   PartnerChemistry,
@@ -113,6 +114,49 @@ export function playerStats(records: readonly MatchRecord[], playerId: string): 
     comebacks,
     form: outcomes.slice().reverse(),
   };
+}
+
+/**
+ * The player's recent form, most-recent-first, capped at the last `n` matches.
+ * `playerStats(...).form` returns the whole history; this makes "form over the
+ * last N" a first-class, contractual slice. `n <= 0` yields an empty array; an
+ * `n` larger than the history simply returns the whole (recent-first) history.
+ */
+export function formLastN(
+  records: readonly MatchRecord[],
+  playerId: string,
+  n: number,
+): readonly ('W' | 'L')[] {
+  if (n <= 0) return [];
+  const matches = playerMatches(records, playerId);
+  const recent = n >= matches.length ? matches : matches.slice(matches.length - n);
+  return recent.map((r) => (r.winner === sideOf(r, playerId)! ? 'W' : 'L')).reverse();
+}
+
+/**
+ * The single biggest comeback among the player's wins — the winning match in
+ * which they overcame the largest deficit. A match qualifies when it is flagged
+ * `wasComeback` or carries a positive `comebackDeficit`; the reported `deficit`
+ * is that match's `comebackDeficit`, or 0 when the record didn't log a magnitude
+ * (an honest "unknown"). Ties keep the earliest such match. Returns null when the
+ * player has no comeback wins.
+ */
+export function biggestComeback(
+  records: readonly MatchRecord[],
+  playerId: string,
+): BiggestComeback | null {
+  let best: BiggestComeback | null = null;
+  for (const r of playerMatches(records, playerId)) {
+    const side = sideOf(r, playerId)!;
+    if (r.winner !== side) continue;
+    const deficit = r.comebackDeficit ?? 0;
+    const isComeback = r.wasComeback === true || deficit > 0;
+    if (!isComeback) continue;
+    if (best === null || deficit > best.deficit) {
+      best = { matchId: r.matchId, deficit };
+    }
+  }
+  return best;
 }
 
 export function partnerChemistry(records: readonly MatchRecord[], playerId: string): PartnerChemistry[] {

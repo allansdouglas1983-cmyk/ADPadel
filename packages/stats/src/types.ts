@@ -19,9 +19,16 @@ export interface MatchRecord {
   /** ISO timestamp the match started. */
   readonly startedAtIso: string;
   readonly wasComeback?: boolean;
+  /**
+   * The magnitude of the largest deficit the eventual winner overcame in this
+   * match — e.g. games (or sets) behind at the low point. Optional: the app
+   * populates it when the score log carries enough detail. When present it lets
+   * Wrapped surface the single biggest comeback; when absent, a `wasComeback`
+   * win still counts but its magnitude is treated as unknown (0).
+   */
+  readonly comebackDeficit?: number;
   /** Match duration in seconds, if recorded (for "hours on court"). */
   readonly durationSec?: number;
-  /** Golden/star (decider) points won by each player, if logged. */
 }
 
 export interface PlayerStats {
@@ -45,6 +52,13 @@ export interface PlayerStats {
   readonly comebacks: number;
   /** Most recent-first W/L flags for a form sparkline. */
   readonly form: readonly ('W' | 'L')[];
+}
+
+/** The single biggest comeback win and the deficit it overcame. */
+export interface BiggestComeback {
+  readonly matchId: string;
+  /** Largest deficit overcome (0 when the match logged no magnitude). */
+  readonly deficit: number;
 }
 
 export interface PartnerChemistry {
