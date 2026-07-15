@@ -28,6 +28,16 @@ on:
   push:
     tags:
       - 'v*'
+    # Auto-build when app/native/build inputs change on the working branch, so
+    # fixes are validated without a manual dispatch.
+    branches:
+      - claude/piston-padel-app-build-jmu2r8
+    paths:
+      - 'apps/mobile/**'
+      - 'packages/**'
+      - '.npmrc'
+      - 'pnpm-lock.yaml'
+      - '.github/workflows/android-apk.yml'
 
 concurrency:
   group: android-apk-${{ github.ref }}
