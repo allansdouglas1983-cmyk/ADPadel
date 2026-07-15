@@ -11,20 +11,32 @@ import { rankStandings, tallyStandings } from './standings.js';
  * as one serializable value (so an event resumes exactly like a match), while
  * the round-pairing and standings maths stay in their own modules.
  *
- * Court matches use point-per-rally scoring to a fixed total (16/24/32): every
- * rally is a point, both players on a team bank the team's points individually,
- * and the court is done when the two teams' points sum to the target.
+ * A round completes in one of two configurable modes:
+ *  - `'points'` (default): point-per-rally scoring to a fixed total (16/24/32).
+ *    Every rally is a point, both players on a team bank the team's points
+ *    individually, and a court is done when the two teams' points sum to the
+ *    target `pointsPerMatch`.
+ *  - `'time'`: every court in the round plays for a fixed `roundDurationSec`;
+ *    whatever points are banked when time expires stand. The engine never reads
+ *    the clock — elapsed seconds are passed IN via `setRoundElapsed`/`endRound`.
  */
 
 export type EventFormat = 'americano' | 'mexicano' | 'teamAmericano' | 'mixedAmericano';
+
+/** How a round/court is considered finished. */
+export type CompletionMode = 'points' | 'time';
 
 export interface EventSessionConfig {
   readonly format: EventFormat;
   readonly players: readonly string[];
   readonly courts: number;
-  /** Points contested per court match (sum of both teams). */
+  /** Points contested per court match (sum of both teams). Used in `'points'` mode. */
   readonly pointsPerMatch: number;
   readonly totalRounds: number;
+  /** Completion mode; omitted/`'points'` behaves exactly as before. */
+  readonly mode?: CompletionMode;
+  /** Seconds each round runs for in `'time'` mode. */
+  readonly roundDurationSec?: number;
   /** Fixed partnerships for `teamAmericano` (each an [a, b] pair). */
   readonly pairs?: readonly (readonly [string, string])[];
   /** Player pools for `mixedAmericano` (every team is one of each). */
@@ -45,6 +57,8 @@ export interface EventRound {
   readonly index: number;
   readonly courts: readonly CourtProgress[];
   readonly sittingOut: readonly string[];
+  /** Seconds elapsed for this round in `'time'` mode (passed in, never read). */
+  readonly elapsedSec?: number;
 }
 
 export interface EventSession {
@@ -65,6 +79,19 @@ export function courtIsComplete(court: CourtProgress, pointsPerMatch: number): b
 
 export function roundIsComplete(round: EventRound, pointsPerMatch: number): boolean {
   return round.courts.every((c) => courtIsComplete(c, pointsPerMatch));
+}
+
+/**
+ * Mode-aware round completion. In `'points'` mode every court must reach the
+ * target total; in `'time'` mode the round is done once its elapsed seconds
+ * reach the configured duration (all courts finish together).
+ */
+export function isRoundComplete(session: EventSession, round: EventRound = currentRound(session)): boolean {
+  if (session.config.mode === 'time') {
+    const duration = session.config.roundDurationSec ?? Infinity;
+    return (round.elapsedSec ?? 0) >= duration;
+  }
+  return roundIsComplete(round, session.config.pointsPerMatch);
 }
 
 export function currentRound(session: EventSession): EventRound {
@@ -134,13 +161,42 @@ function updateCourt(session: EventSession, courtIndex: number, fn: (c: CourtPro
   return { ...session, rounds };
 }
 
-/** Award one rally point to a side on a court (no-op once the court is full). */
+/**
+ * Award one rally point to a side on a court. No-op once the round is over: in
+ * `'points'` mode that's when this court hits its target; in `'time'` mode when
+ * the round's timer has expired (there is no per-court points cap).
+ */
 export function addPoint(session: EventSession, courtIndex: number, side: Side): EventSession {
-  const court = currentRound(session).courts[courtIndex];
-  if (!court || courtIsComplete(court, session.config.pointsPerMatch)) return session;
+  const round = currentRound(session);
+  const court = round.courts[courtIndex];
+  if (!court) return session;
+  const blocked =
+    session.config.mode === 'time'
+      ? isRoundComplete(session, round)
+      : courtIsComplete(court, session.config.pointsPerMatch);
+  if (blocked) return session;
   return updateCourt(session, courtIndex, (c) =>
     side === 0 ? { ...c, pointsA: c.pointsA + 1 } : { ...c, pointsB: c.pointsB + 1 },
   );
+}
+
+/**
+ * Report elapsed seconds for the current round (`'time'` mode). Time is supplied
+ * by the caller so the engine stays pure and deterministic. Monotonic: elapsed
+ * never moves backwards, so a completed round can't be re-opened by a stale tick.
+ */
+export function setRoundElapsed(session: EventSession, elapsedSec: number): EventSession {
+  const round = currentRound(session);
+  const next = Math.max(round.elapsedSec ?? 0, Math.max(0, elapsedSec));
+  const rounds = session.rounds.map((r, i) =>
+    i === session.currentRoundIndex ? { ...r, elapsedSec: next } : r,
+  );
+  return { ...session, rounds };
+}
+
+/** Mark the current round's timer as fully expired (`'time'` mode convenience). */
+export function endRound(session: EventSession): EventSession {
+  return setRoundElapsed(session, session.config.roundDurationSec ?? 0);
 }
 
 /** Undo a rally point on a side (floored at zero). */
@@ -164,8 +220,11 @@ export function setCourtResult(session: EventSession, courtIndex: number, points
 function playedCourts(session: EventSession): PlayedCourt[] {
   const out: PlayedCourt[] = [];
   for (const round of session.rounds) {
+    // In time mode a court's banked score counts once its round's timer is up;
+    // in points mode each court counts as soon as it reaches the target total.
+    const roundDone = session.config.mode === 'time' ? isRoundComplete(session, round) : false;
     for (const c of round.courts) {
-      if (courtIsComplete(c, session.config.pointsPerMatch)) {
+      if (roundDone || courtIsComplete(c, session.config.pointsPerMatch)) {
         out.push({ teamA: c.teamA, teamB: c.teamB, pointsA: c.pointsA, pointsB: c.pointsB });
       }
     }
@@ -196,7 +255,7 @@ export function leaderboard(session: EventSession): Standing[] {
 // ---------------------------------------------------------------------------
 
 export function canAdvance(session: EventSession): boolean {
-  return session.status === 'active' && roundIsComplete(currentRound(session), session.config.pointsPerMatch);
+  return session.status === 'active' && isRoundComplete(session);
 }
 
 /**

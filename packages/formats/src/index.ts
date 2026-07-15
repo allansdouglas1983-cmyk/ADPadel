@@ -6,10 +6,20 @@ export type { PlayedCourt } from './standings.js';
 export { tallyStandings, rankStandings } from './standings.js';
 export type { Fixture } from './roundrobin.js';
 export { roundRobinRounds } from './roundrobin.js';
-export type { BracketMatch } from './knockout.js';
-export { seedBracket, nextPowerOfTwo } from './knockout.js';
+export type { BracketMatch, BracketResult, Bracket } from './knockout.js';
+export {
+  seedBracket,
+  nextPowerOfTwo,
+  createBracket,
+  bracketMatch,
+  pendingMatches,
+  recordBracketResult,
+  advanceBracket,
+  bracketIsComplete,
+} from './knockout.js';
 export type {
   EventFormat,
+  CompletionMode,
   EventSessionConfig,
   CourtProgress,
   EventRound,
@@ -20,10 +30,13 @@ export {
   addPoint,
   undoPoint,
   setCourtResult,
+  setRoundElapsed,
+  endRound,
   advanceRound,
   canAdvance,
   courtIsComplete,
   roundIsComplete,
+  isRoundComplete,
   currentRound,
   isEventComplete,
   leaderboard,

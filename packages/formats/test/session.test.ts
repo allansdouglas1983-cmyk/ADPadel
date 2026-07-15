@@ -7,10 +7,13 @@ import {
   courtIsComplete,
   createEventSession,
   currentRound,
+  endRound,
   isEventComplete,
+  isRoundComplete,
   leaderboard,
   roundIsComplete,
   setCourtResult,
+  setRoundElapsed,
   undoPoint,
 } from '../src/index.js';
 
@@ -131,6 +134,107 @@ describe('mexicano', () => {
     const court = currentRound(s).courts[0]!;
     expect(court.teamA).toHaveLength(2);
     expect(court.teamB).toHaveLength(2);
+  });
+});
+
+describe('time-per-round mode', () => {
+  const timeConfig = (over: Partial<EventSessionConfig> = {}) =>
+    baseConfig({ mode: 'time', roundDurationSec: 600, courts: 1, players: players(4), ...over });
+
+  it('does not complete a round on points — only when the timer expires', () => {
+    let s = createEventSession(timeConfig());
+    // Bank plenty of points; there is no per-court points cap in time mode.
+    for (let i = 0; i < 50; i++) s = addPoint(s, 0, 0);
+    expect(currentRound(s).courts[0]!.pointsA).toBe(50);
+    expect(isRoundComplete(s)).toBe(false);
+    expect(canAdvance(s)).toBe(false);
+  });
+
+  it('completes the round once elapsed seconds reach the duration', () => {
+    let s = createEventSession(timeConfig());
+    s = addPoint(s, 0, 0);
+    s = setRoundElapsed(s, 300); // half-time
+    expect(isRoundComplete(s)).toBe(false);
+    s = setRoundElapsed(s, 600); // time!
+    expect(isRoundComplete(s)).toBe(true);
+    expect(canAdvance(s)).toBe(true);
+    expect(currentRound(s).elapsedSec).toBe(600);
+  });
+
+  it('endRound is a shortcut for reaching the full duration', () => {
+    let s = createEventSession(timeConfig());
+    s = endRound(s);
+    expect(isRoundComplete(s)).toBe(true);
+    expect(currentRound(s).elapsedSec).toBe(600);
+  });
+
+  it('elapsed time is monotonic — a stale tick cannot re-open a finished round', () => {
+    let s = createEventSession(timeConfig());
+    s = setRoundElapsed(s, 600);
+    s = setRoundElapsed(s, 120); // late, out-of-order tick
+    expect(currentRound(s).elapsedSec).toBe(600);
+    expect(isRoundComplete(s)).toBe(true);
+  });
+
+  it('ignores rally points once the round timer has expired', () => {
+    let s = createEventSession(timeConfig());
+    s = addPoint(s, 0, 0);
+    s = endRound(s);
+    s = addPoint(s, 0, 0); // blocked — round is over
+    expect(currentRound(s).courts[0]!.pointsA).toBe(1);
+  });
+
+  it('counts the banked score toward standings once time expires', () => {
+    let s = createEventSession(timeConfig());
+    s = addPoint(s, 0, 0);
+    s = addPoint(s, 0, 0);
+    s = addPoint(s, 0, 1);
+    // Before time: nothing counted yet.
+    expect(leaderboard(s).every((r) => r.played === 0)).toBe(true);
+    s = endRound(s);
+    const board = leaderboard(s);
+    const winners = currentRound(s).courts[0]!.teamA;
+    const top = board[0]!;
+    expect(winners).toContain(top.playerId);
+    expect(top.pointsFor).toBe(2);
+    expect(board.every((r) => r.played === 1)).toBe(true);
+  });
+
+  it('advances through a full timed event to completion', () => {
+    let s = createEventSession(timeConfig({ totalRounds: 2 }));
+    s = addPoint(s, 0, 0);
+    s = advanceRound(endRound(s)); // round 2
+    expect(s.currentRoundIndex).toBe(1);
+    expect(currentRound(s).elapsedSec).toBeUndefined(); // fresh round, timer reset
+    s = advanceRound(endRound(s)); // event complete
+    expect(isEventComplete(s)).toBe(true);
+  });
+
+  it('a timed mexicano re-seeds from the banked standings', () => {
+    let s = createEventSession(timeConfig({ format: 'mexicano', totalRounds: 3 }));
+    s = setCourtResult(s, 0, 21, 3);
+    s = advanceRound(endRound(s));
+    expect(s.currentRoundIndex).toBe(1);
+    const court = currentRound(s).courts[0]!;
+    expect(court.teamA).toHaveLength(2);
+    expect(court.teamB).toHaveLength(2);
+  });
+});
+
+describe('points mode is unaffected by the time additions', () => {
+  it('still completes per-court on points when mode is omitted', () => {
+    let s = createEventSession(baseConfig({ pointsPerMatch: 4, courts: 1, players: players(4) }));
+    for (let i = 0; i < 4; i++) s = addPoint(s, 0, 0);
+    expect(isRoundComplete(s)).toBe(true);
+    expect(canAdvance(s)).toBe(true);
+  });
+
+  it('isRoundComplete matches the legacy points predicate in points mode', () => {
+    let s = createEventSession(baseConfig());
+    expect(isRoundComplete(s)).toBe(false);
+    s = finishRound(s);
+    expect(isRoundComplete(s)).toBe(roundIsComplete(currentRound(s), 24));
+    expect(isRoundComplete(s)).toBe(true);
   });
 });
 
