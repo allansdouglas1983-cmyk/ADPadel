@@ -1,5 +1,5 @@
-import { router } from 'expo-router';
-import { useEffect } from 'react';
+import { Redirect, router } from 'expo-router';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, View } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
@@ -16,10 +16,11 @@ export default function PlayScreen() {
   const theme = useTheme();
   const resumable = useResumable();
 
-  // First-run: send new users through onboarding once.
-  useEffect(() => {
-    if (getSetting('onboarded', 'false') !== 'true') router.replace('/onboarding');
-  }, []);
+  // First-run: send new users through onboarding once. Declarative <Redirect>
+  // waits for the navigator to be ready (an imperative router.replace here fires
+  // before the Root Layout mounts and crashes the app at launch).
+  const [onboarded] = useState(() => getSetting('onboarded', 'false') === 'true');
+  if (!onboarded) return <Redirect href="/onboarding" />;
 
   const events: Array<{ label: string; icon: React.ReactNode; to: string }> = [
     { label: t('play.americano'), icon: <PadelBall size={20} color={theme.textMid} />, to: '/event/setup?format=americano' },
