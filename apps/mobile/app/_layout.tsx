@@ -10,7 +10,11 @@ import { ThemeProvider } from '@/theme/ThemeProvider';
 import { useMigrations } from '@/db/client';
 import { useAppFonts } from '@/theme/fonts';
 import { useSettings } from '@/store/settingsStore';
+import { configurePurchases } from '@/paywall/purchases';
 import '@/i18n';
+
+// Initialise RevenueCat once at module load, before any entitlement check.
+configurePurchases();
 
 void SplashScreen.preventAutoHideAsync();
 

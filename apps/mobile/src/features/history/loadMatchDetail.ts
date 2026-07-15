@@ -81,13 +81,15 @@ export function loadMatchDetail(matchId: string, isPro: boolean): MatchDetail | 
     };
   };
 
-  const sideAFirst = players.find((_, i) => cfg.serve.slotSide[i] === 0) ?? players[0] ?? '';
+  const deltasElo = new Map(players.map((pid) => [pid, getMatchRatingDelta(matchId, pid) ?? 0]));
   const cardData = buildCardData({
     matchId,
     state,
     cfg,
     names,
-    ratingDeltaElo: getMatchRatingDelta(matchId, sideAFirst) ?? 0,
+    deltasElo,
+    dateIso: row?.startedAtIso ?? undefined,
+    durationSec: row?.durationSec ?? undefined,
     isPro,
   });
 

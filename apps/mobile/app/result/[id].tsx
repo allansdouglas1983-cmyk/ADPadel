@@ -20,24 +20,25 @@ export default function ResultScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const { t } = useTranslation();
   const theme = useTheme();
-  const { state, cfg, snapshot } = useMatchStore();
+  const { state, cfg, snapshot, createdAtIso } = useMatchStore();
   const { isPro } = useEntitlements();
   const canvasRef = useCanvasRef();
   const [sharing, setSharing] = useState(false);
 
   const cardData = useMemo<MatchCardData | null>(() => {
     if (!state || !cfg || !snapshot) return null;
-    const sideA = snapshot.players.filter((_, i) => cfg.serve.slotSide[i] === 0);
     const names = getPlayerNames(snapshot.players);
+    const deltasElo = new Map(snapshot.players.map((pid) => [pid, getMatchRatingDelta(id!, pid) ?? 0]));
     return buildCardData({
       matchId: id!,
       state,
       cfg,
       names,
-      ratingDeltaElo: getMatchRatingDelta(id!, sideA[0] ?? '') ?? 0,
+      deltasElo,
+      dateIso: createdAtIso ?? undefined,
       isPro,
     });
-  }, [state, cfg, snapshot, id, isPro]);
+  }, [state, cfg, snapshot, id, isPro, createdAtIso]);
 
   const won = state?.outcome.type === 'completed' && state.outcome.winner === 0;
 

@@ -29,8 +29,11 @@ export interface MatchCardData {
   scoreline: string;
   venue: string;
   dateLabel: string;
+  durationLabel: string;
+  formatLabel: string;
   signatureStat: string;
   ratingDelta: string;
+  playerDeltas: readonly { name: string; delta: string }[];
   claimUrl: string;
   goldFlourish: boolean;
   holographic: boolean;
@@ -104,9 +107,26 @@ export function MatchCard({
 
       {!square && (
         <>
-          <SkiaText x={120} y={1240} text={data.signatureStat} font={smallFont} color={accent} />
-          <SkiaText x={120} y={1320} text={`${data.dateLabel}`} font={smallFont} color={palette.textMid} />
-          <SkiaText x={120} y={1400} text={`Rating ${data.ratingDelta}`} font={smallFont} color={palette.accent400} />
+          <SkiaText x={120} y={1200} text={data.signatureStat} font={smallFont} color={accent} />
+          <SkiaText x={120} y={1272} text={data.formatLabel} font={smallFont} color={palette.textMid} />
+          <SkiaText
+            x={120}
+            y={1344}
+            text={[data.dateLabel, data.venue, data.durationLabel].filter(Boolean).join('  ·  ')}
+            font={smallFont}
+            color={palette.textMid}
+          />
+          {/* Each player's rating delta (§3.5). */}
+          {data.playerDeltas.map((p, i) => (
+            <SkiaText
+              key={p.name + i}
+              x={120}
+              y={1420 + i * 56}
+              text={`${p.name}  ${p.delta}`}
+              font={smallFont}
+              color={palette.accent400}
+            />
+          ))}
         </>
       )}
 
