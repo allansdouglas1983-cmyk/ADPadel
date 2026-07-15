@@ -19,10 +19,14 @@ configurePurchases();
 void SplashScreen.preventAutoHideAsync();
 
 // Crash reporting is how we EVIDENCE the "never lose a match" reliability claim.
+// Only enable when a DSN is actually configured — initialising the native SDK
+// with an empty DSN crashes a release build at launch (sideload builds have no
+// Sentry secret). Breadcrumbs/captureException elsewhere are safe no-ops when off.
+const sentryDsn = (Constants.expoConfig?.extra?.sentryDsn as string) || undefined;
 Sentry.init({
-  dsn: (Constants.expoConfig?.extra?.sentryDsn as string) ?? undefined,
+  dsn: sentryDsn,
   tracesSampleRate: 0.2,
-  enabled: !__DEV__,
+  enabled: !__DEV__ && Boolean(sentryDsn),
 });
 
 function RootLayout() {
