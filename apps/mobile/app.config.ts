@@ -16,7 +16,10 @@ const config: ExpoConfig = {
   orientation: 'portrait',
   userInterfaceStyle: 'automatic',
   icon: './assets/icon.png',
-  newArchEnabled: true,
+  // Disabled to unblock release launch: the New Architecture (Fabric/TurboModules)
+  // is the most likely cause of the silent native crash at startup with this
+  // native-module set. Re-enable once each module is verified new-arch-clean.
+  newArchEnabled: false,
   ios: {
     supportsTablet: true,
     bundleIdentifier: 'app.marque.padel',
