@@ -60,6 +60,7 @@
   "devDependencies": {
     "@types/qrcode": "^1.5.5",
     "@types/react": "~18.3.12",
+    "babel-plugin-inline-import": "^3.0.0",
     "drizzle-kit": "^0.30.0",
     "typescript": "^5.7.2"
   }
