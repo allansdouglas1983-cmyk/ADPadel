@@ -54,6 +54,9 @@ const config: ExpoConfig = {
       'expo-splash-screen',
       { backgroundColor: '#0B0F14', image: './assets/splash.png', imageWidth: 180 },
     ],
+    // expo-modules-core's Compose Compiler (1.5.15) requires Kotlin 1.9.25;
+    // RN 0.76 defaults to 1.9.24, which fails the release Kotlin compile. Pin it.
+    ['expo-build-properties', { android: { kotlinVersion: '1.9.25' } }],
   ],
   experiments: { typedRoutes: true },
   extra: {
